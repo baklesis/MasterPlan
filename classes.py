@@ -125,7 +125,7 @@ class RoomList:
 
 ## Thanos start
 class Schedule:
-    def __init__(event_list):
+    def __init__(self,event_list):
         self.__event_list=event_list
         self.__timestamp_created=datetime.now()
         self.__published=False
@@ -142,7 +142,7 @@ class Schedule:
         self.__published=False
 
 class Event:
-    def __init__(name,duration):
+    def __init__(self,name,duration):
         self.__name=name
         self.__duration=duration
         self.__organizer=None
@@ -173,7 +173,7 @@ class Event:
 
 
 class Tag:
-    def __init__(name):
+    def __init__(self,name):
         self.__name=name
         self.__event_list= []
 
