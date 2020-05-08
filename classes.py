@@ -84,11 +84,11 @@ class Building:
 
 class BuildingList:
     def __init__(self):
-        self._building_list= building_list
+        self.building_list = building_list
     
     @property    
     def building_list(self):
-        return self._building_list
+        return self.__building_list
     
     @building_list.setter
     def building_list(self, ):
@@ -96,7 +96,7 @@ class BuildingList:
 
     @building_list.deleter
     def building_list(self):
-        del self._building_list
+        del self.__building_list
 
 class Room:
     def __init__(self, name, building, floor, capacity, group):
@@ -113,15 +113,15 @@ class RoomList:
         self.room_list = room_list
     @property    
     def room_list(self):
-        return self._room_list
+        return self.__room_list
     
     @room_list.setter
     def room_list(self, ):
-        self._room_list=room_list
+        self.__room_list=room_list
 
     @room_list.deleter
     def room_list(self):
-        del self._room_list
+        del self.__room_list
 
 ## Thanos start
 class Schedule:
