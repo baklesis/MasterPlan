@@ -66,3 +66,67 @@ class OrganizerList:
         return self._organizer_list
     def set_organizer_list(organizer_list):
         self._organizer_list=organizer_list
+
+## Thanos start
+class Schedule:
+    def __init__(event_list):
+        self.__event_list=event_list
+        self.__timestamp_created=datetime.now()
+        self.__published=False
+
+    def get_event_list():
+        return self.__event_list
+    def get_timestamp():
+        return self.__timestamp_created
+    def get_published():
+        return self.__published
+    def publish():
+        self.__published=True
+    def unpublish():
+        self.__published=False
+
+class Event:
+    def __init__(name,duration):
+        self.__name=name
+        self.__duration=duration
+        self.__organizer=None
+        self.__tag_list= []
+        self.__constraint_list= []
+        self.__timestamp_created=datetime.now()
+
+    def get_name():
+        return self.__name
+    def get_duration():
+        return self.__duration
+    def get_organizer():
+        return self.__organizer
+    def set_organizer(organizer):
+        self.__organizer=organizer
+    def add_tag(tag):
+        self.__tag_list.append(tag)
+        tag.add_event(self)
+    def remove_tag(tag):
+        self.__tag_list.remove(tag)
+        tag.remove_event(self)
+    def add_constraint(constraint):
+        self.__constraint_list.append(constraint)
+    def remove_constraint(constraint):
+        self.__constraint_list.remove(constraint)
+    def get_timestamp():
+        return self.__timestamp_created
+
+
+class Tag:
+    def __init__(name):
+        self.__name=name
+        self.__event_list= []
+
+    def get_name():
+        return self.__name
+    def get_event_list():
+        return self.__event_list
+    def add_event(event):
+        self.__event_list.append(event)
+    def remove_event(event):
+        self.__event_list.remove(event)
+## Thanos end
