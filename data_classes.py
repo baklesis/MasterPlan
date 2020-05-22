@@ -67,8 +67,6 @@ class OrganizerList:
     def set_organizer_list(organizer_list):
         self._organizer_list=organizer_list
 
-<<<<<<< HEAD
-
 class Session:
     def __init__(self, user, building, floor, filters):
         self.user = user
@@ -123,7 +121,6 @@ class RoomList:
     def room_list(self):
         del self._room_list
 
-## Thanos start
 class Schedule:
     def __init__(self,event_list):
         self.__event_list=event_list
@@ -171,7 +168,6 @@ class Event:
     def get_timestamp():
         return self.__timestamp_created
 
-
 class Tag:
     def __init__(self,name):
         self.__name=name
@@ -185,10 +181,7 @@ class Tag:
         self.__event_list.append(event)
     def remove_event(event):
         self.__event_list.remove(event)
-## Thanos end
->>>>>>> 9a0bc552b3ffc8d428df5aa354ae35d0e314aca1
 
-##Eirini begin
 from  datetime import datetime
 class Announcement:
     def __init__(self,text,timestamp,):
@@ -205,7 +198,6 @@ class Announcement:
     def get_text(self):
          text= self.organizer  
             
-from datetime import datetime
 class TimeConstraint:
     def __init__(self,datetime,repetition,weight):
          self.datetime=datetime
@@ -218,7 +210,6 @@ class TimeConstraint:
     def get_weight(self):
          return self.weight
 
-from datetime import datetime
 class Constraint:
     def __init__(self,timestamp,organizer):
          self.timestamp=datetime.now()
@@ -226,7 +217,6 @@ class Constraint:
     def get_organizer(self):
          organizer= self.organizer
             
-from  datetime import datetime
 class Announcement:
     def __init__(self,text,timestamp,):
          self.text=text
@@ -234,4 +224,3 @@ class Announcement:
     def get_text(self):
          text= self.organizer
 
-##Eirini end
