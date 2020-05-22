@@ -101,7 +101,6 @@ class EventCreateWindow:
     def selectName(self):
     def selectDuration(self):
     def setTags(self):
-    #def addTagConstraint είναι λάθος
     def addTag(self):
     def showRoomGroups(self):
     def selectGroup(self):
@@ -126,7 +125,6 @@ class ConstraintWindow:
     def saveTagConstraint(self):
     def saveTimeConstraint(self):
     def checkData(self):
-    #def setWeight(self): συγχωνευση με selectWeight
 
 class MessageWindow:
     def showWindow(self,message):
