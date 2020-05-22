@@ -103,8 +103,8 @@ class Room:
         self.floor = floor
         self.capacity = capacity
         self.group = group
-    
-
+       
+    def getRoomInfo():
 
 class RoomList:
     def __init__(self, room_list):
@@ -181,6 +181,9 @@ class Tag:
         self.__event_list.append(event)
     def remove_event(event):
         self.__event_list.remove(event)
+    def getName():
+        return self._name
+        
 
 from  datetime import datetime
 class Announcement:
@@ -225,3 +228,24 @@ class TagConstraint:
     def get_weight():
         return self.weight
 
+class TagList:
+    def __init__(self,tag_list):
+        self._tag_list=tag_list
+    def getTagList():
+        return TagList
+    def addTag():
+        return Tag
+    
+class RoomGroup():
+    def __init__(self,name,event_list,room_list):
+        self.name=name
+        self.event_list=event_list
+        self.room_list=room_list
+ 
+
+ class RoomGroupList:
+    def __init__(self,room_group_list):
+         self.room_group_list=room_group_list
+    def getRoomGroupList():
+        
+            
