@@ -188,15 +188,7 @@ class Announcement:
          self.text=text
          self.timestamp=datetime.now()
     def get_text(self):
-         text= self.organizer
-  from  datetime import datetime
-
-class Announcement:
-    def __init__(self,text,timestamp,):
-         self.text=text
-         self.timestamp=datetime.now()
-    def get_text(self):
-         text= self.organizer  
+         text= self.organizer 
             
 class TimeConstraint:
     def __init__(self,datetime,repetition,weight):
@@ -217,10 +209,19 @@ class Constraint:
     def get_organizer(self):
          organizer= self.organizer
             
-class Announcement:
-    def __init__(self,text,timestamp,):
-         self.text=text
-         self.timestamp=datetime.now()
-    def get_text(self):
-         text= self.organizer
+class SpaceConstraint:
+    def __init__(self, space):
+        self.space = space
+
+    def get_space():
+        return self.space
+    
+class TagConstraint:
+    def __init__(self,tag,weight):
+        self.tag=tag
+        self.weight=weight
+    def get_tag():
+        return self.tag
+    def get_weight():
+        return self.weight
 
