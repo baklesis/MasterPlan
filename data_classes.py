@@ -18,7 +18,8 @@ class Account:
         return self._email
     def set_email(email):
         self._email=email
-        
+    def getAccountType(self):
+    
 
 class Organizer(Account):
     def __init__(self, fullname, organization):
@@ -33,6 +34,9 @@ class Organizer(Account):
         return self._organization
     def set_organization(organization):
         self._organization=organization
+    def getName():
+    def sendEmail():
+    
 
 class Admin(Account):
     pass
@@ -56,6 +60,8 @@ class Message:
         return self._text
     def set_text(text):
         self._text=text
+    def notifyOrganizers():   
+     
 
         
 class OrganizerList:
@@ -66,6 +72,8 @@ class OrganizerList:
         return self._organizer_list
     def set_organizer_list(organizer_list):
         self._organizer_list=organizer_list
+    def addOrganizer(self):   
+     
 
 class Session:
     def __init__(self, user, building, floor, filters):
@@ -73,12 +81,25 @@ class Session:
         self.building = building
         self.floor = floor
         self.filters = filters
+    def getSelectedFilters(self,tag):
+        return filters
+    def getSelectedBuilding(self,building):
+    def getSelectedFloor(self):
+    def getUserType(self):
+    def setSelectedFloor(self):
+    def convertToCSV(self):
+    
+    
     
 class Building:
     def __init__(self, name, organization, room_list):
         self.name = name
         self.organization = organization
         self.room_list = room_list
+    def getRoomList():
+        def __init__(self):
+          return RoomList
+    
 
 class BuildingList:
     def __init__(self):
@@ -95,6 +116,14 @@ class BuildingList:
     @building_list.deleter
     def building_list(self):
         del self._building_list
+        
+    def createBuildingList(file):
+    
+    def getBuildingList():
+        return BuildingList
+    def convertToCSV():
+        %%return csvfile     
+        
 
 class Room:
     def __init__(self, name, building, floor, capacity, group):
@@ -120,6 +149,8 @@ class RoomList:
     @room_list.deleter
     def room_list(self):
         del self._room_list
+    def createRoomList(File):
+    def convertToCSV():
 
 class Schedule:
     def __init__(self,event_list):
@@ -137,6 +168,11 @@ class Schedule:
         self.__published=True
     def unpublish():
         self.__published=False
+    def deleteSchedule():
+    def getSchedule(self,Event,Room,Organizer,str):    
+    def publishSchedule():
+    def createSchedule(file):
+        
 
 class Event:
     def __init__(self,name,duration):
@@ -167,6 +203,12 @@ class Event:
         self.__constraint_list.remove(constraint)
     def get_timestamp():
         return self.__timestamp_created
+    def getEventInfo(self):
+    def getTagList():
+    def getName():
+    def setOrganizer():
+    def addTag():
+    def addConstraint():
 
 class Tag:
     def __init__(self,name):
@@ -204,6 +246,9 @@ class TimeConstraint:
          return self.repetition
     def get_weight(self):
          return self.weight
+    def getConstraintInfo(self):
+    def getChanged(self):
+     
 
 class Constraint:
     def __init__(self,timestamp,organizer):
@@ -215,9 +260,13 @@ class Constraint:
 class SpaceConstraint:
     def __init__(self, space):
         self.space = space
-
     def get_space():
         return self.space
+    def getSpace(self,num):
+    def getConstraintInfo(self):
+    
+    
+    
     
 class TagConstraint:
     def __init__(self,tag,weight):
@@ -227,6 +276,9 @@ class TagConstraint:
         return self.tag
     def get_weight():
         return self.weight
+    def getConstraintInfo(self):
+    def getChanged(self):
+    
 
 class TagList:
     def __init__(self,tag_list):
@@ -247,5 +299,9 @@ class RoomGroup():
     def __init__(self,room_group_list):
          self.room_group_list=room_group_list
     def getRoomGroupList():
-        
-            
+ 
+class AccountList:
+    def __init__(self,account_list):
+        self._account_list=account_list
+    def valOrganization(self):
+    def accountExists():
