@@ -117,7 +117,7 @@ class OrganizerListWindow:
     def selectOrganizer(self,org):
 
 class ConstraintWindow:
-    def showWindow(self):
+    def showWindow(self):        
     def selectTag(self,tag):
     def selectTime(self,datetime):
     def selectRepetition(self,rep):
@@ -132,3 +132,13 @@ class MessageWindow:
     def createFile(self):
     def executeScheduling(self):
     def checkfields(self):
+
+class SearchWindow()
+    def showWindow(self):
+    def enter(self):
+    def selectSuggestion(self):
+    def search(self,):
+    def show(self):
+    def autocomplete(self):
+    def sort(self):
+    def selectResult(self)    
