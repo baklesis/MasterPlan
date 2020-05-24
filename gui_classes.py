@@ -98,15 +98,19 @@ class EventEditWindow:
 
 class EventCreateWindow:
     def showWindow(self):
-    def selectName(self):
-    def selectDuration(self):
-    def setTags(self):
-    #def addTagConstraint είναι λάθος
-    def addTag(self):
-    def showRoomGroups(self):
-    def selectGroup(self):
-    def selectOrganizer(self):
+        # gets room group list
+        # shows all elements
+    def setTags(self): #καλύτερα μετονομασία σε addTag, λόγω λειτουργικότητας
+    def selectOrganizer(self): #ζήτημα, χρειάζεται αλλαγή ροής
     def saveEvent(self):
+        # checks if all complete
+        # gets Name
+        # gets Duration
+        # gets selected Room Group
+        # gets Tag list
+        # creates new event with selected attributes
+        # creates tags if needed (discussion needed)
+        # if not complete shows message
 
 class OrganizerCreateWindow:
     def showWindow(self):
