@@ -135,10 +135,11 @@ class MessageWindow:
 
 class SearchWindow()
     def showWindow(self):
-    def enter(self):
-    def selectSuggestion(self):
-    def search(self,):
-    def show(self):
-    def autocomplete(self):
-    def sort(self):
-    def selectResult(self)    
+    def enter(self,query):
+    def selectSuggestion(self,result):
+    def search(self,query):
+    def show(self,message): #να αλλάξει σε κάτι πιο ειδικό
+    def autocomplete(self,result,query):
+    def sort(self,event): # πρέπει να πάει μετά το "return" στο alternative
+    def selectResult(self,result) #θα μπορούσε να ενοποιηθεί με τη SelectSuggestion, διαφορά τους ένα όρισμα
+        
