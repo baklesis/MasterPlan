@@ -298,7 +298,11 @@ class RoomGroup():
  class RoomGroupList:
     def __init__(self,room_group_list):
          self.room_group_list=room_group_list
+    def addRoomGroup(self,name,event_list,room_list):
+        self.room_group_list.append(RoomGroup(name,event_list,room_list))
     def getRoomGroupList():
+        return room_group_list
+
  
 class AccountList:
     def __init__(self,account_list):
