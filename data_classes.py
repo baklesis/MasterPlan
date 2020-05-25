@@ -359,9 +359,8 @@ class TagList:
     @property
     def tag_list(self):
         return self._tag_list
-    @tag_list.setter
-    def tag_list(self, tag):
-        self._tag_list.append(tag)
+    def addTag(self, name):
+        self._tag_list.append(Tag(name))
 
 class RoomGroup:
     def __init__(self, name, event_list, room_list):
@@ -393,9 +392,8 @@ class RoomGroupList:
     @property
     def room_group_list(self):
         return self._room_group_list
-    @room_group_list.setter
-    def room_group_list(self, group):
-        self._room_group_list.append(group)
+    def addRoomGroup(self,name,event_list,room_list):
+        self._room_group_list.append(RoomGroup(name,event_list,room_list))
 
 class Constraint:
     def __init__(self,organizer):

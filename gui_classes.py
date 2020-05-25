@@ -170,23 +170,19 @@ class EventEditWindow:
 
 class EventCreateWindow:
     def showWindow(self):
-        return self
-    def selectName(self):
-        return self
-    def selectDuration(self):
-        return self
-    def setTags(self):
-        return self
-    def addTag(self):
-        return self
-    def showRoomGroups(self):
-        return self
-    def selectGroup(self):
-        return self
-    def selectOrganizer(self):
-        return self
+        # gets room group list
+        # shows all elements
+    def setTags(self): #καλύτερα μετονομασία σε addTag, λόγω λειτουργικότητας
+    def selectOrganizer(self): #ζήτημα, χρειάζεται αλλαγή ροής
     def saveEvent(self):
-        return self
+        # checks if all complete
+        # gets Name
+        # gets Duration
+        # gets selected Room Group
+        # gets Tag list
+        # creates new event with selected attributes
+        # creates tags if needed (discussion needed)
+        # if not complete shows message
 
 class OrganizerCreateWindow:
     def showWindow(self):
