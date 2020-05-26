@@ -59,9 +59,9 @@
       <property name="geometry">
        <rect>
         <x>0</x>
-        <y>110</y>
+        <y>230</y>
         <width>1371</width>
-        <height>478</height>
+        <height>311</height>
        </rect>
       </property>
       <layout class="QHBoxLayout" name="LayoutHomeHorizontal">
@@ -139,7 +139,10 @@
           <widget class="QLabel" name="LabelWelcome">
            <property name="font">
             <font>
-             <pointsize>72</pointsize>
+             <family>Cambria</family>
+             <pointsize>28</pointsize>
+             <weight>50</weight>
+             <bold>false</bold>
             </font>
            </property>
            <property name="layoutDirection">
@@ -149,7 +152,10 @@
             <enum>QFrame::NoFrame</enum>
            </property>
            <property name="text">
-            <string>Welcome to MasterPlan</string>
+            <string>MasterPlan</string>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignCenter</set>
            </property>
           </widget>
          </item>
@@ -279,17 +285,17 @@
      <widget class="QStackedWidget" name="StackedWidgetUserTypes">
       <property name="geometry">
        <rect>
-        <x>0</x>
-        <y>0</y>
-        <width>331</width>
-        <height>761</height>
+        <x>150</x>
+        <y>20</y>
+        <width>231</width>
+        <height>111</height>
        </rect>
       </property>
       <widget class="QWidget" name="GuestPage">
        <widget class="QWidget" name="verticalLayoutWidget_2">
         <property name="geometry">
          <rect>
-          <x>20</x>
+          <x>0</x>
           <y>20</y>
           <width>201</width>
           <height>91</height>
@@ -375,8 +381,8 @@
        <widget class="QWidget" name="verticalLayoutWidget">
         <property name="geometry">
          <rect>
-          <x>20</x>
-          <y>20</y>
+          <x>0</x>
+          <y>0</y>
           <width>179</width>
           <height>52</height>
          </rect>
@@ -396,19 +402,6 @@
          </item>
          <item>
           <layout class="QHBoxLayout" name="LayoutLogOut">
-           <item>
-            <spacer name="horizontalSpacer">
-             <property name="orientation">
-              <enum>Qt::Horizontal</enum>
-             </property>
-             <property name="sizeHint" stdset="0">
-              <size>
-               <width>40</width>
-               <height>20</height>
-              </size>
-             </property>
-            </spacer>
-           </item>
            <item>
             <widget class="QPushButton" name="ButtonLogOut">
              <property name="text">
@@ -436,8 +429,8 @@
        <widget class="QToolButton" name="ButtonMessages">
         <property name="geometry">
          <rect>
-          <x>20</x>
-          <y>80</y>
+          <x>0</x>
+          <y>60</y>
           <width>41</width>
           <height>41</height>
          </rect>
@@ -459,8 +452,8 @@
        <widget class="QToolButton" name="ButtonEdit">
         <property name="geometry">
          <rect>
-          <x>60</x>
-          <y>80</y>
+          <x>50</x>
+          <y>60</y>
           <width>41</width>
           <height>41</height>
          </rect>
@@ -484,10 +477,10 @@
      <widget class="QLabel" name="LabelLogo_2">
       <property name="geometry">
        <rect>
-        <x>1250</x>
-        <y>10</y>
-        <width>101</width>
-        <height>101</height>
+        <x>30</x>
+        <y>20</y>
+        <width>111</width>
+        <height>111</height>
        </rect>
       </property>
       <property name="sizePolicy">
@@ -512,333 +505,357 @@
        <bool>true</bool>
       </property>
      </widget>
-     <widget class="QToolButton" name="ButtonSearch">
+     <widget class="QWidget" name="formLayoutWidget">
       <property name="geometry">
        <rect>
-        <x>1010</x>
-        <y>70</y>
-        <width>41</width>
-        <height>41</height>
+        <x>40</x>
+        <y>150</y>
+        <width>1281</width>
+        <height>592</height>
        </rect>
       </property>
-      <property name="text">
-       <string>Search</string>
-      </property>
-      <property name="icon">
-       <iconset>
-        <normaloff>search.png</normaloff>search.png</iconset>
-      </property>
-      <property name="iconSize">
-       <size>
-        <width>30</width>
-        <height>30</height>
-       </size>
-      </property>
-     </widget>
-     <widget class="QFrame" name="FrameMainView">
-      <property name="geometry">
-       <rect>
-        <x>380</x>
-        <y>70</y>
-        <width>621</width>
-        <height>621</height>
-       </rect>
-      </property>
-      <property name="frameShape">
-       <enum>QFrame::Box</enum>
-      </property>
-      <property name="frameShadow">
-       <enum>QFrame::Raised</enum>
-      </property>
-      <widget class="QWidget" name="formLayoutWidget">
-       <property name="geometry">
-        <rect>
-         <x>10</x>
-         <y>10</y>
-         <width>599</width>
-         <height>601</height>
-        </rect>
-       </property>
-       <layout class="QGridLayout" name="LayoutMainView">
-        <item row="3" column="0">
-         <layout class="QHBoxLayout" name="LayoutSelectView">
-          <property name="sizeConstraint">
-           <enum>QLayout::SetFixedSize</enum>
-          </property>
-          <item>
-           <spacer name="horizontalSpacer_13">
-            <property name="orientation">
-             <enum>Qt::Horizontal</enum>
-            </property>
-            <property name="sizeHint" stdset="0">
-             <size>
-              <width>40</width>
-              <height>20</height>
-             </size>
-            </property>
-           </spacer>
-          </item>
-          <item>
-           <layout class="QHBoxLayout" name="LayoutButtons">
-            <property name="sizeConstraint">
-             <enum>QLayout::SetFixedSize</enum>
-            </property>
+      <layout class="QGridLayout" name="LayoutMainView">
+       <item row="3" column="0">
+        <layout class="QHBoxLayout" name="LayoutSelectView">
+         <property name="sizeConstraint">
+          <enum>QLayout::SetFixedSize</enum>
+         </property>
+         <item>
+          <spacer name="horizontalSpacer_13">
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>40</width>
+             <height>20</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+         <item>
+          <layout class="QHBoxLayout" name="LayoutButtons">
+           <property name="sizeConstraint">
+            <enum>QLayout::SetFixedSize</enum>
+           </property>
+           <item>
+            <widget class="QRadioButton" name="ButtonGrid">
+             <property name="text">
+              <string>Grid View</string>
+             </property>
+             <property name="checked">
+              <bool>true</bool>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <spacer name="horizontalSpacer">
+             <property name="orientation">
+              <enum>Qt::Horizontal</enum>
+             </property>
+             <property name="sizeType">
+              <enum>QSizePolicy::Fixed</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>40</width>
+               <height>20</height>
+              </size>
+             </property>
+            </spacer>
+           </item>
+           <item>
+            <widget class="QRadioButton" name="ButtonCalendar">
+             <property name="text">
+              <string>Calendar View</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </item>
+         <item>
+          <spacer name="horizontalSpacer_14">
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>40</width>
+             <height>20</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+        </layout>
+       </item>
+       <item row="2" column="0">
+        <widget class="QStackedWidget" name="MainView">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="minimumSize">
+          <size>
+           <width>500</width>
+           <height>500</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>2000</width>
+           <height>500</height>
+          </size>
+         </property>
+         <property name="frameShape">
+          <enum>QFrame::NoFrame</enum>
+         </property>
+         <widget class="QWidget" name="CalendarView">
+          <widget class="QWidget" name="horizontalLayoutWidget_6">
+           <property name="geometry">
+            <rect>
+             <x>0</x>
+             <y>456</y>
+             <width>1281</width>
+             <height>41</height>
+            </rect>
+           </property>
+           <layout class="QHBoxLayout" name="LayoutCalToolbar">
             <item>
-             <widget class="QRadioButton" name="ButtonGrid">
+             <spacer name="horizontalSpacer_17">
+              <property name="orientation">
+               <enum>Qt::Horizontal</enum>
+              </property>
+              <property name="sizeType">
+               <enum>QSizePolicy::Expanding</enum>
+              </property>
+              <property name="sizeHint" stdset="0">
+               <size>
+                <width>243</width>
+                <height>18</height>
+               </size>
+              </property>
+             </spacer>
+            </item>
+            <item>
+             <widget class="QPushButton" name="ButtonCalPublish">
               <property name="text">
-               <string>Grid View</string>
+               <string>Publish Changes</string>
               </property>
              </widget>
             </item>
             <item>
-             <widget class="QRadioButton" name="ButtonCalendar">
+             <widget class="QPushButton" name="ButtonCalRevert">
               <property name="text">
-               <string>Calendar View</string>
+               <string>Revert Changes</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QToolButton" name="ButtonSave">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                <horstretch>41</horstretch>
+                <verstretch>41</verstretch>
+               </sizepolicy>
+              </property>
+              <property name="text">
+               <string>...</string>
+              </property>
+              <property name="icon">
+               <iconset>
+                <normaloff>save.png</normaloff>save.png</iconset>
+              </property>
+              <property name="iconSize">
+               <size>
+                <width>30</width>
+                <height>30</height>
+               </size>
               </property>
              </widget>
             </item>
            </layout>
-          </item>
-          <item>
-           <spacer name="horizontalSpacer_14">
-            <property name="orientation">
-             <enum>Qt::Horizontal</enum>
-            </property>
-            <property name="sizeHint" stdset="0">
-             <size>
-              <width>40</width>
-              <height>20</height>
-             </size>
-            </property>
-           </spacer>
-          </item>
-         </layout>
-        </item>
-        <item row="1" column="0">
-         <layout class="QHBoxLayout" name="LayoutComboBoxHorizontal">
-          <item>
-           <spacer name="horizontalSpacer_5">
-            <property name="orientation">
-             <enum>Qt::Horizontal</enum>
-            </property>
-            <property name="sizeHint" stdset="0">
-             <size>
-              <width>40</width>
-              <height>20</height>
-             </size>
-            </property>
-           </spacer>
-          </item>
-          <item>
-           <layout class="QVBoxLayout" name="LayoutComboBoxVertical">
+          </widget>
+          <widget class="QWidget" name="horizontalLayoutWidget_7">
+           <property name="geometry">
+            <rect>
+             <x>2</x>
+             <y>0</y>
+             <width>1281</width>
+             <height>451</height>
+            </rect>
+           </property>
+           <layout class="QHBoxLayout" name="LayoutCalendar">
             <item>
-             <widget class="QComboBox" name="ComboBoxBuildings">
+             <widget class="QCalendarWidget" name="Calendar">
+              <property name="locale">
+               <locale language="English" country="UnitedStates"/>
+              </property>
+              <property name="maximumDate">
+               <date>
+                <year>9999</year>
+                <month>12</month>
+                <day>30</day>
+               </date>
+              </property>
+              <property name="gridVisible">
+               <bool>false</bool>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QListWidget" name="ListWidgetEvents">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Fixed" vsizetype="Expanding">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
+              <property name="minimumSize">
+               <size>
+                <width>300</width>
+                <height>0</height>
+               </size>
+              </property>
+              <property name="maximumSize">
+               <size>
+                <width>300</width>
+                <height>16777215</height>
+               </size>
+              </property>
               <property name="font">
                <font>
-                <pointsize>11</pointsize>
-                <italic>false</italic>
-                <strikeout>false</strikeout>
+                <kerning>true</kerning>
                </font>
               </property>
-              <property name="frame">
+              <property name="frameShape">
+               <enum>QFrame::NoFrame</enum>
+              </property>
+              <property name="alternatingRowColors">
                <bool>true</bool>
               </property>
               <item>
                <property name="text">
-                <string>No Building Selected</string>
+                <string>Event 1 today</string>
                </property>
               </item>
               <item>
                <property name="text">
-                <string>Building 1</string>
-               </property>
-              </item>
-              <item>
-               <property name="text">
-                <string>Building 2</string>
-               </property>
-              </item>
-              <item>
-               <property name="text">
-                <string>Building 3</string>
-               </property>
-              </item>
-             </widget>
-            </item>
-            <item>
-             <widget class="QComboBox" name="ComboBoxFilters">
-              <property name="frame">
-               <bool>true</bool>
-              </property>
-              <item>
-               <property name="text">
-                <string>No Filter Selected</string>
-               </property>
-              </item>
-              <item>
-               <property name="text">
-                <string>Filter 1</string>
-               </property>
-              </item>
-              <item>
-               <property name="text">
-                <string>Filter 2</string>
-               </property>
-              </item>
-              <item>
-               <property name="text">
-                <string>Filter 3</string>
+                <string>Event 2 today</string>
                </property>
               </item>
              </widget>
             </item>
            </layout>
-          </item>
-          <item>
-           <spacer name="horizontalSpacer_6">
-            <property name="orientation">
-             <enum>Qt::Horizontal</enum>
-            </property>
-            <property name="sizeHint" stdset="0">
-             <size>
-              <width>40</width>
-              <height>20</height>
-             </size>
-            </property>
-           </spacer>
-          </item>
-         </layout>
-        </item>
-        <item row="2" column="0">
-         <widget class="QStackedWidget" name="MainView">
-          <property name="sizePolicy">
-           <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-            <horstretch>0</horstretch>
-            <verstretch>0</verstretch>
-           </sizepolicy>
-          </property>
-          <property name="minimumSize">
-           <size>
-            <width>500</width>
-            <height>500</height>
-           </size>
-          </property>
-          <property name="maximumSize">
-           <size>
-            <width>600</width>
-            <height>500</height>
-           </size>
-          </property>
-          <property name="frameShape">
-           <enum>QFrame::NoFrame</enum>
-          </property>
-          <widget class="QWidget" name="GridView">
-           <widget class="QWidget" name="horizontalLayoutWidget_5">
-            <property name="geometry">
-             <rect>
-              <x>0</x>
-              <y>470</y>
-              <width>601</width>
-              <height>27</height>
-             </rect>
-            </property>
-            <layout class="QHBoxLayout" name="LayoutGridToolbar">
-             <item>
-              <spacer name="horizontalSpacer_19">
-               <property name="orientation">
-                <enum>Qt::Horizontal</enum>
-               </property>
-               <property name="sizeType">
-                <enum>QSizePolicy::Fixed</enum>
-               </property>
-               <property name="sizeHint" stdset="0">
-                <size>
-                 <width>20</width>
-                 <height>20</height>
-                </size>
-               </property>
-              </spacer>
-             </item>
-             <item>
-              <widget class="QLabel" name="LabelFloor">
-               <property name="minimumSize">
-                <size>
-                 <width>0</width>
-                 <height>25</height>
-                </size>
-               </property>
-               <property name="maximumSize">
-                <size>
-                 <width>16777215</width>
-                 <height>25</height>
-                </size>
-               </property>
-               <property name="text">
-                <string>Floor</string>
-               </property>
-               <property name="alignment">
-                <set>Qt::AlignCenter</set>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="QSpinBox" name="SpinBoxFloor"/>
-             </item>
-             <item>
-              <spacer name="horizontalSpacer_15">
-               <property name="orientation">
-                <enum>Qt::Horizontal</enum>
-               </property>
-               <property name="sizeType">
-                <enum>QSizePolicy::Expanding</enum>
-               </property>
-               <property name="sizeHint" stdset="0">
-                <size>
-                 <width>243</width>
-                 <height>18</height>
-                </size>
-               </property>
-              </spacer>
-             </item>
-             <item>
-              <widget class="QPushButton" name="ButtonGridRevert">
-               <property name="text">
-                <string>Revert Changes</string>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="QPushButton" name="ButtonGridPublish">
-               <property name="text">
-                <string>Publish Changes</string>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <spacer name="horizontalSpacer_16">
-               <property name="orientation">
-                <enum>Qt::Horizontal</enum>
-               </property>
-               <property name="sizeType">
-                <enum>QSizePolicy::Fixed</enum>
-               </property>
-               <property name="sizeHint" stdset="0">
-                <size>
-                 <width>20</width>
-                 <height>20</height>
-                </size>
-               </property>
-              </spacer>
-             </item>
-            </layout>
-           </widget>
+          </widget>
+         </widget>
+         <widget class="QWidget" name="GridView">
+          <widget class="QWidget" name="horizontalLayoutWidget_5">
+           <property name="geometry">
+            <rect>
+             <x>0</x>
+             <y>456</y>
+             <width>1281</width>
+             <height>41</height>
+            </rect>
+           </property>
+           <layout class="QHBoxLayout" name="LayoutGridToolbar">
+            <item>
+             <spacer name="horizontalSpacer_19">
+              <property name="orientation">
+               <enum>Qt::Horizontal</enum>
+              </property>
+              <property name="sizeType">
+               <enum>QSizePolicy::Fixed</enum>
+              </property>
+              <property name="sizeHint" stdset="0">
+               <size>
+                <width>20</width>
+                <height>20</height>
+               </size>
+              </property>
+             </spacer>
+            </item>
+            <item>
+             <widget class="QLabel" name="LabelFloor">
+              <property name="minimumSize">
+               <size>
+                <width>0</width>
+                <height>25</height>
+               </size>
+              </property>
+              <property name="maximumSize">
+               <size>
+                <width>16777215</width>
+                <height>25</height>
+               </size>
+              </property>
+              <property name="text">
+               <string>Floor</string>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignCenter</set>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QSpinBox" name="SpinBoxFloor"/>
+            </item>
+            <item>
+             <spacer name="horizontalSpacer_15">
+              <property name="orientation">
+               <enum>Qt::Horizontal</enum>
+              </property>
+              <property name="sizeType">
+               <enum>QSizePolicy::Expanding</enum>
+              </property>
+              <property name="sizeHint" stdset="0">
+               <size>
+                <width>243</width>
+                <height>18</height>
+               </size>
+              </property>
+             </spacer>
+            </item>
+            <item>
+             <widget class="QPushButton" name="ButtonGridRevert">
+              <property name="text">
+               <string>Revert Changes</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QPushButton" name="ButtonGridPublish">
+              <property name="text">
+               <string>Publish Changes</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </widget>
+          <widget class="QFrame" name="FrameGrid">
+           <property name="geometry">
+            <rect>
+             <x>0</x>
+             <y>0</y>
+             <width>1281</width>
+             <height>451</height>
+            </rect>
+           </property>
+           <property name="frameShape">
+            <enum>QFrame::Box</enum>
+           </property>
+           <property name="frameShadow">
+            <enum>QFrame::Raised</enum>
+           </property>
            <widget class="QWidget" name="gridLayoutWidget">
             <property name="geometry">
              <rect>
-              <x>3</x>
+              <x>0</x>
               <y>0</y>
-              <width>591</width>
-              <height>461</height>
+              <width>1281</width>
+              <height>451</height>
              </rect>
             </property>
             <layout class="QGridLayout" name="Grid">
@@ -973,159 +990,125 @@
             </layout>
            </widget>
           </widget>
-          <widget class="QWidget" name="CalendarView">
-           <widget class="QWidget" name="horizontalLayoutWidget_6">
-            <property name="geometry">
-             <rect>
-              <x>0</x>
-              <y>456</y>
-              <width>601</width>
-              <height>41</height>
-             </rect>
-            </property>
-            <layout class="QHBoxLayout" name="LayoutCalToolbar">
-             <item>
-              <spacer name="horizontalSpacer_17">
-               <property name="orientation">
-                <enum>Qt::Horizontal</enum>
-               </property>
-               <property name="sizeType">
-                <enum>QSizePolicy::Expanding</enum>
-               </property>
-               <property name="sizeHint" stdset="0">
-                <size>
-                 <width>243</width>
-                 <height>18</height>
-                </size>
-               </property>
-              </spacer>
-             </item>
-             <item>
-              <widget class="QPushButton" name="ButtonCalPublish">
-               <property name="text">
-                <string>Publish Changes</string>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="QPushButton" name="ButtonCalRevert">
-               <property name="text">
-                <string>Revert Changes</string>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="QToolButton" name="ButtonSave">
-               <property name="sizePolicy">
-                <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-                 <horstretch>41</horstretch>
-                 <verstretch>41</verstretch>
-                </sizepolicy>
-               </property>
-               <property name="text">
-                <string>...</string>
-               </property>
-               <property name="icon">
-                <iconset>
-                 <normaloff>save.png</normaloff>save.png</iconset>
-               </property>
-               <property name="iconSize">
-                <size>
-                 <width>30</width>
-                 <height>30</height>
-                </size>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <spacer name="horizontalSpacer_18">
-               <property name="orientation">
-                <enum>Qt::Horizontal</enum>
-               </property>
-               <property name="sizeType">
-                <enum>QSizePolicy::Fixed</enum>
-               </property>
-               <property name="sizeHint" stdset="0">
-                <size>
-                 <width>20</width>
-                 <height>20</height>
-                </size>
-               </property>
-              </spacer>
-             </item>
-            </layout>
-           </widget>
-           <widget class="QWidget" name="horizontalLayoutWidget_7">
-            <property name="geometry">
-             <rect>
-              <x>2</x>
-              <y>0</y>
-              <width>591</width>
-              <height>451</height>
-             </rect>
-            </property>
-            <layout class="QHBoxLayout" name="LayoutCalendar">
-             <item>
-              <widget class="QCalendarWidget" name="Calendar">
-               <property name="locale">
-                <locale language="English" country="UnitedStates"/>
-               </property>
-               <property name="maximumDate">
-                <date>
-                 <year>9999</year>
-                 <month>12</month>
-                 <day>30</day>
-                </date>
-               </property>
-               <property name="gridVisible">
-                <bool>false</bool>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="QListWidget" name="ListWidgetEvents">
-               <property name="sizePolicy">
-                <sizepolicy hsizetype="Fixed" vsizetype="Expanding">
-                 <horstretch>0</horstretch>
-                 <verstretch>0</verstretch>
-                </sizepolicy>
-               </property>
-               <property name="minimumSize">
-                <size>
-                 <width>200</width>
-                 <height>0</height>
-                </size>
-               </property>
-               <property name="maximumSize">
-                <size>
-                 <width>200</width>
-                 <height>16777215</height>
-                </size>
-               </property>
-               <property name="font">
-                <font>
-                 <kerning>true</kerning>
-                </font>
-               </property>
-               <item>
-                <property name="text">
-                 <string>Event 1 today</string>
-                </property>
-               </item>
-               <item>
-                <property name="text">
-                 <string>Event 2 today</string>
-                </property>
-               </item>
-              </widget>
-             </item>
-            </layout>
-           </widget>
-          </widget>
          </widget>
-        </item>
-       </layout>
-      </widget>
+        </widget>
+       </item>
+       <item row="1" column="0">
+        <layout class="QHBoxLayout" name="LayoutToolbar">
+         <item>
+          <spacer name="horizontalSpacer_5">
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>40</width>
+             <height>20</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+         <item>
+          <layout class="QVBoxLayout" name="LayoutComboBoxVertical">
+           <item>
+            <widget class="QComboBox" name="ComboBoxBuildings">
+             <property name="font">
+              <font>
+               <pointsize>11</pointsize>
+               <italic>false</italic>
+               <strikeout>false</strikeout>
+              </font>
+             </property>
+             <property name="frame">
+              <bool>true</bool>
+             </property>
+             <item>
+              <property name="text">
+               <string>No Building Selected</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Building 1</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Building 2</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Building 3</string>
+              </property>
+             </item>
+            </widget>
+           </item>
+           <item>
+            <widget class="QComboBox" name="ComboBoxFilters">
+             <property name="frame">
+              <bool>true</bool>
+             </property>
+             <item>
+              <property name="text">
+               <string>No Filter Selected</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Filter 1</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Filter 2</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Filter 3</string>
+              </property>
+             </item>
+            </widget>
+           </item>
+          </layout>
+         </item>
+         <item>
+          <spacer name="horizontalSpacer_6">
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+           <property name="sizeType">
+            <enum>QSizePolicy::Fixed</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>500</width>
+             <height>20</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+         <item>
+          <widget class="QToolButton" name="ButtonSearch">
+           <property name="text">
+            <string>Search</string>
+           </property>
+           <property name="icon">
+            <iconset>
+             <normaloff>search.png</normaloff>search.png</iconset>
+           </property>
+           <property name="iconSize">
+            <size>
+             <width>30</width>
+             <height>30</height>
+            </size>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+      </layout>
      </widget>
     </widget>
    </widget>
