@@ -1,4 +1,4 @@
-import gui_classes as gc
+from gui_classes import *
 from datetime import datetime
 
 class AccountList:
@@ -12,16 +12,14 @@ class AccountList:
         self._account_list.append(account)
     def valOrganization(self,org):
         for acc in self.account_list:
-            if acc.getAccountType() == 'admin' & acc.username == org:
-                #gc.GuestPage.showPage()
-                return true
-        #gc.ErrorPage.showPage()
-        return false
+            if (acc.getAccountType() == 'Admin') & (acc.username == org):
+                return True
+        return False
     def accountExists(self,username,password):
         for acc in self.account_list:
-            if acc.username==username & acc.password==password:
+            if (acc.username==username) & (acc.password==password):
                 return acc
-            else : return false
+        return False
 
 class Account:
     def __init__(self, username, password, email):
@@ -50,7 +48,7 @@ class Account:
         return type(self).__name__
 
 class Organizer(Account):
-    def __init__(self, fullname, organization, username, password, email):
+    def __init__(self, username, password, email, fullname, organization):
         super().__init__(username, password, email)
         self._fullname=fullname
         self._organization=organization

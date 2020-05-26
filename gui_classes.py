@@ -1,10 +1,15 @@
-import data_classes as dc #εισαγωγή data classes
-import typing #να σκεφτουμε μήπως για δικη μας ευκολια χρειαστεί για runtime support για τυπους δεδομένων παραμέτρων συναρτησεων
+from data_classes import * #εισαγωγή data classes
+from global_vars import *
 
 class HomePage:
     def enterOrganization(self,org):
-        return self
-        #dc.AccountList.valOrganization
+        if account_list.valOrganization(org):
+            return self
+            #showUserPage
+        else:
+            return self
+            #showErrorPage
+
 
 class ErrorPage:
     def showPage(self):
@@ -170,11 +175,15 @@ class EventEditWindow:
 
 class EventCreateWindow:
     def showWindow(self):
+        return self
         # gets room group list
         # shows all elements
     def setTags(self): #καλύτερα μετονομασία σε addTag, λόγω λειτουργικότητας
+        return self
     def selectOrganizer(self): #ζήτημα, χρειάζεται αλλαγή ροής
+        return self
     def saveEvent(self):
+        return self
         # checks if all complete
         # gets Name
         # gets Duration
