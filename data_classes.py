@@ -7,9 +7,8 @@ class AccountList:
     @property
     def account_list(self):
         return self._account_list
-    @account_list.setter
-    def account_list(self,account):
-        self._account_list.append(account)
+    def addAccount(self,username,password,email):
+        self._account_list.append(Account(username,password,email))
     def valOrganization(self,org):
         for acc in self.account_list:
             if (acc.getAccountType() == 'Admin') & (acc.username == org):
