@@ -2,13 +2,12 @@
 import sys
 import os
 
-
 from PySide2.QtWidgets import QApplication, QMainWindow
 from PySide2.QtCore import QFile
 from PySide2.QtUiTools import QUiLoader
 
 
-class MainView(QMainWindow):
+class MainWindow(QMainWindow):
     def __init__(self):
         super(MainView, self).__init__()
         self.load_ui()

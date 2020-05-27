@@ -33,7 +33,10 @@
   </property>
   <property name="windowIcon">
    <iconset>
-    <normaloff>logo.png</normaloff>logo.png</iconset>
+    <normaloff>icons/logo.png</normaloff>icons/logo.png</iconset>
+  </property>
+  <property name="autoFillBackground">
+   <bool>false</bool>
   </property>
   <widget class="QWidget" name="CentralWidget">
    <widget class="QStackedWidget" name="StackedWidgetMain">
@@ -41,8 +44,8 @@
      <rect>
       <x>0</x>
       <y>0</y>
-      <width>1371</width>
-      <height>771</height>
+      <width>1366</width>
+      <height>768</height>
      </rect>
     </property>
     <property name="acceptDrops">
@@ -59,9 +62,9 @@
       <property name="geometry">
        <rect>
         <x>0</x>
-        <y>230</y>
+        <y>170</y>
         <width>1371</width>
-        <height>311</height>
+        <height>333</height>
        </rect>
       </property>
       <layout class="QHBoxLayout" name="LayoutHomeHorizontal">
@@ -113,7 +116,7 @@
               <string/>
              </property>
              <property name="pixmap">
-              <pixmap>logo.png</pixmap>
+              <pixmap>icons/logo.png</pixmap>
              </property>
              <property name="scaledContents">
               <bool>true</bool>
@@ -155,7 +158,7 @@
             <string>MasterPlan</string>
            </property>
            <property name="alignment">
-            <set>Qt::AlignCenter</set>
+            <set>Qt::AlignHCenter|Qt::AlignTop</set>
            </property>
           </widget>
          </item>
@@ -175,45 +178,96 @@
             </spacer>
            </item>
            <item>
-            <widget class="QPlainTextEdit" name="ButtonEnterOrg">
-             <property name="enabled">
-              <bool>true</bool>
-             </property>
-             <property name="sizePolicy">
-              <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-               <horstretch>0</horstretch>
-               <verstretch>0</verstretch>
-              </sizepolicy>
-             </property>
-             <property name="maximumSize">
-              <size>
-               <width>16777215</width>
-               <height>25</height>
-              </size>
-             </property>
-             <property name="verticalScrollBarPolicy">
-              <enum>Qt::ScrollBarAlwaysOff</enum>
-             </property>
-             <property name="sizeAdjustPolicy">
-              <enum>QAbstractScrollArea::AdjustIgnored</enum>
-             </property>
-             <property name="plainText">
-              <string>Enter organization</string>
-             </property>
-             <property name="overwriteMode">
-              <bool>false</bool>
-             </property>
-             <property name="backgroundVisible">
-              <bool>false</bool>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="QPushButton" name="ButtonGo">
-             <property name="text">
-              <string>Go</string>
-             </property>
-            </widget>
+            <layout class="QVBoxLayout" name="verticalLayout">
+             <item>
+              <spacer name="verticalSpacer_2">
+               <property name="orientation">
+                <enum>Qt::Vertical</enum>
+               </property>
+               <property name="sizeHint" stdset="0">
+                <size>
+                 <width>20</width>
+                 <height>40</height>
+                </size>
+               </property>
+              </spacer>
+             </item>
+             <item>
+              <widget class="QLineEdit" name="LineOrg">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="minimumSize">
+                <size>
+                 <width>200</width>
+                 <height>25</height>
+                </size>
+               </property>
+               <property name="placeholderText">
+                <string>Enter organization</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <spacer name="verticalSpacer">
+               <property name="orientation">
+                <enum>Qt::Vertical</enum>
+               </property>
+               <property name="sizeHint" stdset="0">
+                <size>
+                 <width>20</width>
+                 <height>40</height>
+                </size>
+               </property>
+              </spacer>
+             </item>
+             <item>
+              <layout class="QHBoxLayout" name="horizontalLayout">
+               <item>
+                <spacer name="horizontalSpacer_16">
+                 <property name="orientation">
+                  <enum>Qt::Horizontal</enum>
+                 </property>
+                 <property name="sizeHint" stdset="0">
+                  <size>
+                   <width>40</width>
+                   <height>20</height>
+                  </size>
+                 </property>
+                </spacer>
+               </item>
+               <item>
+                <widget class="QPushButton" name="ButtonGo">
+                 <property name="enabled">
+                  <bool>true</bool>
+                 </property>
+                 <property name="text">
+                  <string>Go</string>
+                 </property>
+                 <property name="checkable">
+                  <bool>false</bool>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <spacer name="horizontalSpacer_18">
+                 <property name="orientation">
+                  <enum>Qt::Horizontal</enum>
+                 </property>
+                 <property name="sizeHint" stdset="0">
+                  <size>
+                   <width>40</width>
+                   <height>20</height>
+                  </size>
+                 </property>
+                </spacer>
+               </item>
+              </layout>
+             </item>
+            </layout>
            </item>
            <item>
             <spacer name="horizontalSpacer_10">
@@ -279,6 +333,9 @@
       <property name="text">
        <string>Go back</string>
       </property>
+      <property name="checkable">
+       <bool>false</bool>
+      </property>
      </widget>
     </widget>
     <widget class="QWidget" name="UserPage">
@@ -306,33 +363,21 @@
           <enum>QLayout::SetFixedSize</enum>
          </property>
          <item>
-          <widget class="QPlainTextEdit" name="TextUser">
-           <property name="maximumSize">
-            <size>
-             <width>200</width>
-             <height>25</height>
-            </size>
+          <widget class="QLineEdit" name="LineUser">
+           <property name="inputMethodHints">
+            <set>Qt::ImhHiddenText</set>
            </property>
-           <property name="plainText">
+           <property name="placeholderText">
             <string>username</string>
            </property>
           </widget>
          </item>
          <item>
-          <widget class="QPlainTextEdit" name="TextPass">
-           <property name="sizePolicy">
-            <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-             <horstretch>0</horstretch>
-             <verstretch>0</verstretch>
-            </sizepolicy>
+          <widget class="QLineEdit" name="LinePass">
+           <property name="echoMode">
+            <enum>QLineEdit::Password</enum>
            </property>
-           <property name="maximumSize">
-            <size>
-             <width>200</width>
-             <height>25</height>
-            </size>
-           </property>
-           <property name="plainText">
+           <property name="placeholderText">
             <string>password</string>
            </property>
           </widget>
@@ -356,6 +401,9 @@
             <widget class="QPushButton" name="ButtonLogIn">
              <property name="text">
               <string>Log in</string>
+             </property>
+             <property name="checkable">
+              <bool>false</bool>
              </property>
             </widget>
            </item>
@@ -383,29 +431,69 @@
          <rect>
           <x>0</x>
           <y>0</y>
-          <width>179</width>
-          <height>52</height>
+          <width>210</width>
+          <height>54</height>
          </rect>
         </property>
-        <layout class="QVBoxLayout" name="LayoutWelcomeUser">
+        <layout class="QVBoxLayout" name="LayoutLoggedIn">
          <item>
-          <widget class="QLabel" name="LabelWelcomeUser">
-           <property name="font">
-            <font>
-             <pointsize>12</pointsize>
-            </font>
-           </property>
-           <property name="text">
-            <string>Welcome, &lt;insert user&gt;</string>
-           </property>
-          </widget>
+          <layout class="QHBoxLayout" name="LayoutWelcomeUser">
+           <item>
+            <widget class="QLabel" name="LabelWelcomeUser">
+             <property name="font">
+              <font>
+               <pointsize>12</pointsize>
+              </font>
+             </property>
+             <property name="text">
+              <string>Welcome,</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QLabel" name="LabelLoggedUser">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="font">
+              <font>
+               <pointsize>12</pointsize>
+              </font>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">color : rgb(5, 76, 181)</string>
+             </property>
+             <property name="text">
+              <string>&lt;user name&gt;</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
          </item>
          <item>
           <layout class="QHBoxLayout" name="LayoutLogOut">
            <item>
             <widget class="QPushButton" name="ButtonLogOut">
+             <property name="minimumSize">
+              <size>
+               <width>90</width>
+               <height>0</height>
+              </size>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>90</width>
+               <height>16777215</height>
+              </size>
+             </property>
              <property name="text">
               <string>Log out</string>
+             </property>
+             <property name="checkable">
+              <bool>false</bool>
              </property>
             </widget>
            </item>
@@ -440,13 +528,16 @@
         </property>
         <property name="icon">
          <iconset>
-          <normaloff>message.png</normaloff>message.png</iconset>
+          <normaloff>icons/message.png</normaloff>icons/message.png</iconset>
         </property>
         <property name="iconSize">
          <size>
           <width>30</width>
           <height>30</height>
          </size>
+        </property>
+        <property name="checkable">
+         <bool>false</bool>
         </property>
        </widget>
        <widget class="QToolButton" name="ButtonEdit">
@@ -463,13 +554,16 @@
         </property>
         <property name="icon">
          <iconset>
-          <normaloff>edit.png</normaloff>edit.png</iconset>
+          <normaloff>icons/edit.png</normaloff>icons/edit.png</iconset>
         </property>
         <property name="iconSize">
          <size>
           <width>30</width>
           <height>30</height>
          </size>
+        </property>
+        <property name="checkable">
+         <bool>false</bool>
         </property>
        </widget>
       </widget>
@@ -499,7 +593,7 @@
        <string/>
       </property>
       <property name="pixmap">
-       <pixmap>logo.png</pixmap>
+       <pixmap>icons/logo.png</pixmap>
       </property>
       <property name="scaledContents">
        <bool>true</bool>
@@ -509,9 +603,9 @@
       <property name="geometry">
        <rect>
         <x>40</x>
-        <y>150</y>
+        <y>134</y>
         <width>1281</width>
-        <height>592</height>
+        <height>611</height>
        </rect>
       </property>
       <layout class="QGridLayout" name="LayoutMainView">
@@ -539,11 +633,17 @@
             <enum>QLayout::SetFixedSize</enum>
            </property>
            <item>
-            <widget class="QRadioButton" name="ButtonGrid">
+            <widget class="QPushButton" name="ButtonGrid">
              <property name="text">
               <string>Grid View</string>
              </property>
+             <property name="checkable">
+              <bool>true</bool>
+             </property>
              <property name="checked">
+              <bool>false</bool>
+             </property>
+             <property name="autoExclusive">
               <bool>true</bool>
              </property>
             </widget>
@@ -565,9 +665,15 @@
             </spacer>
            </item>
            <item>
-            <widget class="QRadioButton" name="ButtonCalendar">
+            <widget class="QPushButton" name="ButtonCalendar">
              <property name="text">
               <string>Calendar View</string>
+             </property>
+             <property name="checkable">
+              <bool>true</bool>
+             </property>
+             <property name="autoExclusive">
+              <bool>true</bool>
              </property>
             </widget>
            </item>
@@ -611,145 +717,6 @@
          <property name="frameShape">
           <enum>QFrame::NoFrame</enum>
          </property>
-         <widget class="QWidget" name="CalendarView">
-          <widget class="QWidget" name="horizontalLayoutWidget_6">
-           <property name="geometry">
-            <rect>
-             <x>0</x>
-             <y>456</y>
-             <width>1281</width>
-             <height>41</height>
-            </rect>
-           </property>
-           <layout class="QHBoxLayout" name="LayoutCalToolbar">
-            <item>
-             <spacer name="horizontalSpacer_17">
-              <property name="orientation">
-               <enum>Qt::Horizontal</enum>
-              </property>
-              <property name="sizeType">
-               <enum>QSizePolicy::Expanding</enum>
-              </property>
-              <property name="sizeHint" stdset="0">
-               <size>
-                <width>243</width>
-                <height>18</height>
-               </size>
-              </property>
-             </spacer>
-            </item>
-            <item>
-             <widget class="QPushButton" name="ButtonCalPublish">
-              <property name="text">
-               <string>Publish Changes</string>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QPushButton" name="ButtonCalRevert">
-              <property name="text">
-               <string>Revert Changes</string>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QToolButton" name="ButtonSave">
-              <property name="sizePolicy">
-               <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-                <horstretch>41</horstretch>
-                <verstretch>41</verstretch>
-               </sizepolicy>
-              </property>
-              <property name="text">
-               <string>...</string>
-              </property>
-              <property name="icon">
-               <iconset>
-                <normaloff>save.png</normaloff>save.png</iconset>
-              </property>
-              <property name="iconSize">
-               <size>
-                <width>30</width>
-                <height>30</height>
-               </size>
-              </property>
-             </widget>
-            </item>
-           </layout>
-          </widget>
-          <widget class="QWidget" name="horizontalLayoutWidget_7">
-           <property name="geometry">
-            <rect>
-             <x>2</x>
-             <y>0</y>
-             <width>1281</width>
-             <height>451</height>
-            </rect>
-           </property>
-           <layout class="QHBoxLayout" name="LayoutCalendar">
-            <item>
-             <widget class="QCalendarWidget" name="Calendar">
-              <property name="locale">
-               <locale language="English" country="UnitedStates"/>
-              </property>
-              <property name="maximumDate">
-               <date>
-                <year>9999</year>
-                <month>12</month>
-                <day>30</day>
-               </date>
-              </property>
-              <property name="gridVisible">
-               <bool>false</bool>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QListWidget" name="ListWidgetEvents">
-              <property name="sizePolicy">
-               <sizepolicy hsizetype="Fixed" vsizetype="Expanding">
-                <horstretch>0</horstretch>
-                <verstretch>0</verstretch>
-               </sizepolicy>
-              </property>
-              <property name="minimumSize">
-               <size>
-                <width>300</width>
-                <height>0</height>
-               </size>
-              </property>
-              <property name="maximumSize">
-               <size>
-                <width>300</width>
-                <height>16777215</height>
-               </size>
-              </property>
-              <property name="font">
-               <font>
-                <kerning>true</kerning>
-               </font>
-              </property>
-              <property name="frameShape">
-               <enum>QFrame::NoFrame</enum>
-              </property>
-              <property name="alternatingRowColors">
-               <bool>true</bool>
-              </property>
-              <item>
-               <property name="text">
-                <string>Event 1 today</string>
-               </property>
-              </item>
-              <item>
-               <property name="text">
-                <string>Event 2 today</string>
-               </property>
-              </item>
-             </widget>
-            </item>
-           </layout>
-          </widget>
-         </widget>
          <widget class="QWidget" name="GridView">
           <widget class="QWidget" name="horizontalLayoutWidget_5">
            <property name="geometry">
@@ -823,12 +790,21 @@
               <property name="text">
                <string>Revert Changes</string>
               </property>
+              <property name="checkable">
+               <bool>false</bool>
+              </property>
+              <property name="autoRepeat">
+               <bool>false</bool>
+              </property>
              </widget>
             </item>
             <item>
              <widget class="QPushButton" name="ButtonGridPublish">
               <property name="text">
                <string>Publish Changes</string>
+              </property>
+              <property name="checkable">
+               <bool>false</bool>
               </property>
              </widget>
             </item>
@@ -842,6 +818,9 @@
              <width>1281</width>
              <height>451</height>
             </rect>
+           </property>
+           <property name="styleSheet">
+            <string notr="true"/>
            </property>
            <property name="frameShape">
             <enum>QFrame::Box</enum>
@@ -991,6 +970,179 @@
            </widget>
           </widget>
          </widget>
+         <widget class="QWidget" name="CalendarView">
+          <widget class="QWidget" name="horizontalLayoutWidget_6">
+           <property name="geometry">
+            <rect>
+             <x>0</x>
+             <y>456</y>
+             <width>1281</width>
+             <height>41</height>
+            </rect>
+           </property>
+           <layout class="QHBoxLayout" name="LayoutCalToolbar">
+            <item>
+             <spacer name="horizontalSpacer_17">
+              <property name="orientation">
+               <enum>Qt::Horizontal</enum>
+              </property>
+              <property name="sizeType">
+               <enum>QSizePolicy::Expanding</enum>
+              </property>
+              <property name="sizeHint" stdset="0">
+               <size>
+                <width>243</width>
+                <height>18</height>
+               </size>
+              </property>
+             </spacer>
+            </item>
+            <item>
+             <widget class="QPushButton" name="ButtonCalPublish">
+              <property name="text">
+               <string>Publish Changes</string>
+              </property>
+              <property name="checkable">
+               <bool>false</bool>
+              </property>
+              <property name="checked">
+               <bool>false</bool>
+              </property>
+              <property name="autoRepeat">
+               <bool>false</bool>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QPushButton" name="ButtonCalRevert">
+              <property name="text">
+               <string>Revert Changes</string>
+              </property>
+              <property name="checkable">
+               <bool>false</bool>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QToolButton" name="ButtonDownload">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                <horstretch>41</horstretch>
+                <verstretch>41</verstretch>
+               </sizepolicy>
+              </property>
+              <property name="text">
+               <string>...</string>
+              </property>
+              <property name="icon">
+               <iconset>
+                <normaloff>icons/download.png</normaloff>icons/download.png</iconset>
+              </property>
+              <property name="iconSize">
+               <size>
+                <width>30</width>
+                <height>30</height>
+               </size>
+              </property>
+              <property name="checkable">
+               <bool>true</bool>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </widget>
+          <widget class="QFrame" name="FrameCalendar">
+           <property name="geometry">
+            <rect>
+             <x>0</x>
+             <y>0</y>
+             <width>1281</width>
+             <height>451</height>
+            </rect>
+           </property>
+           <property name="styleSheet">
+            <string notr="true"/>
+           </property>
+           <property name="frameShape">
+            <enum>QFrame::Box</enum>
+           </property>
+           <property name="frameShadow">
+            <enum>QFrame::Raised</enum>
+           </property>
+           <widget class="QWidget" name="horizontalLayoutWidget_7">
+            <property name="geometry">
+             <rect>
+              <x>10</x>
+              <y>10</y>
+              <width>1261</width>
+              <height>431</height>
+             </rect>
+            </property>
+            <layout class="QHBoxLayout" name="LayoutCalendar">
+             <item>
+              <widget class="QCalendarWidget" name="Calendar">
+               <property name="locale">
+                <locale language="English" country="UnitedStates"/>
+               </property>
+               <property name="maximumDate">
+                <date>
+                 <year>9999</year>
+                 <month>12</month>
+                 <day>30</day>
+                </date>
+               </property>
+               <property name="gridVisible">
+                <bool>false</bool>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QListWidget" name="ListWidgetEvents">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Fixed" vsizetype="Expanding">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="minimumSize">
+                <size>
+                 <width>300</width>
+                 <height>0</height>
+                </size>
+               </property>
+               <property name="maximumSize">
+                <size>
+                 <width>300</width>
+                 <height>16777215</height>
+                </size>
+               </property>
+               <property name="font">
+                <font>
+                 <kerning>true</kerning>
+                </font>
+               </property>
+               <property name="frameShape">
+                <enum>QFrame::NoFrame</enum>
+               </property>
+               <property name="alternatingRowColors">
+                <bool>true</bool>
+               </property>
+               <item>
+                <property name="text">
+                 <string>Event 1 today</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Event 2 today</string>
+                </property>
+               </item>
+              </widget>
+             </item>
+            </layout>
+           </widget>
+          </widget>
+         </widget>
         </widget>
        </item>
        <item row="1" column="0">
@@ -1096,13 +1248,16 @@
            </property>
            <property name="icon">
             <iconset>
-             <normaloff>search.png</normaloff>search.png</iconset>
+             <normaloff>icons/search.png</normaloff>icons/search.png</iconset>
            </property>
            <property name="iconSize">
             <size>
              <width>30</width>
              <height>30</height>
             </size>
+           </property>
+           <property name="checkable">
+            <bool>false</bool>
            </property>
           </widget>
          </item>
