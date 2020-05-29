@@ -1,4 +1,3 @@
-from gui_classes import *
 from datetime import datetime
 
 class AccountList:
@@ -7,8 +6,11 @@ class AccountList:
     @property
     def account_list(self):
         return self._account_list
-    def addAccount(self,username,password,email):
-        self._account_list.append(Account(username,password,email))
+    @account_list.setter
+    def account_list(self,account_list):
+        self._account_list = account_list
+    def addAccount(self, username, password, email):
+        self._account_list.append(Account(username, password, email))
     def valOrganization(self,org):
         for acc in self.account_list:
             if (acc.getAccountType() == 'Admin') & (acc.username == org):
@@ -22,27 +24,27 @@ class AccountList:
 
 class Account:
     def __init__(self, username, password, email):
-        self._username=username
-        self._password=password
-        self._email=email
+        self.__username=username
+        self.__password=password
+        self.__email=email
     @property
     def username(self):
-        return self._username
+        return self.__username
     @username.setter
     def username(self,username):
-        self._username=username
+        self.__username=username
     @property
     def password(self):
-        return self._password
+        return self.__password
     @password.setter
     def password(self,password):
-        self._password=password
+        self.__password=password
     @property
     def email(self):
-        return self._email
+        return self.__email
     @email.setter
     def email(self,email):
-        self._email=email
+        self.__email=email
     def getAccountType(self):
         return type(self).__name__
 
@@ -150,7 +152,11 @@ class Session:
     def selected_floor(self,floor):
         self._selected_floor=floor
     def getUserType(self):
-        return self
+        if self._current_user==None:
+            return "Guest"
+        else:
+            return self._current_user.getAccountType()
+
     def convertToCSV(self):
         return self
 
@@ -185,8 +191,8 @@ class BuildingList:
     def building_list(self):
         return self._building_list
     @building_list.setter
-    def building_list(self,building):
-        self._building_list.append(building)
+    def building_list(self,building_list):
+        self._building_list = building_list
     def createBuildingList(self,file):
         return self
     def convertToCSV(self):
@@ -234,13 +240,13 @@ class Room:
 
 class RoomList:
     def __init__(self, room_list):
-        self.room_list = room_list
+        self._room_list = room_list
     @property    
     def room_list(self):
         return self._room_list
     @room_list.setter
-    def room_list(self,room):
-        self._room_list.append(room)
+    def room_list(self,room_list):
+        self._room_list = room_list
     def createRoomList(self,file):
         return self
     def convertToCSV(self):
@@ -255,15 +261,8 @@ class Schedule:
     def event_list(self):
         return self._event_list
     @event_list.setter
-    def event_list(self,event,datetime,repetition,room): #event list ειναι list of dictionaries
-        self._event_list.append(
-            {
-            "event" : event,
-            "datetime" : datetime,
-            "repetition" : repetition,
-            "room" : room
-            }
-        )
+    def event_list(self,event_list):
+        self._event_list = event_list
     @property
     def timestamp_created(self):
         return self._timestamp_created
@@ -272,15 +271,24 @@ class Schedule:
     def published(self):
         return self._published
     @published.setter
-    def published(self,published):
-        self._published=published
+    def published(self, published):
+        self._published = published
+    def addEvent(self,event,event_datetime,repetition,room): #event list ειναι list of dictionaries
+        self._event_list.append(
+            {
+            "object" : event,
+            "datetime" : event_datetime,
+            "repetition" : repetition,
+            "room" : room
+            }
+        )
     def deleteSchedule(self): #desctructor καλυτερα
         return self
-    def getSchedule(self,event,room,organizer,str): #να δουμε πως θα μπορουσαμε το κάνουμε μέσω του constructor
+    def getSchedule(self,event,room,organizer,str): #special συναρτηση get
         return self
     def publishSchedule(self):
         return self
-    def createSchedule(self,file): #μήπως στο initialization?
+    def createSchedule(self,file): #μήπως στο initialization func?
         return self
     def convertToCSV(self):
         return self
@@ -394,26 +402,26 @@ class RoomGroupList:
 
 class Constraint:
     def __init__(self,organizer):
-        self._organizer = organizer
-        self._timestamp=datetime.now()
+        self.__organizer = organizer
+        self.__timestamp=datetime.now()
     @property
     def organizer(self):
-         return self._organizer
+         return self.__organizer
     @organizer.setter
     def organizer(self,organizer):
-        self._organizer=organizer
+        self.__organizer=organizer
 
 class TimeConstraint:
-    def __init__(self,datetime,repetition,weight):
-         self._datetime=datetime
+    def __init__(self,eventdatetime,repetition,weight):
+         self._datetime=eventdatetime
          self._repetition=repetition
          self._weight=weight
     @property
     def datetime(self):
          return self._datetime
     @datetime.setter
-    def datetime(self):
-        self._datetime=datetime
+    def datetime(self,eventdatetime):
+        self._datetime=eventdatetime
     @property
     def repetition(self):
          return self._repetition
