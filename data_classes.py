@@ -241,7 +241,10 @@ class Room:
 class RoomList:
     def __init__(self, room_list):
         self._room_list = room_list
-    @property    
+    def __init__(self, room_list,organization):
+        self.room_list = room_list
+        self.__organization=organization
+    @property
     def room_list(self):
         return self._room_list
     @room_list.setter
@@ -273,15 +276,18 @@ class Schedule:
     @published.setter
     def published(self, published):
         self._published = published
-    def addEvent(self,event,event_datetime,repetition,room): #event list ειναι list of dictionaries
+    def addEvent(self,name,duration,repetition): #event list ειναι list of dictionaries
+        newEvent = Event(name,duration)
         self._event_list.append(
             {
-            "object" : event,
-            "datetime" : event_datetime,
+            "object" : newEvent,
+            "datetime": None,
             "repetition" : repetition,
-            "room" : room
+            "room": None
             }
         )
+        return newEvent
+    # coming soon implement test functions for set datetime
     def deleteSchedule(self): #desctructor καλυτερα
         return self
     def getSchedule(self,event,room,organizer,str): #special συναρτηση get
@@ -299,6 +305,7 @@ class Event:
         self._name=name
         self._duration=duration
         self._organizer=None
+        self._room_group=None
         self._tag_list= []
         self._constraint_list= []
         self._timestamp_created=datetime.now()
@@ -306,40 +313,59 @@ class Event:
     @property
     def name(self):
         return self._name
+
     @name.setter
     def name(self,name):
         self._name=name
+
     @property
     def duration(self):
         return self._duration
+
     @duration.setter
     def duration(self, duration):
         self._duration = duration
+
     @property
     def organizer(self):
         return self._organizer
+
     @organizer.setter
     def organizer(self, organizer):
         self._organizer = organizer
+
     @property
     def tag_list(self):
         return self._tag_list
+
     @tag_list.setter
     def tag_list(self, tag_list):
         self._tag_list = tag_list
+
     @property
     def constraint_list(self):
         return self._constraint_list
+
     @constraint_list.setter
     def constraint_list(self,constraint):
         self._constraint_list.append(constraint)
+
     @property
     def timestamp_created(self):
         return self._timestamp_created
+
+    @property
+    def room_group(self):
+        return self._room_group
+
+    @room_group.setter
+    def room_group(self,room_group):
+        self._room_group =room_group
+
     def getEventInfo(self):
         return self
-    #def addTag(self):  μπορεί να αντικατασταθεί από την tag_list.setter
-    #def addConstraint(self): # μπορεί να αντικατασταθεί από την constraint_list.setter
+    # def addTag(self):  μπορεί να αντικατασταθεί από την tag_list.setter
+    # def addConstraint(self): # μπορεί να αντικατασταθεί από την constraint_list.setter
 
 class Tag:
     def __init__(self,name):
@@ -359,13 +385,25 @@ class Tag:
         self._event_list.append(event)
 
 class TagList:
-    def __init__(self):
+    def __init__(self,organization):
         self._tag_list = []
+        self.__organization=organization
     @property
     def tag_list(self):
         return self._tag_list
     def addTag(self, name):
-        self._tag_list.append(Tag(name))
+        #checks if the Tag is already on the list
+        oldTag = next((x for x in self.tag_list if x.name == name), None)
+        if(oldTag != None):
+            #if already there it informs us
+            print("Whoops, this tag is already in the tag list!")
+            return oldTag
+        else:
+            #if new it is added to the list
+            newTag = Tag(name)
+            self._tag_list.append(newTag)
+            return newTag
+
 
 class RoomGroup:
     def __init__(self, name, event_list, room_list):

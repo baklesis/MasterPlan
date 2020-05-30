@@ -49,7 +49,7 @@
       <number>10</number>
      </property>
      <item>
-      <widget class="QLabel" name="window_title">
+      <widget class="QLabel" name="TitleWindow">
        <property name="font">
         <font>
          <pointsize>18</pointsize>
@@ -97,10 +97,10 @@
         <number>5</number>
        </property>
        <item row="1" column="1">
-        <widget class="QSpinBox" name="spinBox"/>
+        <widget class="QSpinBox" name="FieldHours"/>
        </item>
        <item row="2" column="1">
-        <widget class="QSpinBox" name="spinBox_2"/>
+        <widget class="QSpinBox" name="FieldMinutes"/>
        </item>
        <item row="3" column="2">
         <spacer name="horizontalSpacer">
@@ -119,7 +119,7 @@
         </spacer>
        </item>
        <item row="3" column="0">
-        <widget class="QLabel" name="label_Room_Group">
+        <widget class="QLabel" name="LabelRoomGroup">
          <property name="text">
           <string>Room Group:</string>
          </property>
@@ -129,7 +129,7 @@
         </widget>
        </item>
        <item row="0" column="0">
-        <widget class="QLabel" name="label_Name">
+        <widget class="QLabel" name="LabelName">
          <property name="text">
           <string>Name:</string>
          </property>
@@ -139,17 +139,17 @@
         </widget>
        </item>
        <item row="0" column="1">
-        <widget class="QLineEdit" name="lineEdit"/>
+        <widget class="QLineEdit" name="FieldName"/>
        </item>
        <item row="1" column="2">
-        <widget class="QLabel" name="label_Hours">
+        <widget class="QLabel" name="LabelHours">
          <property name="text">
           <string>hours</string>
          </property>
         </widget>
        </item>
        <item row="1" column="0">
-        <widget class="QLabel" name="label_Duration">
+        <widget class="QLabel" name="LabelDuration">
          <property name="text">
           <string>Duration:</string>
          </property>
@@ -159,7 +159,7 @@
         </widget>
        </item>
        <item row="3" column="1">
-        <widget class="QComboBox" name="comboBox">
+        <widget class="QComboBox" name="MenuRoomGroup">
          <item>
           <property name="text">
            <string>None</string>
@@ -184,14 +184,14 @@
         </spacer>
        </item>
        <item row="2" column="2">
-        <widget class="QLabel" name="label_Minutes">
+        <widget class="QLabel" name="LabelMinutes">
          <property name="text">
           <string>minutes</string>
          </property>
         </widget>
        </item>
        <item row="4" column="0">
-        <widget class="QLabel" name="label_Tags">
+        <widget class="QLabel" name="LabelTags">
          <property name="text">
           <string>Tags:</string>
          </property>
@@ -226,11 +226,11 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>160</width>
+            <width>159</width>
             <height>114</height>
            </rect>
           </property>
-          <widget class="QListWidget" name="listWidget">
+          <widget class="QListWidget" name="ListTags">
            <property name="geometry">
             <rect>
              <x>0</x>
@@ -296,7 +296,7 @@
         </spacer>
        </item>
        <item>
-        <widget class="QPushButton" name="buttonSave">
+        <widget class="QPushButton" name="ButtonSave">
          <property name="text">
           <string>Save</string>
          </property>
@@ -319,7 +319,7 @@
         </spacer>
        </item>
        <item>
-        <widget class="QPushButton" name="pushButton_2">
+        <widget class="QPushButton" name="ButtonCancel">
          <property name="text">
           <string>Cancel</string>
          </property>
