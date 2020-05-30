@@ -5,6 +5,7 @@ from PySide2.QtGui import (QBrush, QColor, QConicalGradient, QCursor, QFont,
     QPixmap, QRadialGradient)
 from PySide2.QtWidgets import *
 
+# window ui class ######################################################################################################
 class Ui_MessageWindow(object):
     def setupUi(self, Dialog):
         if not Dialog.objectName():
@@ -74,16 +75,24 @@ class Ui_MessageWindow(object):
         self.ButtonTrue.setText(QCoreApplication.translate("Dialog", u"OK", None))
         self.ButtonFalse.setText(QCoreApplication.translate("Dialog", u"Cancel", None))
 
-    def connectSignals(self,Dialog):
-        self.ButtonTrue.clicked.connect(Dialog.accept)
-        self.ButtonFalse.clicked.connect(Dialog.reject)
+# window class #########################################################################################################
+class MessageWindow(QDialog):
+    def __init__(self):
+        super().__init__()
+        self.ui = Ui_MessageWindow()
+        self.ui.setupUi(self)
+        self.connectSignals()
 
-    # domain functions #################################################################################################
+    def connectSignals(self):
+        self.ui.ButtonTrue.clicked.connect(self.accept)
+        self.ui.ButtonFalse.clicked.connect(self.reject)
+
+    # domain functions
 
     def showLogInError(self):
-        self.LabelMessage.setText("Account not found.")
-        self.ButtonFalse.hide()
-        self.ButtonTrue.setText("OK")
+        self.ui.LabelMessage.setText("Account not found.")
+        self.ui.ButtonFalse.hide()
+        self.ui.ButtonTrue.setText("OK")
 
 
 
