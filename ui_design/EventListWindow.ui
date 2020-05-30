@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>MainWindow</class>
- <widget class="QMainWindow" name="MainWindow">
+ <class>EventListWindow</class>
+ <widget class="QMainWindow" name="EventListWindow">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -359,7 +359,7 @@
              </layout>
             </item>
             <item>
-             <widget class="QPushButton" name="pushButton_9">
+             <widget class="QPushButton" name="update_space_const_btn">
               <property name="text">
                <string>Update</string>
               </property>
@@ -486,7 +486,7 @@
              </spacer>
             </item>
             <item>
-             <widget class="QPushButton" name="pushButton_7">
+             <widget class="QPushButton" name="add_time_const_btn">
               <property name="text">
                <string>Add</string>
               </property>
@@ -510,7 +510,7 @@
              </spacer>
             </item>
             <item>
-             <widget class="QPushButton" name="pushButton_8">
+             <widget class="QPushButton" name="add_tag_const_btn">
               <property name="text">
                <string>Add</string>
               </property>
@@ -903,7 +903,7 @@
                  <x>0</x>
                  <y>0</y>
                  <width>800</width>
-                 <height>52</height>
+                 <height>28</height>
                 </rect>
                </property>
                <property name="sizePolicy">
@@ -1140,7 +1140,7 @@
     </property>
     <layout class="QVBoxLayout" name="verticalLayout_2">
      <item>
-      <widget class="QLabel" name="label_2">
+      <widget class="QLabel" name="event_list_label">
        <property name="frameShape">
         <enum>QFrame::Box</enum>
        </property>
@@ -1181,14 +1181,14 @@
          </property>
          <layout class="QHBoxLayout" name="horizontalLayout">
           <item>
-           <widget class="QPushButton" name="pushButton">
+           <widget class="QPushButton" name="create_organizer_btn">
             <property name="text">
              <string>Create Organizer</string>
             </property>
            </widget>
           </item>
           <item>
-           <widget class="QPushButton" name="pushButton_2">
+           <widget class="QPushButton" name="create_event_btn">
             <property name="text">
              <string>Create Event</string>
             </property>
@@ -1203,7 +1203,7 @@
      <item>
       <layout class="QHBoxLayout" name="horizontalLayout_2">
        <item>
-        <widget class="QPushButton" name="pushButton_4">
+        <widget class="QPushButton" name="filter_btn">
          <property name="text">
           <string>Filter</string>
          </property>
@@ -1223,7 +1223,7 @@
         </spacer>
        </item>
        <item>
-        <widget class="QPushButton" name="pushButton_3">
+        <widget class="QPushButton" name="sort_btn">
          <property name="text">
           <string>Sort</string>
          </property>
@@ -1232,10 +1232,10 @@
       </layout>
      </item>
      <item>
-      <widget class="QListView" name="listView"/>
+      <widget class="QListView" name="Event_listView"/>
      </item>
      <item>
-      <widget class="QPushButton" name="pushButton_5">
+      <widget class="QPushButton" name="exit_btn">
        <property name="text">
         <string>Exit</string>
        </property>
