@@ -122,8 +122,9 @@ class OrganizerList:
         pass
 
 class Session:
-    def __init__(self, current_user):
+    def __init__(self, current_user,current_org):
         self._current_user = current_user
+        self._current_org = current_org
         self._selected_building = None
         self._selected_floor = 0
         self._selected_filters = []
@@ -133,6 +134,12 @@ class Session:
     @current_user.setter
     def current_user(self,user):
         self._current_user=user
+    @property
+    def current_org(self):
+        return self._current_org
+    @current_org.setter
+    def current_org(self, org):
+        self._current_org = org
     @property
     def selected_filters(self):
         return self._selected_filters
@@ -185,14 +192,21 @@ class Building:
         self._room_list.append(room)
 
 class BuildingList:
-    def __init__(self,building_list):
-        self._building_list= building_list
+    def __init__(self,building_list, organization):
+        self._building_list = building_list
+        self._organization = organization
     @property    
     def building_list(self):
         return self._building_list
     @building_list.setter
     def building_list(self,building_list):
         self._building_list = building_list
+    @property
+    def organization(self):
+        return self._organization
+    @organization.setter
+    def organization(self, organization):
+        self._organization = organization
     def createBuildingList(self,file):
         return self
     def convertToCSV(self):
@@ -239,25 +253,30 @@ class Room:
         return self
 
 class RoomList:
-    def __init__(self, room_list):
-        self._room_list = room_list
     def __init__(self, room_list,organization):
         self.room_list = room_list
-        self.__organization=organization
+        self._organization=organization
     @property
     def room_list(self):
         return self._room_list
     @room_list.setter
     def room_list(self,room_list):
         self._room_list = room_list
+    @property
+    def organization(self):
+        return self._organization
+    @organization.setter
+    def organization(self, organization):
+        self._organization = organization
     def createRoomList(self,file):
         return self
     def convertToCSV(self):
         return self
 
 class Schedule:
-    def __init__(self,event_list):
+    def __init__(self,event_list,organization):
         self._event_list=event_list
+        self._organization = organization
         self._timestamp_created=datetime.now()
         self._published=False
     @property
@@ -266,6 +285,12 @@ class Schedule:
     @event_list.setter
     def event_list(self,event_list):
         self._event_list = event_list
+    @property
+    def organization(self):
+        return self._organization
+    @organization.setter
+    def organization(self, organization):
+        self._organization = organization
     @property
     def timestamp_created(self):
         return self._timestamp_created
@@ -364,8 +389,10 @@ class Event:
 
     def getEventInfo(self):
         return self
-    # def addTag(self):  μπορεί να αντικατασταθεί από την tag_list.setter
-    # def addConstraint(self): # μπορεί να αντικατασταθεί από την constraint_list.setter
+    def addTag(self):
+        return self
+    def addConstraint(self):
+        return self
 
 class Tag:
     def __init__(self,name):
@@ -391,6 +418,9 @@ class TagList:
     @property
     def tag_list(self):
         return self._tag_list
+    @tag_list.setter
+    def tag_list(self,tag_list):
+        self._tag_list = tag_list
     def addTag(self, name):
         #checks if the Tag is already on the list
         oldTag = next((x for x in self.tag_list if x.name == name), None)
@@ -430,11 +460,15 @@ class RoomGroup:
         self._room_list.append(room)
 
 class RoomGroupList:
-    def __init__(self, room_group_list):
+    def __init__(self, room_group_list, organization):
         self._room_group_list = room_group_list
+        self._organization = organization
     @property
     def room_group_list(self):
         return self._room_group_list
+    @room_group_list.setter
+    def room_group_list(self, room_group_list):
+        self._room_group_list = room_group_list
     def addRoomGroup(self,name,event_list,room_list):
         self._room_group_list.append(RoomGroup(name,event_list,room_list))
 
