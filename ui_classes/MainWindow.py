@@ -7,7 +7,6 @@ from PySide2.QtWidgets import *
 
 from global_vars import *
 
-
 class Ui_MainWindow(object):
 
 # ui functions #########################################################################################################
@@ -58,7 +57,7 @@ class Ui_MainWindow(object):
         sizePolicy1.setHeightForWidth(self.LabelLogo.sizePolicy().hasHeightForWidth())
         self.LabelLogo.setSizePolicy(sizePolicy1)
         self.LabelLogo.setMaximumSize(QSize(200, 200))
-        self.LabelLogo.setPixmap(QPixmap(u"icons/logo.png"))
+        self.LabelLogo.setPixmap(QPixmap(u"../icons/logo.png"))
         self.LabelLogo.setScaledContents(True)
         self.LayoutLogo.addWidget(self.LabelLogo)
         self.horizontalSpacer_8 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
@@ -220,7 +219,7 @@ class Ui_MainWindow(object):
         sizePolicy1.setHeightForWidth(self.LabelLogo_2.sizePolicy().hasHeightForWidth())
         self.LabelLogo_2.setSizePolicy(sizePolicy1)
         self.LabelLogo_2.setMaximumSize(QSize(200, 200))
-        self.LabelLogo_2.setPixmap(QPixmap(u"icons/logo.png"))
+        self.LabelLogo_2.setPixmap(QPixmap(u"../icons/logo.png"))
         self.LabelLogo_2.setScaledContents(True)
         self.formLayoutWidget = QWidget(self.UserPage)
         self.formLayoutWidget.setObjectName(u"formLayoutWidget")
@@ -573,7 +572,8 @@ class Ui_MainWindow(object):
         self.showGuestPage()
 
     def selectEventList(self):
-        print("Open Event List Window") #show EventListWindow
+        print("Open Event List Window")
+
 
     def selectSearch(self):
         print("Open Search Window") #show SearchWindow

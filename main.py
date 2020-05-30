@@ -1,10 +1,9 @@
 # This Python file uses the following encoding: utf-8
 import sys
 
-from PySide2.QtWidgets import QApplication, QMainWindow, QDialog
+from PySide2.QtWidgets import QApplication, QMainWindow
 
-from MainWindow import Ui_MainWindow
-from MessageWindow import Ui_MessageWindow
+from gui_classes.MainWindow import Ui_MainWindow
 
 if __name__ == "__main__":
     MasterPlan = QApplication()

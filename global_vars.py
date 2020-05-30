@@ -1,7 +1,14 @@
-from data_classes import *
+from data_classes.account import *
+from data_classes.building import *
+from data_classes.constraint import *
+from data_classes.event import *
+from data_classes.room import *
+from data_classes.roomGroup import *
+from data_classes.schedule import *
+from data_classes.session import *
+from data_classes.tag import *
 
 # global variables that imitate the existence of a database
-
 account_list = AccountList([])
 account_list.account_list.append(Admin('upatras','1','rectorate@upatras.gr'))
 account_list.account_list.append(Organizer('makris','1','makri@ceid.upatras.gr', 'Christos Makris', 'upatras'))
@@ -10,10 +17,10 @@ session = None
 
 room_list = RoomList([Room("BA","Building A",0,200,"amphitheater"),Room("B4","Building A",0,100,"amphitheater"),Room("B3","Building A",0,50,"classroom")],"upatras")
 
-building_list = BuildingList([Building("Building A","upatras",[[]])])
+building_list = BuildingList([Building("Building A","upatras",[[]])],"upatras")
 building_list.building_list[0].room_list[0]=room_list
 
-schedule = Schedule([])
+schedule = Schedule([],"upatras")
 schedule.addEvent("AI Seminar",60,"no")
 schedule.addEvent("AT91 Workshop",80,"no")
 schedule.addEvent("Erasmus Presentation",60,"no")
