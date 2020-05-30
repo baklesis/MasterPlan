@@ -10,16 +10,12 @@ if __name__ == "__main__":
     MasterPlan = QApplication()
 
     MainWindow = QMainWindow()
-    MessageWindow = QDialog()
 
-    Ui_MainWindow = Ui_MainWindow()
-    Ui_MainWindow.setupUi(MainWindow)
-    Ui_MainWindow.connectSignals()
+    ui_MainWindow = Ui_MainWindow()
+    ui_MainWindow.setupUi(MainWindow)
+    ui_MainWindow.connectSignals()
 
-    Ui_MessageWindow = Ui_MessageWindow()
-    Ui_MessageWindow.setupUi(MessageWindow)
 
     MainWindow.show()
-    #MessageWindow.show()
 
     sys.exit(MasterPlan.exec_())

@@ -5,7 +5,6 @@ from PySide2.QtGui import (QBrush, QColor, QConicalGradient, QCursor, QFont,
     QPixmap, QRadialGradient)
 from PySide2.QtWidgets import *
 
-
 class Ui_MessageWindow(object):
     def setupUi(self, Dialog):
         if not Dialog.objectName():
@@ -57,8 +56,6 @@ class Ui_MessageWindow(object):
         self.ButtonTrue = QPushButton(Dialog)
         self.ButtonTrue.setObjectName(u"ButtonTrue")
         self.LayoutButtons.addWidget(self.ButtonTrue)
-        self.horizontalSpacer_5 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
-        self.LayoutButtons.addItem(self.horizontalSpacer_5)
         self.ButtonFalse = QPushButton(Dialog)
         self.ButtonFalse.setObjectName(u"ButtonFalse")
         self.LayoutButtons.addWidget(self.ButtonFalse)
@@ -76,4 +73,17 @@ class Ui_MessageWindow(object):
         self.LabelMessage.setText(QCoreApplication.translate("Dialog", u"<insert text>", None))
         self.ButtonTrue.setText(QCoreApplication.translate("Dialog", u"OK", None))
         self.ButtonFalse.setText(QCoreApplication.translate("Dialog", u"Cancel", None))
+
+    def connectSignals(self,Dialog):
+        self.ButtonTrue.clicked.connect(Dialog.accept)
+        self.ButtonFalse.clicked.connect(Dialog.reject)
+
+    # domain functions #################################################################################################
+
+    def showLogInError(self):
+        self.LabelMessage.setText("Account not found.")
+        self.ButtonFalse.hide()
+        self.ButtonTrue.setText("OK")
+
+
 
