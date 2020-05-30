@@ -5,8 +5,28 @@ from PySide2.QtGui import (QBrush, QColor, QConicalGradient, QCursor, QFont,
     QPixmap, QRadialGradient)
 from PySide2.QtWidgets import *
 
+from ui_classes.MessageWindow import Ui_MessageWindow
 from global_vars import *
 
+# custom calendar class
+class MyCalendarWidget(QCalendarWidget):
+    def __init__(self, *args):
+        QCalendarWidget.__init__(self, *args)
+        self.color = QColor(self.palette().color(QPalette.Highlight))
+        self.color.setAlpha(64)
+        self.selectionChanged.connect(self.updateCells)
+    def paintCell(self, painter, rect, date):
+        QCalendarWidget.paintCell(self, painter, rect, date)
+        if session.selected_building: # αν υπαρχει selected building
+            print('hi')
+            event_list = Ui_MainWindow.filter(Ui_MainWindow,schedule.getSchedule(session.selected_building)) #παρε τις εκδηλώσεις του building
+        else:
+            event_list = Ui_MainWindow.filter(Ui_MainWindow,schedule.event_list) #παρε όλες τις εκδηλώσεις
+        for event in event_list:
+            if date == event["datetime"].date(): # αγνοει τις εκδηλώσεις που δεν εχουν διοργανωθεί (δεν εχουν datetime)
+                painter.fillRect(rect, self.color)
+
+# window class
 class Ui_MainWindow(object):
 
 # ui functions #########################################################################################################
@@ -26,12 +46,14 @@ class Ui_MainWindow(object):
         icon.addFile(u"icons/logo.png", QSize(), QIcon.Normal, QIcon.Off)
         MainWindow.setWindowIcon(icon)
         MainWindow.setAutoFillBackground(False)
+        MainWindow.setLocale(QLocale(QLocale.English, QLocale.UnitedKingdom))
         self.CentralWidget = QWidget(MainWindow)
         self.CentralWidget.setObjectName(u"CentralWidget")
         self.StackedWidgetMain = QStackedWidget(self.CentralWidget)
         self.StackedWidgetMain.setObjectName(u"StackedWidgetMain")
         self.StackedWidgetMain.setGeometry(QRect(0, 0, 1366, 768))
         self.StackedWidgetMain.setAcceptDrops(False)
+        self.StackedWidgetMain.setLocale(QLocale(QLocale.English, QLocale.UnitedKingdom))
         self.StackedWidgetMain.setFrameShape(QFrame.NoFrame)
         self.HomePage = QWidget()
         self.HomePage.setObjectName(u"HomePage")
@@ -57,7 +79,7 @@ class Ui_MainWindow(object):
         sizePolicy1.setHeightForWidth(self.LabelLogo.sizePolicy().hasHeightForWidth())
         self.LabelLogo.setSizePolicy(sizePolicy1)
         self.LabelLogo.setMaximumSize(QSize(200, 200))
-        self.LabelLogo.setPixmap(QPixmap(u"../icons/logo.png"))
+        self.LabelLogo.setPixmap(QPixmap(u"icons/logo.png"))
         self.LabelLogo.setScaledContents(True)
         self.LayoutLogo.addWidget(self.LabelLogo)
         self.horizontalSpacer_8 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
@@ -219,7 +241,7 @@ class Ui_MainWindow(object):
         sizePolicy1.setHeightForWidth(self.LabelLogo_2.sizePolicy().hasHeightForWidth())
         self.LabelLogo_2.setSizePolicy(sizePolicy1)
         self.LabelLogo_2.setMaximumSize(QSize(200, 200))
-        self.LabelLogo_2.setPixmap(QPixmap(u"../icons/logo.png"))
+        self.LabelLogo_2.setPixmap(QPixmap(u"icons/logo.png"))
         self.LabelLogo_2.setScaledContents(True)
         self.formLayoutWidget = QWidget(self.UserPage)
         self.formLayoutWidget.setObjectName(u"formLayoutWidget")
@@ -270,8 +292,13 @@ class Ui_MainWindow(object):
         self.LayoutGridToolbar = QHBoxLayout(self.horizontalLayoutWidget_5)
         self.LayoutGridToolbar.setObjectName(u"LayoutGridToolbar")
         self.LayoutGridToolbar.setContentsMargins(0, 0, 0, 0)
-        self.horizontalSpacer_19 = QSpacerItem(20, 20, QSizePolicy.Fixed, QSizePolicy.Minimum)
-        self.LayoutGridToolbar.addItem(self.horizontalSpacer_19)
+        self.ButtonBackToBuildings = QPushButton(self.horizontalLayoutWidget_5)
+        self.ButtonBackToBuildings.setObjectName(u"ButtonBackToBuildings")
+        self.ButtonBackToBuildings.setCheckable(False)
+        self.ButtonBackToBuildings.setAutoRepeat(False)
+
+        self.LayoutGridToolbar.addWidget(self.ButtonBackToBuildings)
+
         self.LabelFloor = QLabel(self.horizontalLayoutWidget_5)
         self.LabelFloor.setObjectName(u"LabelFloor")
         self.LabelFloor.setMinimumSize(QSize(0, 25))
@@ -362,11 +389,8 @@ class Ui_MainWindow(object):
         self.LayoutCalToolbar.addWidget(self.ButtonCalRevert)
         self.ButtonDownload = QToolButton(self.horizontalLayoutWidget_6)
         self.ButtonDownload.setObjectName(u"ButtonDownload")
-        sizePolicy4 = QSizePolicy(QSizePolicy.Fixed, QSizePolicy.Fixed)
-        sizePolicy4.setHorizontalStretch(41)
-        sizePolicy4.setVerticalStretch(41)
-        sizePolicy4.setHeightForWidth(self.ButtonDownload.sizePolicy().hasHeightForWidth())
-        self.ButtonDownload.setSizePolicy(sizePolicy4)
+        sizePolicy1.setHeightForWidth(self.ButtonDownload.sizePolicy().hasHeightForWidth())
+        self.ButtonDownload.setSizePolicy(sizePolicy1)
         icon3 = QIcon()
         icon3.addFile(u"icons/download.png", QSize(), QIcon.Normal, QIcon.Off)
         self.ButtonDownload.setIcon(icon3)
@@ -384,29 +408,45 @@ class Ui_MainWindow(object):
         self.LayoutCalendar = QHBoxLayout(self.horizontalLayoutWidget_7)
         self.LayoutCalendar.setObjectName(u"LayoutCalendar")
         self.LayoutCalendar.setContentsMargins(0, 0, 0, 0)
-        self.Calendar = QCalendarWidget(self.horizontalLayoutWidget_7)
+        self.Calendar = MyCalendarWidget(self.horizontalLayoutWidget_7)
         self.Calendar.setObjectName(u"Calendar")
         self.Calendar.setLocale(QLocale(QLocale.English, QLocale.UnitedStates))
         self.Calendar.setMaximumDate(QDate(9999, 12, 30))
         self.Calendar.setGridVisible(False)
+        self.Calendar.setSelectedDate(datetime.now())
         self.LayoutCalendar.addWidget(self.Calendar)
+        self.LayoutEventList = QVBoxLayout()
+        self.LayoutEventList.setObjectName(u"LayoutEventList")
+        self.LabelSelectedDate = QLabel(self.horizontalLayoutWidget_7)
+        self.LabelSelectedDate.setObjectName(u"LabelSelectedDate")
+        font3 = QFont()
+        font3.setFamily(u"Cambria")
+        font3.setPointSize(26)
+        self.LabelSelectedDate.setFont(font3)
+        self.LabelSelectedDate.setStyleSheet(u"background : rgb(255, 255, 255)")
+        self.LabelSelectedDate.setAlignment(Qt.AlignCenter)
+        self.LayoutEventList.addWidget(self.LabelSelectedDate)
         self.ListWidgetEvents = QListWidget(self.horizontalLayoutWidget_7)
-        QListWidgetItem(self.ListWidgetEvents)
-        QListWidgetItem(self.ListWidgetEvents)
         self.ListWidgetEvents.setObjectName(u"ListWidgetEvents")
-        sizePolicy5 = QSizePolicy(QSizePolicy.Fixed, QSizePolicy.Expanding)
-        sizePolicy5.setHorizontalStretch(0)
-        sizePolicy5.setVerticalStretch(0)
-        sizePolicy5.setHeightForWidth(self.ListWidgetEvents.sizePolicy().hasHeightForWidth())
-        self.ListWidgetEvents.setSizePolicy(sizePolicy5)
+        sizePolicy4 = QSizePolicy(QSizePolicy.Fixed, QSizePolicy.Expanding)
+        sizePolicy4.setHorizontalStretch(0)
+        sizePolicy4.setVerticalStretch(0)
+        sizePolicy4.setHeightForWidth(self.ListWidgetEvents.sizePolicy().hasHeightForWidth())
+        self.ListWidgetEvents.setSizePolicy(sizePolicy4)
         self.ListWidgetEvents.setMinimumSize(QSize(300, 0))
         self.ListWidgetEvents.setMaximumSize(QSize(300, 16777215))
-        font3 = QFont()
-        font3.setKerning(True)
-        self.ListWidgetEvents.setFont(font3)
+        font4 = QFont()
+        font4.setKerning(True)
+        self.ListWidgetEvents.setFont(font4)
         self.ListWidgetEvents.setFrameShape(QFrame.NoFrame)
         self.ListWidgetEvents.setAlternatingRowColors(True)
-        self.LayoutCalendar.addWidget(self.ListWidgetEvents)
+        self.ListWidgetEvents.setLayoutMode(QListView.SinglePass)
+        self.ListWidgetEvents.setSpacing(5)
+        self.ListWidgetEvents.setViewMode(QListView.ListMode)
+        self.ListWidgetEvents.setItemAlignment(Qt.AlignHCenter)
+        self.ListWidgetEvents.setSortingEnabled(True)
+        self.LayoutEventList.addWidget(self.ListWidgetEvents)
+        self.LayoutCalendar.addLayout(self.LayoutEventList)
         self.MainView.addWidget(self.CalendarView)
         self.LayoutMainView.addWidget(self.MainView, 2, 0, 1, 1)
         self.LayoutToolbar = QHBoxLayout()
@@ -417,21 +457,15 @@ class Ui_MainWindow(object):
         self.LayoutComboBoxVertical.setObjectName(u"LayoutComboBoxVertical")
         self.ComboBoxBuildings = QComboBox(self.formLayoutWidget)
         self.ComboBoxBuildings.addItem("")
-        self.ComboBoxBuildings.addItem("")
-        self.ComboBoxBuildings.addItem("")
-        self.ComboBoxBuildings.addItem("")
         self.ComboBoxBuildings.setObjectName(u"ComboBoxBuildings")
-        font4 = QFont()
-        font4.setPointSize(11)
-        font4.setItalic(False)
-        font4.setStrikeOut(False)
-        self.ComboBoxBuildings.setFont(font4)
+        font5 = QFont()
+        font5.setPointSize(11)
+        font5.setItalic(False)
+        font5.setStrikeOut(False)
+        self.ComboBoxBuildings.setFont(font5)
         self.ComboBoxBuildings.setFrame(True)
         self.LayoutComboBoxVertical.addWidget(self.ComboBoxBuildings)
         self.ComboBoxFilters = QComboBox(self.formLayoutWidget)
-        self.ComboBoxFilters.addItem("")
-        self.ComboBoxFilters.addItem("")
-        self.ComboBoxFilters.addItem("")
         self.ComboBoxFilters.addItem("")
         self.ComboBoxFilters.setObjectName(u"ComboBoxFilters")
         self.ComboBoxFilters.setFrame(True)
@@ -451,7 +485,6 @@ class Ui_MainWindow(object):
         self.StackedWidgetMain.addWidget(self.UserPage)
         MainWindow.setCentralWidget(self.CentralWidget)
         self.retranslateUi(MainWindow)
-
         self.StackedWidgetMain.setCurrentIndex(0)
         self.StackedWidgetUserTypes.setCurrentIndex(0)
         self.MainView.setCurrentIndex(0)
@@ -459,7 +492,6 @@ class Ui_MainWindow(object):
         self.ButtonGridRevert.hide()
         self.ButtonCalPublish.hide()
         self.ButtonCalRevert.hide()
-
         QMetaObject.connectSlotsByName(MainWindow)
 
 
@@ -482,6 +514,7 @@ class Ui_MainWindow(object):
         self.LabelLogo_2.setText("")
         self.ButtonGrid.setText(QCoreApplication.translate("MainWindow", u"Grid View", None))
         self.ButtonCalendar.setText(QCoreApplication.translate("MainWindow", u"Calendar View", None))
+        self.ButtonBackToBuildings.setText(QCoreApplication.translate("MainWindow", u"Back To Buildings", None))
         self.LabelFloor.setText(QCoreApplication.translate("MainWindow", u"Floor", None))
         self.ButtonGridRevert.setText(QCoreApplication.translate("MainWindow", u"Revert Changes", None))
         self.ButtonGridPublish.setText(QCoreApplication.translate("MainWindow", u"Publish Changes", None))
@@ -493,27 +526,10 @@ class Ui_MainWindow(object):
         self.ButtonCalPublish.setText(QCoreApplication.translate("MainWindow", u"Publish Changes", None))
         self.ButtonCalRevert.setText(QCoreApplication.translate("MainWindow", u"Revert Changes", None))
         self.ButtonDownload.setText(QCoreApplication.translate("MainWindow", u"...", None))
-
-        __sortingEnabled = self.ListWidgetEvents.isSortingEnabled()
-        self.ListWidgetEvents.setSortingEnabled(False)
-        ___qlistwidgetitem = self.ListWidgetEvents.item(0)
-        ___qlistwidgetitem.setText(QCoreApplication.translate("MainWindow", u"Event 1 today", None));
-        ___qlistwidgetitem1 = self.ListWidgetEvents.item(1)
-        ___qlistwidgetitem1.setText(QCoreApplication.translate("MainWindow", u"Event 2 today", None));
-        self.ListWidgetEvents.setSortingEnabled(__sortingEnabled)
-
+        self.LabelSelectedDate.setText(QCoreApplication.translate("MainWindow", datetime.now().strftime("%b %d %Y"), None))
         self.ComboBoxBuildings.setItemText(0, QCoreApplication.translate("MainWindow", u"No Building Selected", None))
-        self.ComboBoxBuildings.setItemText(1, QCoreApplication.translate("MainWindow", u"Building 1", None))
-        self.ComboBoxBuildings.setItemText(2, QCoreApplication.translate("MainWindow", u"Building 2", None))
-        self.ComboBoxBuildings.setItemText(3, QCoreApplication.translate("MainWindow", u"Building 3", None))
-
         self.ComboBoxFilters.setItemText(0, QCoreApplication.translate("MainWindow", u"No Filter Selected", None))
-        self.ComboBoxFilters.setItemText(1, QCoreApplication.translate("MainWindow", u"Filter 1", None))
-        self.ComboBoxFilters.setItemText(2, QCoreApplication.translate("MainWindow", u"Filter 2", None))
-        self.ComboBoxFilters.setItemText(3, QCoreApplication.translate("MainWindow", u"Filter 3", None))
-
         self.ButtonSearch.setText(QCoreApplication.translate("MainWindow", u"Search", None))
-
 
 
     def connectSignals(self):
@@ -526,7 +542,9 @@ class Ui_MainWindow(object):
         self.ButtonGrid.clicked.connect(self.showGrid)
         self.ButtonCalendar.clicked.connect(self.showCalendar)
         self.ButtonDownload.clicked.connect(self.download)
-
+        self.ComboBoxFilters.currentIndexChanged.connect(self.selectFilter)
+        self.ComboBoxBuildings.currentIndexChanged.connect(self.updateSelectedBuilding)
+        self.Calendar.clicked.connect(self.fillCalEventList)
 
     # domain functions #################################################################################################
 
@@ -546,34 +564,47 @@ class Ui_MainWindow(object):
         self.StackedWidgetUserTypes.setCurrentIndex(1)
 
     def enterOrganization(self):
+        global session
         org = self.LineOrg.text()
         if account_list.valOrganization(org):
+            session = Session(None, org)
             self.showUserPage()
             self.showGuestPage()
+            self.loadFilterMenu()
+            self.loadBuildingMenu()
         else:
             self.showErrorPage()
 
     def logIn(self):
+        global session
         username = self.LineUser.text()
         password = self.LinePass.text()
         account = account_list.accountExists(username, password)
         if account:
+            session = Session(account, session.current_org)
             self.showLoggedUserPage()
             self.LabelLoggedUser.setText(account.username)
-            session = Session(account)
-            print(session)
         else:
-            print("Account not found") #show MessageWindow
+            #show Error MessageWindow
+            MessageWindow = QDialog()
+            ui_MessageWindow = Ui_MessageWindow()
+            ui_MessageWindow.setupUi(MessageWindow)
+            ui_MessageWindow.connectSignals(MessageWindow)
+            ui_MessageWindow.showLogInError()
+            #MessageWindow.show()
+            MessageWindow.exec()
+            self.LineUser.clear()
+            self.LinePass.clear()
 
     def logOut(self):
+        global session
         session = None
         self.LineUser.setText(None)
         self.LinePass.setText(None)
         self.showGuestPage()
 
     def selectEventList(self):
-        print("Open Event List Window")
-
+        print("Open Event List Window") #show EventListWindow
 
     def selectSearch(self):
         print("Open Search Window") #show SearchWindow
@@ -586,3 +617,85 @@ class Ui_MainWindow(object):
 
     def download(self):
         print("download calendar")
+
+    def loadFilterMenu(self):  # φορτώνεται στο enterOrganization
+        for tag in tag_list.tag_list:
+            self.ComboBoxFilters.addItem(tag.name)
+
+    def loadBuildingMenu(self):  # φορτώνεται στο enterOrganization
+        for i,building in enumerate(building_list.building_list): #για καθε building στο building list
+            self.ComboBoxBuildings.addItem(building.name) #προσθεσε στοιχειο στο combo box
+            if session.selected_building: #και αν υπάρχει selected building απο το session
+                if session.selected_building.name == building.name:
+                    self.ComboBoxFilters.setCurrentIndex(i+1) # επελεξε το στο combobox (0 = no filter selected)
+            else: # αλλιως επελεξε no building selected
+                self.ComboBoxFilters.setCurrentIndex(0)
+
+    def selectFilter(self):
+        selected_filter = self.ComboBoxFilters.currentText()
+        session.selected_filters.clear() # κανουμε clear την λίστα γιατι λόγω UI limitations θεωρούμε ότι μπορεί να εφαρμοστεί μόνο ενα φιλτρο
+        if selected_filter != "No Filter Selected":
+            for tag in tag_list.tag_list: #βρες τo tag object
+                if selected_filter == tag.name:
+                    session.selected_filters.append(tag)
+                    break
+        self.fillEvents() # με το fillEvents ξανακαλείται η paintCells του Calendar η οποία καλεί την filter() που επιστρέφει τις εκδηλώσεις τις οποίες θα κάνει paint στο Calendar
+
+    def selectBuilding(self):
+        return self
+        #θα εκτελειται με το πάτημα ενός building στο grid και στην συνεχεια θα τροποποιει το selection του combo box
+        #αυτο θα προκαλέσει signal που θα καλέσει την updateselectedbuilding
+        #self.ComboBoxBuildings.setCurrentIndex(X)
+
+    def updateSelectedBuilding(self):
+        selected_building = self.ComboBoxBuildings.currentText()
+        if selected_building != "No Building Selected":
+            for building in building_list.building_list:
+                if selected_building == building.name:
+                    session.selected_building = building
+                    break
+        self.fillEvents()  # με το fillEvents ξανακαλείται η paintCells του Calendar η οποία καλεί την filter() που επιστρέφει τις εκδηλώσεις τις οποίες θα κάνει paint στο Calendar
+
+    def filter(self,event_list):
+        filtered_event_list = []
+        if event_list: # αν υπαρχουν εκδηλωσεις
+            if session.selected_filters: # αν υπαρχουν επιλεγμενα filters
+                for event in event_list:
+                        for tag in event["object"].tag_list:
+                            if session.selected_filters[0].name == tag.name:  # και καποιο tag του event περιέχεται στα επιλεγμένα filters (λογω ui limitations μπορει να επιλέξει μόνο ένα filter)
+                                filtered_event_list.append(event)  # περιέλαβε το στα αποτελέσματα
+                                break
+            else: # αν δεν υπαρχουν επιλεγμενα filters
+                    for event in event_list:
+                            filtered_event_list.append(event)
+        return filtered_event_list
+
+
+
+    def fillEvents(self): #κανει update τα views
+        #update grid view
+        # update calendar view
+        self.Calendar.updateCells()
+
+    def fillCalEventList(self): # για την λίστα που εμφανίζεται με το πατημα ενός κελιού στο Calendar
+        # reset την λίστα
+        self.ListWidgetEvents.clear()
+        # εκτύπωσε events της selected date στην λίστα
+        selected_date = self.Calendar.selectedDate()
+        self.LabelSelectedDate.setText(datetime.strptime(selected_date.toString("ddMMyy"), "%d%m%y").strftime(
+            "%b %d %Y"))  # μετατροπη σε string -> datetime -> string γιατι το PySide εβγαζε το format στα ελληνικα
+        filtered_event_list = []
+        if session.selected_building:  # αν υπαρχει selected building
+            filtered_event_list = self.filter(schedule.getSchedule(session.selected_building))
+        else:
+            filtered_event_list = self.filter(schedule.event_list)
+        for event in filtered_event_list:
+            if selected_date == event["datetime"].date():
+                self.ListWidgetEvents.addItem(event["object"].name)
+
+
+
+
+
+
+
