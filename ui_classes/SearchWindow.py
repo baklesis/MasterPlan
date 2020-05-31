@@ -1,3 +1,13 @@
+# -*- coding: utf-8 -*-
+
+################################################################################
+## Form generated from reading UI file 'SearchWindow.ui'
+##
+## Created by: Qt User Interface Compiler version 5.14.2
+##
+## WARNING! All changes made in this file will be lost when recompiling UI file!
+################################################################################
+
 from PySide2.QtCore import (QCoreApplication, QDate, QDateTime, QMetaObject,
     QObject, QPoint, QRect, QSize, QTime, QUrl, Qt)
 from PySide2.QtGui import (QBrush, QColor, QConicalGradient, QCursor, QFont,
@@ -6,39 +16,50 @@ from PySide2.QtGui import (QBrush, QColor, QConicalGradient, QCursor, QFont,
 from PySide2.QtWidgets import *
 
 
-class Ui_Form(object):
-    def setupUi(self, Form):
-        if not Form.objectName():
-            Form.setObjectName(u"Form")
-        Form.resize(2516, 1306)
-        self.lineEdit = QLineEdit(Form)
+class Ui_searchbtn(object):
+    def setupUi(self, searchbtn):
+        if not searchbtn.objectName():
+            searchbtn.setObjectName(u"searchbtn")
+        searchbtn.resize(320, 320)
+        sizePolicy = QSizePolicy(QSizePolicy.Fixed, QSizePolicy.Fixed)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(searchbtn.sizePolicy().hasHeightForWidth())
+        searchbtn.setSizePolicy(sizePolicy)
+        searchbtn.setMinimumSize(QSize(320, 320))
+        searchbtn.setMaximumSize(QSize(320, 320))
+        self.lineEdit = QLineEdit(searchbtn)
         self.lineEdit.setObjectName(u"lineEdit")
-        self.lineEdit.setGeometry(QRect(420, 210, 381, 51))
-        self.tableView = QTableView(Form)
-        self.tableView.setObjectName(u"tableView")
-        self.tableView.setGeometry(QRect(170, 320, 661, 311))
-        self.pushButton = QPushButton(Form)
-        self.pushButton.setObjectName(u"pushButton")
-        self.pushButton.setGeometry(QRect(800, 210, 31, 51))
+        self.lineEdit.setGeometry(QRect(30, 30, 171, 21))
+        self.lineEdit.setMaximumSize(QSize(16777215, 100))
+        self.searchButton = QPushButton(searchbtn)
+        self.searchButton.setObjectName(u"searchButton")
+        self.searchButton.setGeometry(QRect(200, 30, 31, 21))
         icon = QIcon()
         icon.addFile(u"../icons/search.png", QSize(), QIcon.Normal, QIcon.Off)
-        self.pushButton.setIcon(icon)
-        self.pushButton_2 = QPushButton(Form)
-        self.pushButton_2.setObjectName(u"pushButton_2")
-        self.pushButton_2.setGeometry(QRect(170, 210, 131, 111))
-        icon1 = QIcon()
-        icon1.addFile(u"../icons/logo.png", QSize(), QIcon.Normal, QIcon.Off)
-        self.pushButton_2.setIcon(icon1)
-        self.pushButton_2.setIconSize(QSize(128, 128))
+        self.searchButton.setIcon(icon)
+        self.horizontalLayoutWidget = QWidget(searchbtn)
+        self.horizontalLayoutWidget.setObjectName(u"horizontalLayoutWidget")
+        self.horizontalLayoutWidget.setGeometry(QRect(30, 30, 201, 21))
+        self.horizontalLayout = QHBoxLayout(self.horizontalLayoutWidget)
+        self.horizontalLayout.setObjectName(u"horizontalLayout")
+        self.horizontalLayout.setContentsMargins(0, 0, 0, 0)
+        self.listView = QListView(searchbtn)
+        self.listView.setObjectName(u"listView")
+        self.listView.setGeometry(QRect(30, 50, 201, 191))
+        self.verticalLayoutWidget = QWidget(searchbtn)
+        self.verticalLayoutWidget.setObjectName(u"verticalLayoutWidget")
+        self.verticalLayoutWidget.setGeometry(QRect(30, 30, 201, 211))
+        self.verticalLayout = QVBoxLayout(self.verticalLayoutWidget)
+        self.verticalLayout.setObjectName(u"verticalLayout")
+        self.verticalLayout.setContentsMargins(0, 0, 0, 0)
 
-        self.retranslateUi(Form)
+        self.retranslateUi(searchbtn)
 
-        QMetaObject.connectSlotsByName(Form)
+        QMetaObject.connectSlotsByName(searchbtn)
     # setupUi
 
-    def retranslateUi(self, Form):
-        Form.setWindowTitle(QCoreApplication.translate("Form", u"Form", None))
-        self.pushButton.setText("")
-        self.pushButton_2.setText("")
+    def retranslateUi(self, searchbtn):
+        searchbtn.setWindowTitle(QCoreApplication.translate("searchbtn", u"Form", None))
+        self.searchButton.setText("")
     # retranslateUi
-
