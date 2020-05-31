@@ -104,6 +104,11 @@ class MessageWindow(QDialog):
     def createFile(self):
         print("File downloaded")
 
+    def showCreateEventError(self):
+        self.ui.LabelMessage.setText("Some fields are invalid or incomplete.")
+        self.ui.ButtonFalse.hide()
+        self.ui.ButtonTrue.setText("OK")
+
 
 
 

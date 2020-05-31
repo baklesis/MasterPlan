@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>Dialog</class>
- <widget class="QDialog" name="Dialog">
+ <class>ConstraintWindow</class>
+ <widget class="QDialog" name="ConstraintWindow">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -13,7 +13,7 @@
   <property name="windowTitle">
    <string>Dialog</string>
   </property>
-  <widget class="QStackedWidget" name="AddTagConst_page">
+  <widget class="QStackedWidget" name="stackedWidget">
    <property name="geometry">
     <rect>
      <x>10</x>
@@ -31,7 +31,7 @@
    <property name="currentIndex">
     <number>1</number>
    </property>
-   <widget class="QWidget" name="AddTimeConst_page_2">
+   <widget class="QWidget" name="AddTimeConst">
     <widget class="QDateTimeEdit" name="dateTimeEdit">
      <property name="geometry">
       <rect>
@@ -143,7 +143,7 @@
      </item>
     </widget>
    </widget>
-   <widget class="QWidget" name="page_2">
+   <widget class="QWidget" name="AddTagConst">
     <widget class="QLabel" name="label_7">
      <property name="geometry">
       <rect>
