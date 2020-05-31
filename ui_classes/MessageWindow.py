@@ -94,5 +94,10 @@ class MessageWindow(QDialog):
         self.ui.ButtonFalse.hide()
         self.ui.ButtonTrue.setText("OK")
 
+    def showCreateEventError(self):
+        self.LabelMessage.setText("Some fields are invalid or incomplete.")
+        self.ButtonFalse.hide()
+        self.ButtonTrue.setText("OK")
+
 
 

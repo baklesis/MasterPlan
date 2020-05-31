@@ -4,14 +4,14 @@ from PySide2.QtGui import (QBrush, QColor, QConicalGradient, QCursor, QFont,
     QFontDatabase, QIcon, QKeySequence, QLinearGradient, QPalette, QPainter,
     QPixmap, QRadialGradient)
 from PySide2.QtWidgets import *
-from data_classes import *
 from global_vars import *
+from ui_classes.MessageWindow import Ui_MessageWindow
 
 class Ui_EventCreateWindow(object):
     def setupUi(self, EventCreateWindow):
         if not EventCreateWindow.objectName():
             EventCreateWindow.setObjectName(u"EventCreateWindow")
-        EventCreateWindow.setWindowModality(Qt.ApplicationModal)
+        EventCreateWindow.setWindowModality(Qt.WindowModal)
         EventCreateWindow.resize(360, 480)
         sizePolicy = QSizePolicy(QSizePolicy.Fixed, QSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
@@ -185,25 +185,42 @@ class Ui_EventCreateWindow(object):
         self.ButtonCancel.setText(QCoreApplication.translate("EventCreateWindow", u"Cancel", None))
     # retranslateUi
 
-    def connectSignals(self):
-        self.ButtonSave.clicked.connect(self.saveEvent())
+class EventCreateWindow(QMainWindow):
+    def __init__(self):
+        super().__init__()
+        self.ui = Ui_EventCreateWindow()
+        self.ui.setupUi(self)
+        self.connectSignals()
 
+    def connectSignals(self):
+        self.ui.ButtonSave.clicked.connect(self.saveEvent)
 
     # domain functions
 
     def saveEvent(self):
         # checks if all complete and valid
-        # gets Name and Duration and creates base Event in Schedule's event list
-        newEvent = schedule.addEvent(self.FieldName.text(),int(self.FieldHours.text())*60+int(self.FieldMinutes.text()))
-        # adds selected Room Group
-        newEvent.room_group=self.MenuRoomGroup.currentText()
-        # adds Tag list
-        tag_list=[]
-        for i in range(self.ListTags.count()):
-            # it imports every tag to the organization's global TagList
-            tag_list[i] = TagList.addTag(self.ListTags.item(i).text())
-        # adds tags to event's tag list
-        newEvent.tag_list = tag_list
-        # if not complete shows message
-
+        print("Clicked")
+        if self.FieldName.text() and (int(self.FieldMinutes.text()) != 0):
+            # gets Name and Duration and creates base Event in Schedule's event list
+            newEvent = schedule.addEvent(self.FieldName.text(),
+                                         (int(self.FieldHours.text()) * 60) + int(self.FieldMinutes.text()), "No")
+            # adds selected Room Group
+            newEvent.room_group = self.MenuRoomGroup.currentText()
+            # adds Tag list
+            tag_list = []
+            for i in range(self.ListTags.count()):
+                # it imports every tag to the organization's global TagList
+                tag_list[i] = tag_list.addTag(self.ListTags.item(i).text())
+            # adds tags to event's tag list
+            newEvent.tag_list = tag_list
+            self.close()
+            # if not complete shows message
+        else:
+            print("ok")
+            MessageWindow = QDialog()
+            ui_MessageWindow = Ui_MessageWindow()
+            ui_MessageWindow.setupUi(MessageWindow)
+            ui_MessageWindow.connectSignals(MessageWindow)
+            ui_MessageWindow.showCreateEventError()
+            MessageWindow.exec()
         return self
