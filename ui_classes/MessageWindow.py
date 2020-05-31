@@ -89,7 +89,7 @@ class MessageWindow(QDialog):
 
     # domain functions
     def showWindow(self):
-        self.exec()
+        return self.exec()
 
     def showLogInError(self):
         self.ui.LabelMessage.setText("Account not found.")

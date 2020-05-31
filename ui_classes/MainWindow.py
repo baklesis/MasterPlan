@@ -623,12 +623,12 @@ class MainWindow(QMainWindow):
         for room in room_list.room_list:
             if room.name == selected_room:
                 for event in schedule.event_list:
-                    if (event['datetime'] == datetime.now()) & (event['room'] == selected_room):
+                    if ((datetime.now()-event['datetime']).total_seconds()/60<event['object'].duration) & (event['room'].name == selected_room):
                         self.eventInfoWindow = EventInfoWindow()
                         self.eventInfoWindow.ui.LabelEventName.setText(event['object'].name)
                         self.eventInfoWindow.ui.LabelRoomValue.setText(event['room'].name)
                         self.eventInfoWindow.ui.LabelTimeValue.setText(event['datetime'].strftime("%x %X"))
-                        self.eventInfoWindow.ui.LabelDurationValue.setText(str(event['object'].duration))
+                        self.eventInfoWindow.ui.LabelDurationValue.setText(str(int(event['object'].duration/60)))
                         self.eventInfoWindow.ui.LabelOrganizerValue.setText(event['object'].organizer.fullname)
                         self.eventInfoWindow.showWindow()
                         break
@@ -728,6 +728,7 @@ class MainWindow(QMainWindow):
                     session.selected_building = building
                     session.selected_floor = 0
                     self.showRooms(session.selected_building,session.selected_floor)
+                    self.fillEvents() #ανανεωσε το grid
                     break
         else:
             self.showBuildings()
@@ -751,6 +752,18 @@ class MainWindow(QMainWindow):
 
     def fillEvents(self): #κανει update τα views
         # update grid view
+        if session.selected_building:  # αν υπαρχει selected building
+            # reset stylesheet
+            for i in range(len(self.grid_button_list)):
+                self.grid_button_list[i].setStyleSheet("")
+            # παρε τις εκδηλώσεις του building
+            event_list = MainWindow.filter(MainWindow, schedule.getSchedule(session.selected_building, None, None, None))
+            #κανε highlight τις αιθουσες με εκδηλωσεις που διεξαγονται τωρα
+            for i in range(len(self.grid_button_list)): #για καθε κουμπί αιθουσας στο grid
+                for event in event_list:
+                    if ((datetime.now() - event['datetime']).total_seconds() / 60 < event['object'].duration) & (event['room'].name == self.grid_button_list[i].text()):
+                        self.grid_button_list[i].setStyleSheet("background-color: rgb(80, 141, 255)")
+
         # update calendar view
         self.ui.Calendar.updateCells() #ξανακαλει την paintCells του Calendar
         self.fillCalEventList()  # refresh την λιστα με τις εκδηλωσεις
@@ -782,7 +795,7 @@ class MainWindow(QMainWindow):
             self.eventInfoWindow.ui.LabelEventName.setText(selected_event['object'].name)
             self.eventInfoWindow.ui.LabelRoomValue.setText(selected_event['room'].name)
             self.eventInfoWindow.ui.LabelTimeValue.setText(selected_event['datetime'].strftime("%x %X"))
-            self.eventInfoWindow.ui.LabelDurationValue.setText(str(selected_event['object'].duration))
+            self.eventInfoWindow.ui.LabelDurationValue.setText(str(int(selected_event['object'].duration/60)))
             self.eventInfoWindow.ui.LabelOrganizerValue.setText(selected_event['object'].organizer.fullname)
             self.eventInfoWindow.showWindow()
 
@@ -795,6 +808,7 @@ class MainWindow(QMainWindow):
          selected_floor = self.ui.SpinBoxFloor.value()
          session.selected_floor = selected_floor
          self.showRooms(session.selected_building,session.selected_floor)
+         self.fillEvents()
 
 
 

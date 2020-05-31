@@ -120,7 +120,7 @@ class RangeWindow(QDialog):
         self.ui.ButtonFalse.clicked.connect(self.reject)
 
     def showWindow(self):
-        self.exec()
+        return self.exec()
 
     def showMessageWindow(self):
         self.messageWindow = MessageWindow()
