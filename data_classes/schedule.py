@@ -1,5 +1,9 @@
 from datetime import datetime
+
+import ui_classes
 from data_classes.event import *
+from ui_classes.EventListWindow import EventListWindow
+
 
 class Schedule:
     def __init__(self, event_list, organization):
@@ -53,12 +57,23 @@ class Schedule:
     def deleteSchedule(self):  # desctructor καλυτερα
         return self
 
-    def getSchedule(self,building):
+    def getSchedule(self,building=None, room=None,organizer=None,event=None):
+       if building != None:
         building_event_list = []
         for event in self._event_list:
             if event["room"].building.name == building.name:  # αν το event διεξαγεται στο επιλεγμένο κτιριο
                 building_event_list.append(event)
         return building_event_list
+       if event != None:
+        for event in ui_classes.EventListWindow:
+
+    def getEvent(self, name):
+        for event in self.event_list:
+            if event.name == name:
+                return event
+        return None
+
+
 
     #def getSchedule(self, event, room, organizer, str):  # special συναρτηση get
     #    return self
