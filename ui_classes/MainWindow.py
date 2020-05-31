@@ -538,7 +538,6 @@ class MainWindow(QMainWindow):
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
         self.connectSignals()
-        self.eventListWindow = EventListWindow()
 
     def connectSignals(self):
         self.ui.ButtonGo.clicked.connect(self.enterOrganization)
@@ -608,6 +607,7 @@ class MainWindow(QMainWindow):
         self.showGuestPage()
 
     def selectEventList(self):
+        self.eventListWindow = EventListWindow()
         self.eventListWindow.show()
         print("Open Event List Window") #show EventListWindow
 
