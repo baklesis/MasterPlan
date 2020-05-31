@@ -6,7 +6,10 @@ from PySide2.QtGui import (QBrush, QColor, QConicalGradient, QCursor, QFont,
 from PySide2.QtWidgets import *
 
 from ui_classes.MessageWindow import MessageWindow
+from ui_classes.RangeWindow import RangeWindow
+from ui_classes.EventInfoWindow import EventInfoWindow
 from ui_classes.EventListWindow import EventListWindow
+
 from global_vars import *
 
 # custom calendar class
@@ -19,7 +22,6 @@ class MyCalendarWidget(QCalendarWidget):
     def paintCell(self, painter, rect, date):
         QCalendarWidget.paintCell(self, painter, rect, date)
         if session.selected_building: # αν υπαρχει selected building
-            print('hi')
             event_list = MainWindow.filter(MainWindow,schedule.getSchedule(session.selected_building)) #παρε τις εκδηλώσεις του building
         else:
             event_list = MainWindow.filter(MainWindow,schedule.event_list) #παρε όλες τις εκδηλώσεις
@@ -443,7 +445,7 @@ class Ui_MainWindow(object):
         self.ListWidgetEvents.setLayoutMode(QListView.SinglePass)
         self.ListWidgetEvents.setSpacing(5)
         self.ListWidgetEvents.setViewMode(QListView.ListMode)
-        self.ListWidgetEvents.setItemAlignment(Qt.AlignHCenter)
+        self.ListWidgetEvents.setSelectionRectVisible(True)
         self.ListWidgetEvents.setSortingEnabled(True)
         self.LayoutEventList.addWidget(self.ListWidgetEvents)
         self.LayoutCalendar.addLayout(self.LayoutEventList)
@@ -548,10 +550,11 @@ class MainWindow(QMainWindow):
         self.ui.ButtonSearch.clicked.connect(self.selectSearch)
         self.ui.ButtonGrid.clicked.connect(self.showGrid)
         self.ui.ButtonCalendar.clicked.connect(self.showCalendar)
-        self.ui.ButtonDownload.clicked.connect(self.download)
         self.ui.ComboBoxFilters.currentIndexChanged.connect(self.selectFilter)
         self.ui.ComboBoxBuildings.currentIndexChanged.connect(self.updateSelectedBuilding)
         self.ui.Calendar.clicked.connect(self.fillCalEventList)
+        self.ui.ButtonDownload.clicked.connect(self.download)
+        self.ui.ListWidgetEvents.itemActivated.connect(self.selectEvent)
 
     # domain functions
 
@@ -566,9 +569,15 @@ class MainWindow(QMainWindow):
 
     def showGuestPage(self):
         self.ui.StackedWidgetUserTypes.setCurrentIndex(0)
+        self.loadFilterMenu()
+        self.loadBuildingMenu()
+        self.fillEvents()
 
     def showLoggedUserPage(self):
         self.ui.StackedWidgetUserTypes.setCurrentIndex(1)
+        self.loadFilterMenu()
+        self.loadBuildingMenu()
+        self.fillEvents()
 
     def enterOrganization(self):
         global session
@@ -577,8 +586,7 @@ class MainWindow(QMainWindow):
             session = Session(None, org)
             self.showUserPage()
             self.showGuestPage()
-            self.loadFilterMenu()
-            self.loadBuildingMenu()
+            self.showGrid()
         else:
             self.showErrorPage()
 
@@ -593,15 +601,15 @@ class MainWindow(QMainWindow):
             self.ui.LabelLoggedUser.setText(account.username)
         else:
             #show Error MessageWindow
-            messageWindow = MessageWindow()
-            messageWindow.showLogInError()
-            messageWindow.exec()
+            self.messageWindow = MessageWindow()
+            self.messageWindow.showLogInError()
+            self.messageWindow.showWindow()
             self.ui.LineUser.clear()
             self.ui.LinePass.clear()
 
     def logOut(self):
         global session
-        session = Session(None)
+        session = Session(None,session.current_org)
         self.ui.LineUser.setText(None)
         self.ui.LinePass.setText(None)
         self.showGuestPage()
@@ -609,7 +617,6 @@ class MainWindow(QMainWindow):
     def selectEventList(self):
         self.eventListWindow = EventListWindow()
         self.eventListWindow.show()
-        print("Open Event List Window") #show EventListWindow
 
     def selectSearch(self):
         print("Open Search Window") #show SearchWindow
@@ -620,21 +627,27 @@ class MainWindow(QMainWindow):
     def showCalendar(self):
         self.ui.MainView.setCurrentIndex(1)
 
-    def download(self):
-        print("download calendar")
-
-    def loadFilterMenu(self):  # φορτώνεται στο enterOrganization
+    def loadFilterMenu(self):  # φορτώνεται στο showLoggedUserPage kαι showGuestPage
+        self.ui.ComboBoxFilters.clear()
+        self.ui.ComboBoxFilters.addItem("No Filter Selected")
         for tag in tag_list.tag_list:
             self.ui.ComboBoxFilters.addItem(tag.name)
+            if session.selected_filters: #και αν υπάρχει selected filter απο το session
+                if session.selected_filters[0].name == tag.name:
+                    self.ui.ComboBoxFilters.setCurrentIndex(i+1) # επελεξε το στο combobox (0 = no filter selected)
+            else: # αλλιως επελεξε no filter selected
+                self.ui.ComboBoxFilters.setCurrentIndex(0)
 
-    def loadBuildingMenu(self):  # φορτώνεται στο enterOrganization
+    def loadBuildingMenu(self):  # φορτώνεται στο showLoggedUserPage kαι showGuestPage
+        self.ui.ComboBoxFilters.clear()
+        self.ui.ComboBoxFilters.addItem("No Building Selected")
         for i,building in enumerate(building_list.building_list): #για καθε building στο building list
             self.ui.ComboBoxBuildings.addItem(building.name) #προσθεσε στοιχειο στο combo box
             if session.selected_building: #και αν υπάρχει selected building απο το session
                 if session.selected_building.name == building.name:
-                    self.ui.ComboBoxFilters.setCurrentIndex(i+1) # επελεξε το στο combobox (0 = no filter selected)
+                    self.ui.ComboBoxBuildings.setCurrentIndex(i+1) # επελεξε το στο combobox (0 = no building selected)
             else: # αλλιως επελεξε no building selected
-                self.ui.ComboBoxFilters.setCurrentIndex(0)
+                self.ui.ComboBoxBuildings.setCurrentIndex(0)
 
     def selectFilter(self):
         selected_filter = self.ui.ComboBoxFilters.currentText()
@@ -654,6 +667,7 @@ class MainWindow(QMainWindow):
 
     def updateSelectedBuilding(self):
         selected_building = self.ui.ComboBoxBuildings.currentText()
+        session.selected_building = None
         if selected_building != "No Building Selected":
             for building in building_list.building_list:
                 if selected_building == building.name:
@@ -681,14 +695,14 @@ class MainWindow(QMainWindow):
         #update grid view
         # update calendar view
         self.ui.Calendar.updateCells()
+        self.fillCalEventList()  # refresh την λιστα με τις εκδηλωσεις
 
     def fillCalEventList(self): # για την λίστα που εμφανίζεται με το πατημα ενός κελιού στο Calendar
         # reset την λίστα
         self.ui.ListWidgetEvents.clear()
         # εκτύπωσε events της selected date στην λίστα
         selected_date = self.ui.Calendar.selectedDate()
-        self.ui.LabelSelectedDate.setText(datetime.strptime(selected_date.toString("ddMMyy"), "%d%m%y").strftime(
-            "%b %d %Y"))  # μετατροπη σε string -> datetime -> string γιατι το PySide εβγαζε το format στα ελληνικα
+        self.ui.LabelSelectedDate.setText(datetime.strptime(selected_date.toString("ddMMyy"), "%d%m%y").strftime("%b %d %Y"))  # μετατροπη σε string -> datetime -> string γιατι το PySide εβγαζε το format στα ελληνικα
         filtered_event_list = []
         if session.selected_building:  # αν υπαρχει selected building
             filtered_event_list = self.filter(schedule.getSchedule(session.selected_building))
@@ -697,6 +711,35 @@ class MainWindow(QMainWindow):
         for event in filtered_event_list:
             if selected_date == event["datetime"].date():
                 self.ui.ListWidgetEvents.addItem(event["object"].name)
+
+    def download(self):
+        self.rangeWindow = RangeWindow()
+        self.rangeWindow.showWindow()
+
+    def selectEvent(self):
+        selected_event_name = self.ui.ListWidgetEvents.selectedItems()[0].text
+        selected_event = self.getEventIfo(selected_event_name)
+        if selected_event:
+            self.eventInfoWindow = EventInfoWindow()
+            self.eventInfoWindow.ui.LabelEventName.setText(selected_event['object'].name)
+            self.eventInfoWindow.ui.LabelRoomValue.setText(selected_event['room'])
+            self.eventInfoWindow.ui.LabelTimeValue.setText(selected_event['datetime'])
+            self.eventInfoWindow.ui.LabelDuration.setText(selected_event['object'].duration)
+            self.eventInfoWindow.ui.LabelOrganizerValue.setText(selected_event['object'].organizer)
+            self.eventInfoWindow.showWindow()
+
+    def getEventIfo(self,event_name):
+        for event in schedule.event_list:
+            if event_name == event['object'].name:
+                return event
+
+
+
+
+
+
+
+
 
 
 

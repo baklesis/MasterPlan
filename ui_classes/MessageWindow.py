@@ -88,16 +88,22 @@ class MessageWindow(QDialog):
         self.ui.ButtonFalse.clicked.connect(self.reject)
 
     # domain functions
+    def showWindow(self):
+        self.exec()
 
     def showLogInError(self):
         self.ui.LabelMessage.setText("Account not found.")
         self.ui.ButtonFalse.hide()
         self.ui.ButtonTrue.setText("OK")
 
-    def showCreateEventError(self):
-        self.LabelMessage.setText("Some fields are invalid or incomplete.")
-        self.ButtonFalse.hide()
-        self.ButtonTrue.setText("OK")
+    def showFileMessage(self):
+        self.ui.LabelMessage.setText("Are you sure you want to download this file?")
+        self.ui.ButtonTrue.setText("Yes")
+        self.ui.ButtonFalse.setText("No")
+
+    def createFile(self):
+        print("File downloaded")
+
 
 
 
