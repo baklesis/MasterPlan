@@ -85,6 +85,12 @@ class Schedule:
         return self
 
     def convertToCSV(self):
+        f = open("schedule.csv", "w")
+        for x in range(len()):
+            for y in range(len()):
+                line = str(x + 1) + ',' + str(id_movies[y]) + ',' + str(ratings[x][y]) + '\n'
+                f.write(line)
+        f.close()
         return self
 
     def getEvent(self,name):
