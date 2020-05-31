@@ -523,21 +523,20 @@ class Ui_EventListWindow(object):
 
         self.LayoutTags.addLayout(self.horizontalLayout_6)
 
-        self.scrollArea = QScrollArea(self.gridLayoutWidget)
-        self.scrollArea.setObjectName(u"scrollArea")
-        self.scrollArea.setWidgetResizable(True)
-        self.scrollAreaWidgetContents = QWidget()
-        self.scrollAreaWidgetContents.setObjectName(u"scrollAreaWidgetContents")
-        self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 800, 77))
-        sizePolicy4 = QSizePolicy(QSizePolicy.Minimum, QSizePolicy.Preferred)
-        sizePolicy4.setHorizontalStretch(0)
-        sizePolicy4.setVerticalStretch(0)
-        sizePolicy4.setHeightForWidth(self.scrollAreaWidgetContents.sizePolicy().hasHeightForWidth())
-        self.scrollAreaWidgetContents.setSizePolicy(sizePolicy4)
-        self.scrollAreaWidgetContents.setMinimumSize(QSize(800, 0))
-        self.scrollArea.setWidget(self.scrollAreaWidgetContents)
+        self.listWidget_3 = QListWidget(self.gridLayoutWidget)
+        QListWidgetItem(self.listWidget_3)
+        QListWidgetItem(self.listWidget_3)
+        QListWidgetItem(self.listWidget_3)
+        QListWidgetItem(self.listWidget_3)
+        QListWidgetItem(self.listWidget_3)
+        QListWidgetItem(self.listWidget_3)
+        QListWidgetItem(self.listWidget_3)
+        QListWidgetItem(self.listWidget_3)
+        self.listWidget_3.setObjectName(u"listWidget_3")
+        self.listWidget_3.setEnabled(True)
+        self.listWidget_3.setFlow(QListView.LeftToRight)
 
-        self.LayoutTags.addWidget(self.scrollArea)
+        self.LayoutTags.addWidget(self.listWidget_3)
 
 
         self.gridLayout.addLayout(self.LayoutTags, 5, 0, 1, 1)
@@ -704,6 +703,26 @@ class Ui_EventListWindow(object):
         self.LabelSpaceTitle_2.setText(QCoreApplication.translate("EventListWindow", u"Space Constraint", None))
         self.LabelSpaceConstraint.setText(QCoreApplication.translate("EventListWindow", u"<SpaceConstraint>", None))
         self.LabelHint.setText(QCoreApplication.translate("EventListWindow", u"Please select an event from the list on the left", None))
+
+        __sortingEnabled = self.listWidget_3.isSortingEnabled()
+        self.listWidget_3.setSortingEnabled(False)
+        ___qlistwidgetitem = self.listWidget_3.item(0)
+        ___qlistwidgetitem.setText(QCoreApplication.translate("EventListWindow", u"New Item", None));
+        ___qlistwidgetitem1 = self.listWidget_3.item(1)
+        ___qlistwidgetitem1.setText(QCoreApplication.translate("EventListWindow", u"New Item", None));
+        ___qlistwidgetitem2 = self.listWidget_3.item(2)
+        ___qlistwidgetitem2.setText(QCoreApplication.translate("EventListWindow", u"New Item", None));
+        ___qlistwidgetitem3 = self.listWidget_3.item(3)
+        ___qlistwidgetitem3.setText(QCoreApplication.translate("EventListWindow", u"New Item", None));
+        ___qlistwidgetitem4 = self.listWidget_3.item(4)
+        ___qlistwidgetitem4.setText(QCoreApplication.translate("EventListWindow", u"New Item", None));
+        ___qlistwidgetitem5 = self.listWidget_3.item(5)
+        ___qlistwidgetitem5.setText(QCoreApplication.translate("EventListWindow", u"New Item", None));
+        ___qlistwidgetitem6 = self.listWidget_3.item(6)
+        ___qlistwidgetitem6.setText(QCoreApplication.translate("EventListWindow", u"New Item", None));
+        ___qlistwidgetitem7 = self.listWidget_3.item(7)
+        ___qlistwidgetitem7.setText(QCoreApplication.translate("EventListWindow", u"New Item", None));
+        self.listWidget_3.setSortingEnabled(__sortingEnabled)
     # retranslateUi
 
 class EventListWindow(QMainWindow):
@@ -717,6 +736,7 @@ class EventListWindow(QMainWindow):
         self.ui.ButtonCreateEvent.clicked.connect(self.createEvent)
         self.ui.ListEvents.itemDoubleClicked.connect(self.selectEvent)
         self.ui.ButtonAddTimeConstraint.clicked.connect(self.addTimeConstraint)
+        self.ui.ButtonAddTag.clicked.connect(self.addTag)
 
     def selectEvent(self):
         self.ui.LabelHint.hide()
@@ -762,3 +782,7 @@ class EventListWindow(QMainWindow):
         self.show()
         self.ui.EventEditFrame.hide()
         self.fillEvents()
+
+    def addTag(self):
+        # self.ui.
+        pass

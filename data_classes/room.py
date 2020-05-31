@@ -55,9 +55,9 @@ class RoomList:
     def convertToCSV(self):
         # convert data to csv
         f = open("room.csv", "w")
-        for x in range(len(self._room_list):
+        for x in range(len(self._room_list)):
             for y in range(len(self.room)):
-                line = str(x + 1) + ',' + str(self.room.name) + ',' + str(self.room.building) + ',' + str(self.room.floor) + ',' + str(self.room.capacity) '\n'
+                line = str(x + 1) + ',' + str(self.room.name) + ',' + str(self.room.building) + ',' + str(self.room.floor) + ',' + str(self.room.capacity) + '\n'
                 f.write(line)
         f.close()
         return self
@@ -75,5 +75,5 @@ class RoomList:
             dialect = csv.Sniffer().sniff(csv_file.read(1024))
             csv_file.seek(0)
         except csv.Error:
-        return self
+            return self
 
