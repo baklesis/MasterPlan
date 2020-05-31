@@ -29,7 +29,7 @@
     </font>
    </property>
    <property name="currentIndex">
-    <number>0</number>
+    <number>1</number>
    </property>
    <widget class="QWidget" name="AddTimeConst_page_2">
     <widget class="QDateTimeEdit" name="dateTimeEdit">
@@ -273,8 +273,14 @@
      <height>21</height>
     </rect>
    </property>
+   <property name="maximum">
+    <number>2</number>
+   </property>
    <property name="orientation">
     <enum>Qt::Horizontal</enum>
+   </property>
+   <property name="tickPosition">
+    <enum>QSlider::TicksBothSides</enum>
    </property>
   </widget>
   <widget class="QLabel" name="label_6">
