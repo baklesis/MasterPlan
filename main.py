@@ -5,6 +5,7 @@ from PySide2.QtWidgets import QApplication, QMainWindow, QDialog
 
 from ui_classes.MainWindow import MainWindow
 
+
 if __name__ == "__main__":
     MasterPlan = QApplication()
 

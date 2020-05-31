@@ -180,8 +180,6 @@ class EventCreateWindow:
         # shows all elements
     def setTags(self): #καλύτερα μετονομασία σε addTag, λόγω λειτουργικότητας
         return self
-    def selectOrganizer(self): #ζήτημα, χρειάζεται αλλαγή ροής
-        return self
     def saveEvent(self):
         return self
         # checks if all complete
