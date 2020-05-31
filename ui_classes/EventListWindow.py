@@ -721,8 +721,12 @@ class EventListWindow(QMainWindow):
         self.ui.LabelHint.hide()
         selected_event = schedule.getEvent(self.ui.ListEvents.currentItem().text())
         self.ui.LabelDetails.setText(selected_event["object"].name)
-        self.ui.LabelScheduledDatetime.setText(selected_event["datetime"].strftime("%d/%m/%Y, %H:%M:%S"))
-        self.ui.LabelScheduledDatetime_2.setText(selected_event["datetime"].strftime("%d/%m/%Y, %H:%M:%S"))
+        if selected_event["datetime"] == None:
+            self.ui.LabelScheduledDatetime.setText("<font color=red>Not Scheduled Yet!</font>")
+            self.ui.LabelScheduledDatetime_2.setText("<font color=red>Not Scheduled Yet!</font>")
+        else:
+            self.ui.LabelScheduledDatetime.setText(selected_event["datetime"].strftime("%d/%m/%Y, %H:%M:%S"))
+            self.ui.LabelScheduledDatetime_2.setText(selected_event["datetime"].strftime("%d/%m/%Y, %H:%M:%S"))
         self.ui.LabelScheduledRoom.setText(selected_event["object"].name)
         self.ui.LabelScheduledRoom_2.setText(selected_event["object"].name)
         eventRoomGroup = selected_event["object"].room_group
@@ -736,10 +740,14 @@ class EventListWindow(QMainWindow):
 
     def createEvent(self):
         self.eventCreateWindow = EventCreateWindow()
-        result = self.eventCreateWindow.showWindow()
+        response = self.eventCreateWindow.showWindow()
+        if response == 1:
+            self.eventCreateWindow.saveEvent()
         self.fillEvents()
 
     def fillEvents(self):
+        for event in reversed(range(self.ui.ListEvents.count())):
+            self.ui.ListEvents.takeItem(event)
         for event in schedule.event_list:
             self.ui.ListEvents.addItem(event["object"].name)
 
