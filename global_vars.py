@@ -17,8 +17,11 @@ account_list.account_list = [
     Organizer('alexiou','1','alexiou@ceid.upatras.gr', 'George Alexiou', 'upatras')
 ]
 
-organizer_list = OrganizerList ()
-organizer_list.organizer_list = [account_list.account_list[1],account_list.account_list[2]]
+organizer_list = OrganizerList()
+organizer_list.organizer_list = [
+    account_list.account_list[1],
+    account_list.account_list[2]
+]
 
 session = None
 
@@ -28,15 +31,17 @@ building_list = BuildingList([
 ],"upatras")
 
 room_list = RoomList([
-    Room("BA",building_list.building_list[0],0,200,),
-    Room("B4",building_list.building_list[0],0,100,),
-    Room("B3",building_list.building_list[0],0,50,),
-    Room("AA",building_list.building_list[1],0,200,)
+    Room("BA",building_list.building_list[0],0,200),
+    Room("B4",building_list.building_list[0],0,100),
+    Room("B3",building_list.building_list[0],0,50),
+    Room("Computer Lab",building_list.building_list[0],1,50),
+    Room("AA",building_list.building_list[1],0,200)
 ],"upatras")
 
 room_group_list = RoomGroupList("upatras")
-room_group_list.addRoomGroup("amphitheater",[room_list.room_list[0],room_list.room_list[1]])
+room_group_list.addRoomGroup("amphitheater",[room_list.room_list[0],room_list.room_list[1],room_list.room_list[4]])
 room_group_list.addRoomGroup("classroom",room_list.room_list[2])
+room_group_list.addRoomGroup("lab",room_list.room_list[3])
 
 for room in room_list.room_list:
     for i,building in enumerate(building_list.building_list):
@@ -46,7 +51,7 @@ for room in room_list.room_list:
 schedule = Schedule([],"upatras")
 
 schedule.addEvent("AI Seminar",2,"None")
-schedule.event_list[0]["datetime"]=datetime(2020,5,20,5,0)
+schedule.event_list[0]["datetime"]=datetime.now() # test event που συμβαίνει πάντα αυτήν την στιγμή
 schedule.event_list[0]["room"]=room_list.room_list[0]
 schedule.event_list[0]["object"].organizer=organizer_list.organizer_list[0]
 schedule.event_list[0]["object"].room_group = room_group_list.room_group_list[0]
@@ -70,7 +75,7 @@ schedule.event_list[3]["object"].organizer=organizer_list.organizer_list[0]
 schedule.event_list[3]["object"].room_group = room_group_list.room_group_list[1]
 
 schedule.addEvent("Robotics Seminar",2,"None")
-schedule.event_list[4]["datetime"]=datetime(2020,5,10,12,0)
+schedule.event_list[4]["datetime"]=datetime.now() # test event που συμβαίνει πάντα αυτήν την στιγμή
 schedule.event_list[4]["room"]=room_list.room_list[1]
 schedule.event_list[4]["object"].organizer=organizer_list.organizer_list[1]
 
@@ -90,23 +95,23 @@ schedule.event_list[7]["room"]=room_list.room_list[2]
 schedule.event_list[7]["object"].organizer=organizer_list.organizer_list[0]
 
 schedule.addEvent("AI Workshop",2,"None")
-schedule.event_list[8]["datetime"]=datetime(2020,5,11,5,0)
-schedule.event_list[8]["room"]=room_list.room_list[2]
+schedule.event_list[8]["datetime"]=datetime.now() # test event που συμβαίνει πάντα αυτήν την στιγμή
+schedule.event_list[8]["room"]=room_list.room_list[3]
 schedule.event_list[8]["object"].organizer=organizer_list.organizer_list[0]
 
 schedule.addEvent("Networks Seminar",3,"None")
 schedule.event_list[9]["datetime"]=datetime(2020,5,20,12,0)
-schedule.event_list[9]["room"]=room_list.room_list[3]
+schedule.event_list[9]["room"]=room_list.room_list[4]
 schedule.event_list[9]["object"].organizer=organizer_list.organizer_list[1]
 
 schedule.addEvent("Architecture Workshop",2,"None")
 schedule.event_list[10]["datetime"]=datetime(2020,5,9,3,0)
-schedule.event_list[10]["room"]=room_list.room_list[3]
+schedule.event_list[10]["room"]=room_list.room_list[4]
 schedule.event_list[10]["object"].organizer=organizer_list.organizer_list[1]
 
 schedule.addEvent("Internship Presentation",2,"None")
 schedule.event_list[11]["datetime"]=datetime.now() # test event που συμβαίνει πάντα αυτήν την στιγμή
-schedule.event_list[11]["room"]=room_list.room_list[3]
+schedule.event_list[11]["room"]=room_list.room_list[4]
 schedule.event_list[11]["object"].organizer=organizer_list.organizer_list[1]
 
 tag_list = TagList("upatras")

@@ -333,41 +333,6 @@ class Ui_MainWindow(object):
         self.Grid.setSpacing(0)
         self.Grid.setObjectName(u"Grid")
         self.Grid.setContentsMargins(0, 0, 0, 0)
-        # self.pushButton = QPushButton(self.gridLayoutWidget)
-        # self.pushButton.setObjectName(u"pushButton")
-        # sizePolicy1.setHeightForWidth(self.pushButton.sizePolicy().hasHeightForWidth())
-        # self.pushButton.setSizePolicy(sizePolicy1)
-        # self.pushButton.setMinimumSize(QSize(100, 100))
-        # self.pushButton.setMaximumSize(QSize(100, 100))
-        # self.Grid.addWidget(self.pushButton, 0, 0, 1, 1)
-        # self.pushButton_3 = QPushButton(self.gridLayoutWidget)
-        # self.pushButton_3.setObjectName(u"pushButton_3")
-        # sizePolicy1.setHeightForWidth(self.pushButton_3.sizePolicy().hasHeightForWidth())
-        # self.pushButton_3.setSizePolicy(sizePolicy1)
-        # self.pushButton_3.setMinimumSize(QSize(100, 100))
-        # self.pushButton_3.setMaximumSize(QSize(100, 100))
-        # self.Grid.addWidget(self.pushButton_3, 0, 2, 1, 1)
-        # self.pushButton_2 = QPushButton(self.gridLayoutWidget)
-        # self.pushButton_2.setObjectName(u"pushButton_2")
-        # sizePolicy1.setHeightForWidth(self.pushButton_2.sizePolicy().hasHeightForWidth())
-        # self.pushButton_2.setSizePolicy(sizePolicy1)
-        # self.pushButton_2.setMinimumSize(QSize(100, 100))
-        # self.pushButton_2.setMaximumSize(QSize(100, 100))
-        # self.Grid.addWidget(self.pushButton_2, 0, 1, 1, 1)
-        # self.pushButton_4 = QPushButton(self.gridLayoutWidget)
-        # self.pushButton_4.setObjectName(u"pushButton_4")
-        # sizePolicy1.setHeightForWidth(self.pushButton_4.sizePolicy().hasHeightForWidth())
-        # self.pushButton_4.setSizePolicy(sizePolicy1)
-        # self.pushButton_4.setMinimumSize(QSize(100, 100))
-        # self.pushButton_4.setMaximumSize(QSize(100, 100))
-        # self.Grid.addWidget(self.pushButton_4, 1, 0, 1, 1)
-        # self.pushButton_5 = QPushButton(self.gridLayoutWidget)
-        # self.pushButton_5.setObjectName(u"pushButton_5")
-        # sizePolicy1.setHeightForWidth(self.pushButton_5.sizePolicy().hasHeightForWidth())
-        # self.pushButton_5.setSizePolicy(sizePolicy1)
-        # self.pushButton_5.setMinimumSize(QSize(100, 100))
-        # self.pushButton_5.setMaximumSize(QSize(100, 100))
-        # self.Grid.addWidget(self.pushButton_5, 1, 1, 1, 1)
         self.MainView.addWidget(self.GridView)
         self.CalendarView = QWidget()
         self.CalendarView.setObjectName(u"CalendarView")
@@ -520,11 +485,6 @@ class Ui_MainWindow(object):
         self.LabelFloor.setText(QCoreApplication.translate("MainWindow", u"Floor", None))
         self.ButtonGridRevert.setText(QCoreApplication.translate("MainWindow", u"Revert Changes", None))
         self.ButtonGridPublish.setText(QCoreApplication.translate("MainWindow", u"Publish Changes", None))
-        # self.pushButton.setText(QCoreApplication.translate("MainWindow", u"Room1", None))
-        # self.pushButton_3.setText(QCoreApplication.translate("MainWindow", u"Room3", None))
-        # self.pushButton_2.setText(QCoreApplication.translate("MainWindow", u"Room2", None))
-        # self.pushButton_4.setText(QCoreApplication.translate("MainWindow", u"Room4", None))
-        # self.pushButton_5.setText(QCoreApplication.translate("MainWindow", u"Room5", None))
         self.ButtonCalPublish.setText(QCoreApplication.translate("MainWindow", u"Publish Changes", None))
         self.ButtonCalRevert.setText(QCoreApplication.translate("MainWindow", u"Revert Changes", None))
         self.ButtonDownload.setText(QCoreApplication.translate("MainWindow", u"...", None))
@@ -555,6 +515,8 @@ class MainWindow(QMainWindow):
         self.ui.Calendar.clicked.connect(self.fillCalEventList)
         self.ui.ButtonDownload.clicked.connect(self.download)
         self.ui.ListWidgetEvents.itemActivated.connect(self.selectEvent)
+        self.ui.ButtonBackToBuildings.clicked.connect(self.showBuildings)
+        self.ui.SpinBoxFloor.valueChanged.connect(self.changeFloor)
 
     # domain functions
 
@@ -574,7 +536,6 @@ class MainWindow(QMainWindow):
         self.ui.ButtonGrid.click()
         self.showGrid()
 
-
     def showLoggedUserPage(self):
         self.ui.StackedWidgetUserTypes.setCurrentIndex(1)
         self.loadFilterMenu()
@@ -584,7 +545,69 @@ class MainWindow(QMainWindow):
 
     def showGrid(self):
         self.ui.MainView.setCurrentIndex(0)
+        selected_building = session.selected_building
+        if selected_building:
+            self.showRooms(selected_building,session.selected_floor)
+        else:
+            self.showBuildings()
         self.fillEvents()
+
+    def showBuildings(self):
+        self.ui.ButtonBackToBuildings.hide()
+        self.ui.LabelFloor.hide()
+        self.ui.SpinBoxFloor.hide()
+        self.ui.ComboBoxBuildings.setCurrentIndex(0)
+        self.grid_button_list = []
+        # delete previous buttons
+        for i in reversed(range(self.ui.Grid.count())):
+            self.ui.Grid.takeAt(i).widget().deleteLater()
+        #load buildings buttons
+        for i, building in enumerate(building_list.building_list):
+            building_button = QPushButton(self.ui.gridLayoutWidget)
+            building_button.setObjectName(u"pushButton")
+            sizePolicy = QSizePolicy(QSizePolicy.Fixed, QSizePolicy.Fixed)
+            sizePolicy.setHeightForWidth(building_button.sizePolicy().hasHeightForWidth())
+            building_button.setSizePolicy(sizePolicy)
+            building_button.setMinimumSize(QSize(100, 100))
+            building_button.setMaximumSize(QSize(100, 100))
+            building_button.setText(QCoreApplication.translate("MainWindow", building.name, None))
+            self.grid_button_list.append(building_button)
+            self.ui.Grid.addWidget(self.grid_button_list[i], 0, i)
+            self.grid_button_list[i].clicked.connect(self.selectBuilding)
+
+    def selectBuilding(self):
+        selected_building = self.sender().text()
+        for i,building in enumerate(building_list.building_list):
+            if building.name == selected_building:
+                self.ui.ComboBoxBuildings.setCurrentIndex(i+1) #ορισε την επιλογή στο buildings combo box (connected with updateSelectedBuilding)
+                break
+
+    def showRooms(self,building,floor):
+        self.ui.ButtonBackToBuildings.show()
+        self.ui.LabelFloor.show()
+        self.ui.SpinBoxFloor.show()
+        self.grid_button_list = []
+        #delete previous buttons
+        for i in reversed(range(self.ui.Grid.count())):
+            self.ui.Grid.takeAt(i).widget().deleteLater()
+        #load room buttons
+        for i, room in enumerate(building.room_list):
+            if(room.floor == floor):
+                room_button = QPushButton(self.ui.gridLayoutWidget)
+                room_button.setObjectName(u"pushButton")
+                sizePolicy = QSizePolicy(QSizePolicy.Fixed, QSizePolicy.Fixed)
+                sizePolicy.setHeightForWidth(room_button.sizePolicy().hasHeightForWidth())
+                room_button.setSizePolicy(sizePolicy)
+                room_button.setMinimumSize(QSize(100, 100))
+                room_button.setMaximumSize(QSize(100, 100))
+                room_button.setText(QCoreApplication.translate("MainWindow", room.name, None))
+                self.grid_button_list.append(room_button)
+                self.ui.Grid.addWidget(self.grid_button_list[i], 0, i)
+                self.grid_button_list[i].clicked.connect(self.selectRoom)
+
+    def selectRoom(self):
+        print("roomselected")
+        pass
 
     def showCalendar(self):
         self.ui.MainView.setCurrentIndex(1)
@@ -633,6 +656,7 @@ class MainWindow(QMainWindow):
         else:
             self.eventListWindow.ui.ExtraButtons.setCurrentIndex(1)
             self.eventListWindow.ui.stackedWidget_2.setCurrentIndex(0)
+
     def selectSearch(self):
         print("Open Search Window") #show SearchWindow
 
@@ -669,12 +693,6 @@ class MainWindow(QMainWindow):
                     break
         self.fillEvents() # με το fillEvents ξανακαλείται η paintCells του Calendar η οποία καλεί την filter() που επιστρέφει τις εκδηλώσεις τις οποίες θα κάνει paint στο Calendar
 
-    def selectBuilding(self):
-        return self
-        #θα εκτελειται με το πάτημα ενός building στο grid και στην συνεχεια θα τροποποιει το selection του combo box
-        #αυτο θα προκαλέσει signal που θα καλέσει την updateselectedbuilding
-        #self.ComboBoxBuildings.setCurrentIndex(X)
-
     def updateSelectedBuilding(self):
         selected_building = self.ui.ComboBoxBuildings.currentText()
         session.selected_building = None
@@ -682,7 +700,11 @@ class MainWindow(QMainWindow):
             for building in building_list.building_list:
                 if selected_building == building.name:
                     session.selected_building = building
+                    self.showRooms(session.selected_building,session.selected_floor)
                     break
+        else:
+            self.showBuildings()
+
         self.fillEvents()  # με το fillEvents ξανακαλείται η paintCells του Calendar η οποία καλεί την filter() που επιστρέφει τις εκδηλώσεις τις οποίες θα κάνει paint στο Calendar
 
     def filter(self,event_list):
@@ -741,6 +763,14 @@ class MainWindow(QMainWindow):
         for event in schedule.event_list:
             if event_name == event['object'].name:
                 return event
+
+    def changeFloor(self):
+        pass
+        # max_floor = 0
+        # for room in room_list.room_list:
+        # selected_floor = self.ui.SpinBoxFloor.value()
+        # session.selected_floor = selected_floor
+        # self.showRooms(session.selected_building,session.selected_floor)
 
 
 

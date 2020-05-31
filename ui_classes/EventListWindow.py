@@ -1,23 +1,15 @@
-# -*- coding: utf-8 -*-
-
-################################################################################
-## Form generated from reading UI file 'EventListWindow.ui'
-##
-## Created by: Qt User Interface Compiler version 5.14.2
-##
-## WARNING! All changes made in this file will be lost when recompiling UI file!
-################################################################################
-
 from PySide2.QtCore import (QCoreApplication, QDate, QDateTime, QMetaObject,
     QObject, QPoint, QRect, QSize, QTime, QUrl, Qt)
 from PySide2.QtGui import (QBrush, QColor, QConicalGradient, QCursor, QFont,
     QFontDatabase, QIcon, QKeySequence, QLinearGradient, QPalette, QPainter,
     QPixmap, QRadialGradient)
 from PySide2.QtWidgets import *
+
 from ui_classes.EventCreateWindow import EventCreateWindow
 from data_classes.event import *
 from data_classes.schedule import *
 from global_vars import *
+
 class Ui_EventListWindow(object):
     def setupUi(self, EventListWindow):
         if not EventListWindow.objectName():
