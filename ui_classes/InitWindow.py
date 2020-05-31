@@ -6,7 +6,7 @@ from PySide2.QtGui import (QBrush, QColor, QConicalGradient, QCursor, QFont,
 from PySide2.QtWidgets import *
 
 
-class Ui_Dialog(object):
+class Ui_InitWindow(object):
     def setupUi(self, Dialog):
         if not Dialog.objectName():
             Dialog.setObjectName(u"Dialog")
@@ -52,7 +52,10 @@ class Ui_Dialog(object):
 
 class InitWindow(QDialog):
 
+    def showWindow(self):
+        self.exec()
+
     def importFile(self):
         path_to_file, _ = QFileDialog.getOpenFileName(self, self.tr("Load File"), self.tr("~/Desktop/"), self.tr("(*.csv)"))
 
-        self.listFile =     (path_to_file)
+        #self.listFile = (path_to_file)

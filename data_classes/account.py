@@ -66,7 +66,6 @@ class Organizer(Account):
     @organization.setter
     def organization(self,organization):
         self._organization=organization
-    #def getName(): αντικαθηστατε από την username() που κληρονομεί απο την account
     def sendEmail(self):
         pass
 

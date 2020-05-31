@@ -9,6 +9,7 @@ from ui_classes.MessageWindow import MessageWindow
 from ui_classes.RangeWindow import RangeWindow
 from ui_classes.EventInfoWindow import EventInfoWindow
 from ui_classes.EventListWindow import EventListWindow
+from ui_classes.SearchWindow import SearchWindow
 
 from global_vars import *
 
@@ -22,7 +23,7 @@ class MyCalendarWidget(QCalendarWidget):
     def paintCell(self, painter, rect, date):
         QCalendarWidget.paintCell(self, painter, rect, date)
         if session.selected_building: # αν υπαρχει selected building
-            event_list = MainWindow.filter(MainWindow,schedule.getSchedule(session.selected_building)) #παρε τις εκδηλώσεις του building
+            event_list = MainWindow.filter(MainWindow,schedule.getSchedule(session.selected_building,None,None,None)) #παρε τις εκδηλώσεις του building
         else:
             event_list = MainWindow.filter(MainWindow,schedule.event_list) #παρε όλες τις εκδηλώσεις
         for event in event_list:
@@ -309,6 +310,7 @@ class Ui_MainWindow(object):
         self.LayoutGridToolbar.addWidget(self.LabelFloor)
         self.SpinBoxFloor = QSpinBox(self.horizontalLayoutWidget_5)
         self.SpinBoxFloor.setObjectName(u"SpinBoxFloor")
+        self.SpinBoxFloor.setMinimum(0)
         self.LayoutGridToolbar.addWidget(self.SpinBoxFloor)
         self.horizontalSpacer_15 = QSpacerItem(243, 18, QSizePolicy.Expanding, QSizePolicy.Minimum)
         self.LayoutGridToolbar.addItem(self.horizontalSpacer_15)
@@ -585,14 +587,24 @@ class MainWindow(QMainWindow):
     def showRooms(self,building,floor):
         self.ui.ButtonBackToBuildings.show()
         self.ui.LabelFloor.show()
+
+        #load floor spin box
         self.ui.SpinBoxFloor.show()
+        max_floor = 0
+        for room in session.selected_building.room_list:
+            if room.floor > max_floor:
+                max_floor = room.floor
+        self.ui.SpinBoxFloor.setMaximum(max_floor)
+
+        # delete previous buttons
         self.grid_button_list = []
-        #delete previous buttons
         for i in reversed(range(self.ui.Grid.count())):
             self.ui.Grid.takeAt(i).widget().deleteLater()
+
         #load room buttons
-        for i, room in enumerate(building.room_list):
-            if(room.floor == floor):
+        i = 0
+        for room in building.room_list:
+            if room.floor == floor:
                 room_button = QPushButton(self.ui.gridLayoutWidget)
                 room_button.setObjectName(u"pushButton")
                 sizePolicy = QSizePolicy(QSizePolicy.Fixed, QSizePolicy.Fixed)
@@ -604,10 +616,23 @@ class MainWindow(QMainWindow):
                 self.grid_button_list.append(room_button)
                 self.ui.Grid.addWidget(self.grid_button_list[i], 0, i)
                 self.grid_button_list[i].clicked.connect(self.selectRoom)
+                i+=1
 
     def selectRoom(self):
-        print("roomselected")
-        pass
+        selected_room = self.sender().text()
+        for room in room_list.room_list:
+            if room.name == selected_room:
+                for event in schedule.event_list:
+                    if (event['datetime'] == datetime.now()) & (event['room'] == selected_room):
+                        self.eventInfoWindow = EventInfoWindow()
+                        self.eventInfoWindow.ui.LabelEventName.setText(event['object'].name)
+                        self.eventInfoWindow.ui.LabelRoomValue.setText(event['room'].name)
+                        self.eventInfoWindow.ui.LabelTimeValue.setText(event['datetime'].strftime("%x %X"))
+                        self.eventInfoWindow.ui.LabelDurationValue.setText(str(event['object'].duration))
+                        self.eventInfoWindow.ui.LabelOrganizerValue.setText(event['object'].organizer.fullname)
+                        self.eventInfoWindow.showWindow()
+                        break
+                break
 
     def showCalendar(self):
         self.ui.MainView.setCurrentIndex(1)
@@ -658,7 +683,8 @@ class MainWindow(QMainWindow):
             self.eventListWindow.ui.stackedWidget_2.setCurrentIndex(0)
 
     def selectSearch(self):
-        print("Open Search Window") #show SearchWindow
+        self.searchWindow = SearchWindow()
+        self.searchWindow.showWindow()
 
 
     def loadFilterMenu(self):  # φορτώνεται στο showLoggedUserPage kαι showGuestPage
@@ -700,6 +726,7 @@ class MainWindow(QMainWindow):
             for building in building_list.building_list:
                 if selected_building == building.name:
                     session.selected_building = building
+                    session.selected_floor = 0
                     self.showRooms(session.selected_building,session.selected_floor)
                     break
         else:
@@ -736,7 +763,7 @@ class MainWindow(QMainWindow):
         self.ui.LabelSelectedDate.setText(datetime.strptime(selected_date.toString("ddMMyy"), "%d%m%y").strftime("%b %d %Y"))  # μετατροπη σε string -> datetime -> string γιατι το PySide εβγαζε το format στα ελληνικα
         filtered_event_list = []
         if session.selected_building:  # αν υπαρχει selected building
-            filtered_event_list = self.filter(schedule.getSchedule(session.selected_building))
+            filtered_event_list = self.filter(schedule.getSchedule(session.selected_building,None,None,None))
         else:
             filtered_event_list = self.filter(schedule.event_list)
         for event in filtered_event_list:
@@ -765,12 +792,9 @@ class MainWindow(QMainWindow):
                 return event
 
     def changeFloor(self):
-        pass
-        # max_floor = 0
-        # for room in room_list.room_list:
-        # selected_floor = self.ui.SpinBoxFloor.value()
-        # session.selected_floor = selected_floor
-        # self.showRooms(session.selected_building,session.selected_floor)
+         selected_floor = self.ui.SpinBoxFloor.value()
+         session.selected_floor = selected_floor
+         self.showRooms(session.selected_building,session.selected_floor)
 
 
 

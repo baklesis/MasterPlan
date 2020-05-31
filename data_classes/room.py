@@ -65,4 +65,4 @@ class RoomList:
             dialect = csv.Sniffer().sniff(csv_file.read(1024))
             csv_file.seek(0)
         except csv.Error:
-        return self
+            return self

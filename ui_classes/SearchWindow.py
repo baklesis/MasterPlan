@@ -1,13 +1,3 @@
-# -*- coding: utf-8 -*-
-
-################################################################################
-## Form generated from reading UI file 'SearchWindow.ui'
-##
-## Created by: Qt User Interface Compiler version 5.14.2
-##
-## WARNING! All changes made in this file will be lost when recompiling UI file!
-################################################################################
-
 from PySide2.QtCore import (QCoreApplication, QDate, QDateTime, QMetaObject,
     QObject, QPoint, QRect, QSize, QTime, QUrl, Qt)
 from PySide2.QtGui import (QBrush, QColor, QConicalGradient, QCursor, QFont,
@@ -16,7 +6,7 @@ from PySide2.QtGui import (QBrush, QColor, QConicalGradient, QCursor, QFont,
 from PySide2.QtWidgets import *
 
 
-class Ui_searchbtn(object):
+class Ui_SearchWindow(object):
     def setupUi(self, searchbtn):
         if not searchbtn.objectName():
             searchbtn.setObjectName(u"searchbtn")
@@ -36,7 +26,7 @@ class Ui_searchbtn(object):
         self.searchButton.setObjectName(u"searchButton")
         self.searchButton.setGeometry(QRect(200, 30, 31, 21))
         icon = QIcon()
-        icon.addFile(u"../icons/search.png", QSize(), QIcon.Normal, QIcon.Off)
+        icon.addFile(u"icons/search.png", QSize(), QIcon.Normal, QIcon.Off)
         self.searchButton.setIcon(icon)
         self.horizontalLayoutWidget = QWidget(searchbtn)
         self.horizontalLayoutWidget.setObjectName(u"horizontalLayoutWidget")
@@ -57,9 +47,16 @@ class Ui_searchbtn(object):
         self.retranslateUi(searchbtn)
 
         QMetaObject.connectSlotsByName(searchbtn)
-    # setupUi
 
     def retranslateUi(self, searchbtn):
-        searchbtn.setWindowTitle(QCoreApplication.translate("searchbtn", u"Form", None))
+        searchbtn.setWindowTitle(QCoreApplication.translate("Search Events", u"Form", None))
         self.searchButton.setText("")
-    # retranslateUi
+
+class SearchWindow(QMainWindow):
+    def __init__(self):
+        super().__init__()
+        self.ui = Ui_SearchWindow()
+        self.ui.setupUi(self)
+
+    def showWindow(self):
+        self.show()
