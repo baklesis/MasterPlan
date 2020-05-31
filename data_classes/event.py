@@ -4,8 +4,8 @@ class Event:
     def __init__(self,name,duration):
         self._name=name
         self._duration=duration
-        self._organizer=None
-        self._room_group=None
+        self._organizer= None
+        self._room_group= None
         self._tag_list= []
         self._constraint_list= []
         self._timestamp_created=datetime.now()
@@ -64,7 +64,9 @@ class Event:
 
     def getEventInfo(self):
         return self
+
     def addTag(self):
         return self
+
     def addConstraint(self):
         return self

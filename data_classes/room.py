@@ -1,10 +1,11 @@
+from global_vars import *
+
 class Room:
-    def __init__(self, name, building, floor, capacity, group):
+    def __init__(self, name, building, floor, capacity):
         self._name = name
         self._building = building
         self._floor = floor
         self._capacity = capacity
-        self._group = group
     @property
     def name(self):
         return self._name

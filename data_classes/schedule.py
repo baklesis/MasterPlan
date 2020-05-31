@@ -71,3 +71,9 @@ class Schedule:
 
     def convertToCSV(self):
         return self
+
+    def getEvent(self,name):
+        for event in self.event_list:
+            if event["object"].name == name:
+                return event
+        return None

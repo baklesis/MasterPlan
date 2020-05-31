@@ -25,8 +25,8 @@ class Account:
         return type(self).__name__
 
 class AccountList:
-    def __init__(self, account_list):
-        self._account_list = account_list
+    def __init__(self):
+        self._account_list = None
     @property
     def account_list(self):
         return self._account_list
@@ -71,8 +71,8 @@ class Organizer(Account):
         pass
 
 class OrganizerList:
-    def __init__(self, organizer_list):
-        self._organizer_list=organizer_list
+    def __init__(self):
+        self._organizer_list=None
     @property
     def organizer_list(self):
         return self._organizer_list

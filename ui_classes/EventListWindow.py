@@ -727,21 +727,25 @@ class EventListWindow(QMainWindow):
 
     def selectEvent(self):
         self.ui.LabelHint.hide()
-        selected_event = self.ui.ListEvents.currentItem().text()
-        for event in schedule.event_list:
-            if event["object"].name == selected_event:
-                self.ui.LabelDetails.setText(event["object"].name)
-                self.ui.LabelScheduledDatetime.setText(event["datetime"].strftime("%d/%m/%Y, %H:%M:%S"))
-                self.ui.LabelScheduledDatetime_2.setText(event["datetime"].strftime("%d/%m/%Y, %H:%M:%S"))
-                self.ui.LabelScheduledRoom.setText(event["room"].name)
-                self.ui.LabelScheduledRoom_2.setText(event["room"].name)
-                self.ui.LabelRoomGroup.setText(event["object"].room_group)
-                self.ui.LabelRoomGroup_2.setText(event["object"].room_group)
+        selected_event = schedule.getEvent(self.ui.ListEvents.currentItem().text())
+        self.ui.LabelDetails.setText(selected_event["object"].name)
+        self.ui.LabelScheduledDatetime.setText(selected_event["datetime"].strftime("%d/%m/%Y, %H:%M:%S"))
+        self.ui.LabelScheduledDatetime_2.setText(selected_event["datetime"].strftime("%d/%m/%Y, %H:%M:%S"))
+        self.ui.LabelScheduledRoom.setText(selected_event["object"].name)
+        self.ui.LabelScheduledRoom_2.setText(selected_event["object"].name)
+        eventRoomGroup = selected_event["object"].room_group
+        if eventRoomGroup == None:
+            self.ui.LabelRoomGroup.setText("None")
+            self.ui.LabelRoomGroup_2.setText("None")
+        else:
+            self.ui.LabelRoomGroup.setText(selected_event["object"].room_group.name)
+            self.ui.LabelRoomGroup_2.setText(selected_event["object"].room_group.name)
         self.ui.EventEditFrame.show()
 
     def createEvent(self):
         self.eventCreateWindow = EventCreateWindow()
-        self.eventCreateWindow.show()
+        result = self.eventCreateWindow.showWindow()
+        self.fillEvents()
 
     def fillEvents(self):
         for event in schedule.event_list:
