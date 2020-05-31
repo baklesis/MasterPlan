@@ -127,3 +127,25 @@ class Ui_ConstraintWindow(object):
         self.EventValue.setText(QCoreApplication.translate("ConstraintWindow", u"Event Name", None))
     # retranslateUi
 
+class ConstraintWindow(QDialog):
+    def __init__(self):
+        super().__init__()
+        self.ui = Ui_ConstraintWindow()
+        self.ui.setupUi(self)
+        self.connectSignals()
+
+    def connectsignals(self):
+        self.ui.Add_btn.clicked.connect(self.saveConstraint)
+
+    def showWindow(self):
+        self.exec()
+    def saveConstraint(self):
+        page=self.ui.stackedWidget.currentIndex()
+        if page==0:
+             start_date=self.ui.dateTimeEdit.dateTime()
+             end_date=self.ui.dateTimeEdit_2.dateTime()
+             repetition=self.ui.comboBox.currentText()
+        else:
+             return None
+
+
