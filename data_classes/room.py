@@ -1,5 +1,5 @@
 from global_vars import *
-
+import csv
 class Room:
     def __init__(self, name, building, floor, capacity):
         self._name = name
@@ -51,7 +51,18 @@ class RoomList:
     @room_list.setter
     def room_list(self,room_list):
         self._room_list = room_list
+
     def createRoomList(self,file):
-        return self
-    def convertToCSV(self):
+        with open(file, 'r') as csv_file:
+            reader = csv.reader(csv_file)
+            for row in reader:
+                self.room_list.append()
+        return self.room.list
+
+    def validateFile(self):
+        csv_file = open(self.listFile, 'rb')
+        try:
+            dialect = csv.Sniffer().sniff(csv_file.read(1024))
+            csv_file.seek(0)
+        except csv.Error:
         return self
