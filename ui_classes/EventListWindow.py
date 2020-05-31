@@ -9,7 +9,7 @@ from ui_classes.EventCreateWindow import EventCreateWindow
 from data_classes.event import *
 from data_classes.schedule import *
 from global_vars import *
-
+from ui_classes.ConstraintWindow import ConstraintWindow
 class Ui_EventListWindow(object):
     def setupUi(self, EventListWindow):
         if not EventListWindow.objectName():
@@ -716,6 +716,7 @@ class EventListWindow(QMainWindow):
     def connectSignals(self):
         self.ui.ButtonCreateEvent.clicked.connect(self.createEvent)
         self.ui.ListEvents.itemDoubleClicked.connect(self.selectEvent)
+        self.ui.ButtonAddTimeConstraint.clicked.connect(self.addTimeConstraint)
 
     def selectEvent(self):
         self.ui.LabelHint.hide()
@@ -737,6 +738,12 @@ class EventListWindow(QMainWindow):
             self.ui.LabelRoomGroup.setText(selected_event["object"].room_group.name)
             self.ui.LabelRoomGroup_2.setText(selected_event["object"].room_group.name)
         self.ui.EventEditFrame.show()
+
+    def addTimeConstraint(self):
+        selectedEvent = schedule.getEvent(self.ui.ListEvents.currentItem().text())
+        self.timeconstraintWindow=ConstraintWindow()
+        self.timeconstraintWindow.showWindow()
+
 
     def createEvent(self):
         self.eventCreateWindow = EventCreateWindow()
