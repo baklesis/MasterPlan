@@ -41,6 +41,13 @@ class BuildingList:
     def createBuildingList(self,file):
         return self
     def convertToCSV(self):
+        # convert data to csv
+        f = open("building.csv", "w")
+        for x in range(len(self.building_list)):
+            for y in range(len(self.building)):
+                line = str(x + 1) + ',' + str(self.building.name) + ',' + str(self.building._organization) + '\n'
+                f.write(line)
+        f.close()
         return self
 
     def createRoomList(self, file):
