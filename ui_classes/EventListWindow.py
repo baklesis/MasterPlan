@@ -722,17 +722,32 @@ class EventListWindow(QMainWindow):
         self.connectSignals()
 
     def connectSignals(self):
-        self.ui.ButtonCreateEvent.clicked.connect(createEvent)
+        self.ui.ButtonCreateEvent.clicked.connect(self.createEvent)
+        self.ui.ListEvents.itemDoubleClicked.connect(self.selectEvent)
+
+    def selectEvent(self):
+        self.ui.LabelHint.hide()
+        selected_event = self.ui.ListEvents.currentItem().text()
+        for event in schedule.event_list:
+            if event["object"].name == selected_event:
+                self.ui.LabelDetails.setText(event["object"].name)
+                self.ui.LabelScheduledDatetime.setText(event["datetime"].strftime("%d/%m/%Y, %H:%M:%S"))
+                self.ui.LabelScheduledDatetime_2.setText(event["datetime"].strftime("%d/%m/%Y, %H:%M:%S"))
+                self.ui.LabelScheduledRoom.setText(event["room"].name)
+                self.ui.LabelScheduledRoom_2.setText(event["room"].name)
+                self.ui.LabelRoomGroup.setText(event["object"].room_group)
+                self.ui.LabelRoomGroup_2.setText(event["object"].room_group)
+        self.ui.EventEditFrame.show()
 
     def createEvent(self):
         self.eventCreateWindow = EventCreateWindow()
         self.eventCreateWindow.show()
 
     def fillEvents(self):
-      #  for i in schedule.event_list:
-      #  self.ui.ListEvents.addItem(i)
-        pass
+        for event in schedule.event_list:
+            self.ui.ListEvents.addItem(event["object"].name)
 
     def showWindow(self):
         self.show()
         self.ui.EventEditFrame.hide()
+        self.fillEvents()

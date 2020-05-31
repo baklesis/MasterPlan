@@ -43,6 +43,7 @@ schedule.addEvent("AI Seminar",2,"no")
 schedule.event_list[0]["datetime"]=datetime(2020,5,20,5,0)
 schedule.event_list[0]["room"]=room_list.room_list[0]
 schedule.event_list[0]["object"].organizer=organizer_list.organizer_list[0]
+schedule.event_list[0]["object"].room_group="amphitheater"
 
 schedule.addEvent("AT91 Workshop",3,"no")
 schedule.event_list[1]["datetime"]=datetime(2020,5,12,3,0)
