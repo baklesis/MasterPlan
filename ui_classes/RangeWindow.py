@@ -125,9 +125,9 @@ class RangeWindow(QDialog):
     def showMessageWindow(self):
         self.messageWindow = MessageWindow()
         self.messageWindow.showFileMessage()
-        response = messageWindow.exec()
+        response = self.messageWindow.exec()
         if response == 1:
-            messageWindow.createFile()
+            self.messageWindow.createFile()
             self.accept()
 
 

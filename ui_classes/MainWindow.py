@@ -333,41 +333,41 @@ class Ui_MainWindow(object):
         self.Grid.setSpacing(0)
         self.Grid.setObjectName(u"Grid")
         self.Grid.setContentsMargins(0, 0, 0, 0)
-        self.pushButton = QPushButton(self.gridLayoutWidget)
-        self.pushButton.setObjectName(u"pushButton")
-        sizePolicy1.setHeightForWidth(self.pushButton.sizePolicy().hasHeightForWidth())
-        self.pushButton.setSizePolicy(sizePolicy1)
-        self.pushButton.setMinimumSize(QSize(100, 100))
-        self.pushButton.setMaximumSize(QSize(100, 100))
-        self.Grid.addWidget(self.pushButton, 0, 0, 1, 1)
-        self.pushButton_3 = QPushButton(self.gridLayoutWidget)
-        self.pushButton_3.setObjectName(u"pushButton_3")
-        sizePolicy1.setHeightForWidth(self.pushButton_3.sizePolicy().hasHeightForWidth())
-        self.pushButton_3.setSizePolicy(sizePolicy1)
-        self.pushButton_3.setMinimumSize(QSize(100, 100))
-        self.pushButton_3.setMaximumSize(QSize(100, 100))
-        self.Grid.addWidget(self.pushButton_3, 0, 2, 1, 1)
-        self.pushButton_2 = QPushButton(self.gridLayoutWidget)
-        self.pushButton_2.setObjectName(u"pushButton_2")
-        sizePolicy1.setHeightForWidth(self.pushButton_2.sizePolicy().hasHeightForWidth())
-        self.pushButton_2.setSizePolicy(sizePolicy1)
-        self.pushButton_2.setMinimumSize(QSize(100, 100))
-        self.pushButton_2.setMaximumSize(QSize(100, 100))
-        self.Grid.addWidget(self.pushButton_2, 0, 1, 1, 1)
-        self.pushButton_4 = QPushButton(self.gridLayoutWidget)
-        self.pushButton_4.setObjectName(u"pushButton_4")
-        sizePolicy1.setHeightForWidth(self.pushButton_4.sizePolicy().hasHeightForWidth())
-        self.pushButton_4.setSizePolicy(sizePolicy1)
-        self.pushButton_4.setMinimumSize(QSize(100, 100))
-        self.pushButton_4.setMaximumSize(QSize(100, 100))
-        self.Grid.addWidget(self.pushButton_4, 1, 0, 1, 1)
-        self.pushButton_5 = QPushButton(self.gridLayoutWidget)
-        self.pushButton_5.setObjectName(u"pushButton_5")
-        sizePolicy1.setHeightForWidth(self.pushButton_5.sizePolicy().hasHeightForWidth())
-        self.pushButton_5.setSizePolicy(sizePolicy1)
-        self.pushButton_5.setMinimumSize(QSize(100, 100))
-        self.pushButton_5.setMaximumSize(QSize(100, 100))
-        self.Grid.addWidget(self.pushButton_5, 1, 1, 1, 1)
+        # self.pushButton = QPushButton(self.gridLayoutWidget)
+        # self.pushButton.setObjectName(u"pushButton")
+        # sizePolicy1.setHeightForWidth(self.pushButton.sizePolicy().hasHeightForWidth())
+        # self.pushButton.setSizePolicy(sizePolicy1)
+        # self.pushButton.setMinimumSize(QSize(100, 100))
+        # self.pushButton.setMaximumSize(QSize(100, 100))
+        # self.Grid.addWidget(self.pushButton, 0, 0, 1, 1)
+        # self.pushButton_3 = QPushButton(self.gridLayoutWidget)
+        # self.pushButton_3.setObjectName(u"pushButton_3")
+        # sizePolicy1.setHeightForWidth(self.pushButton_3.sizePolicy().hasHeightForWidth())
+        # self.pushButton_3.setSizePolicy(sizePolicy1)
+        # self.pushButton_3.setMinimumSize(QSize(100, 100))
+        # self.pushButton_3.setMaximumSize(QSize(100, 100))
+        # self.Grid.addWidget(self.pushButton_3, 0, 2, 1, 1)
+        # self.pushButton_2 = QPushButton(self.gridLayoutWidget)
+        # self.pushButton_2.setObjectName(u"pushButton_2")
+        # sizePolicy1.setHeightForWidth(self.pushButton_2.sizePolicy().hasHeightForWidth())
+        # self.pushButton_2.setSizePolicy(sizePolicy1)
+        # self.pushButton_2.setMinimumSize(QSize(100, 100))
+        # self.pushButton_2.setMaximumSize(QSize(100, 100))
+        # self.Grid.addWidget(self.pushButton_2, 0, 1, 1, 1)
+        # self.pushButton_4 = QPushButton(self.gridLayoutWidget)
+        # self.pushButton_4.setObjectName(u"pushButton_4")
+        # sizePolicy1.setHeightForWidth(self.pushButton_4.sizePolicy().hasHeightForWidth())
+        # self.pushButton_4.setSizePolicy(sizePolicy1)
+        # self.pushButton_4.setMinimumSize(QSize(100, 100))
+        # self.pushButton_4.setMaximumSize(QSize(100, 100))
+        # self.Grid.addWidget(self.pushButton_4, 1, 0, 1, 1)
+        # self.pushButton_5 = QPushButton(self.gridLayoutWidget)
+        # self.pushButton_5.setObjectName(u"pushButton_5")
+        # sizePolicy1.setHeightForWidth(self.pushButton_5.sizePolicy().hasHeightForWidth())
+        # self.pushButton_5.setSizePolicy(sizePolicy1)
+        # self.pushButton_5.setMinimumSize(QSize(100, 100))
+        # self.pushButton_5.setMaximumSize(QSize(100, 100))
+        # self.Grid.addWidget(self.pushButton_5, 1, 1, 1, 1)
         self.MainView.addWidget(self.GridView)
         self.CalendarView = QWidget()
         self.CalendarView.setObjectName(u"CalendarView")
@@ -520,11 +520,11 @@ class Ui_MainWindow(object):
         self.LabelFloor.setText(QCoreApplication.translate("MainWindow", u"Floor", None))
         self.ButtonGridRevert.setText(QCoreApplication.translate("MainWindow", u"Revert Changes", None))
         self.ButtonGridPublish.setText(QCoreApplication.translate("MainWindow", u"Publish Changes", None))
-        self.pushButton.setText(QCoreApplication.translate("MainWindow", u"Room1", None))
-        self.pushButton_3.setText(QCoreApplication.translate("MainWindow", u"Room3", None))
-        self.pushButton_2.setText(QCoreApplication.translate("MainWindow", u"Room2", None))
-        self.pushButton_4.setText(QCoreApplication.translate("MainWindow", u"Room4", None))
-        self.pushButton_5.setText(QCoreApplication.translate("MainWindow", u"Room5", None))
+        # self.pushButton.setText(QCoreApplication.translate("MainWindow", u"Room1", None))
+        # self.pushButton_3.setText(QCoreApplication.translate("MainWindow", u"Room3", None))
+        # self.pushButton_2.setText(QCoreApplication.translate("MainWindow", u"Room2", None))
+        # self.pushButton_4.setText(QCoreApplication.translate("MainWindow", u"Room4", None))
+        # self.pushButton_5.setText(QCoreApplication.translate("MainWindow", u"Room5", None))
         self.ButtonCalPublish.setText(QCoreApplication.translate("MainWindow", u"Publish Changes", None))
         self.ButtonCalRevert.setText(QCoreApplication.translate("MainWindow", u"Revert Changes", None))
         self.ButtonDownload.setText(QCoreApplication.translate("MainWindow", u"...", None))
@@ -571,12 +571,23 @@ class MainWindow(QMainWindow):
         self.ui.StackedWidgetUserTypes.setCurrentIndex(0)
         self.loadFilterMenu()
         self.loadBuildingMenu()
-        self.fillEvents()
+        self.ui.ButtonGrid.click()
+        self.showGrid()
+
 
     def showLoggedUserPage(self):
         self.ui.StackedWidgetUserTypes.setCurrentIndex(1)
         self.loadFilterMenu()
         self.loadBuildingMenu()
+        self.ui.ButtonGrid.click()
+        self.showGrid()
+
+    def showGrid(self):
+        self.ui.MainView.setCurrentIndex(0)
+        self.fillEvents()
+
+    def showCalendar(self):
+        self.ui.MainView.setCurrentIndex(1)
         self.fillEvents()
 
     def enterOrganization(self):
@@ -586,7 +597,6 @@ class MainWindow(QMainWindow):
             session = Session(None, org)
             self.showUserPage()
             self.showGuestPage()
-            self.showGrid()
         else:
             self.showErrorPage()
 
@@ -621,11 +631,6 @@ class MainWindow(QMainWindow):
     def selectSearch(self):
         print("Open Search Window") #show SearchWindow
 
-    def showGrid(self):
-        self.ui.MainView.setCurrentIndex(0)
-
-    def showCalendar(self):
-        self.ui.MainView.setCurrentIndex(1)
 
     def loadFilterMenu(self):  # φορτώνεται στο showLoggedUserPage kαι showGuestPage
         self.ui.ComboBoxFilters.clear()
@@ -639,8 +644,8 @@ class MainWindow(QMainWindow):
                 self.ui.ComboBoxFilters.setCurrentIndex(0)
 
     def loadBuildingMenu(self):  # φορτώνεται στο showLoggedUserPage kαι showGuestPage
-        self.ui.ComboBoxFilters.clear()
-        self.ui.ComboBoxFilters.addItem("No Building Selected")
+        self.ui.ComboBoxBuildings.clear()
+        self.ui.ComboBoxBuildings.addItem("No Building Selected")
         for i,building in enumerate(building_list.building_list): #για καθε building στο building list
             self.ui.ComboBoxBuildings.addItem(building.name) #προσθεσε στοιχειο στο combo box
             if session.selected_building: #και αν υπάρχει selected building απο το session
@@ -690,11 +695,10 @@ class MainWindow(QMainWindow):
         return filtered_event_list
 
 
-
     def fillEvents(self): #κανει update τα views
-        #update grid view
+        # update grid view
         # update calendar view
-        self.ui.Calendar.updateCells()
+        self.ui.Calendar.updateCells() #ξανακαλει την paintCells του Calendar
         self.fillCalEventList()  # refresh την λιστα με τις εκδηλωσεις
 
     def fillCalEventList(self): # για την λίστα που εμφανίζεται με το πατημα ενός κελιού στο Calendar
@@ -717,18 +721,18 @@ class MainWindow(QMainWindow):
         self.rangeWindow.showWindow()
 
     def selectEvent(self):
-        selected_event_name = self.ui.ListWidgetEvents.selectedItems()[0].text
-        selected_event = self.getEventIfo(selected_event_name)
+        selected_event_name = self.ui.ListWidgetEvents.selectedItems()[0].text()
+        selected_event = self.getEventInfo(selected_event_name)
         if selected_event:
             self.eventInfoWindow = EventInfoWindow()
             self.eventInfoWindow.ui.LabelEventName.setText(selected_event['object'].name)
-            self.eventInfoWindow.ui.LabelRoomValue.setText(selected_event['room'])
-            self.eventInfoWindow.ui.LabelTimeValue.setText(selected_event['datetime'])
-            self.eventInfoWindow.ui.LabelDuration.setText(selected_event['object'].duration)
-            self.eventInfoWindow.ui.LabelOrganizerValue.setText(selected_event['object'].organizer)
+            self.eventInfoWindow.ui.LabelRoomValue.setText(selected_event['room'].name)
+            self.eventInfoWindow.ui.LabelTimeValue.setText(selected_event['datetime'].strftime("%x %X"))
+            self.eventInfoWindow.ui.LabelDurationValue.setText(str(selected_event['object'].duration))
+            self.eventInfoWindow.ui.LabelOrganizerValue.setText(selected_event['object'].organizer.fullname)
             self.eventInfoWindow.showWindow()
 
-    def getEventIfo(self,event_name):
+    def getEventInfo(self,event_name):
         for event in schedule.event_list:
             if event_name == event['object'].name:
                 return event
