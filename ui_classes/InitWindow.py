@@ -50,3 +50,9 @@ class Ui_Dialog(object):
         self.label_4.setText(QCoreApplication.translate("Dialog", u"Full Name", None))
     # retranslateUi
 
+class InitWindow(QDialog):
+
+    def importFile(self):
+        path_to_file, _ = QFileDialog.getOpenFileName(self, self.tr("Load File"), self.tr("~/Desktop/"), self.tr("(*.csv)"))
+
+        self.listFile =     (path_to_file)
