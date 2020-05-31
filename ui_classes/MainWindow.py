@@ -616,8 +616,11 @@ class MainWindow(QMainWindow):
 
     def selectEventList(self):
         self.eventListWindow = EventListWindow()
-        self.eventListWindow.show()
-
+        self.eventListWindow.showWindow()
+        if session.getUserType() == "Admin":
+            self.eventListWindow.ui.ExtraButtons.setCurrentIndex(0)
+        else:
+            self.eventListWindow.ui.ExtraButtons.setCurrentIndex(1)
     def selectSearch(self):
         print("Open Search Window") #show SearchWindow
 

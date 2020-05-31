@@ -14,8 +14,10 @@ from PySide2.QtGui import (QBrush, QColor, QConicalGradient, QCursor, QFont,
     QFontDatabase, QIcon, QKeySequence, QLinearGradient, QPalette, QPainter,
     QPixmap, QRadialGradient)
 from PySide2.QtWidgets import *
-
-
+from ui_classes.EventCreateWindow import EventCreateWindow
+from data_classes.event import *
+from data_classes.schedule import *
+from global_vars import *
 class Ui_EventListWindow(object):
     def setupUi(self, EventListWindow):
         if not EventListWindow.objectName():
@@ -30,9 +32,87 @@ class Ui_EventListWindow(object):
         EventListWindow.setMaximumSize(QSize(900, 600))
         self.centralwidget = QWidget(EventListWindow)
         self.centralwidget.setObjectName(u"centralwidget")
-        self.verticalLayoutWidget_7 = QWidget(self.centralwidget)
+        self.verticalLayoutWidget = QWidget(self.centralwidget)
+        self.verticalLayoutWidget.setObjectName(u"verticalLayoutWidget")
+        self.verticalLayoutWidget.setGeometry(QRect(0, 20, 262, 521))
+        self.LayoutEventList = QVBoxLayout(self.verticalLayoutWidget)
+        self.LayoutEventList.setObjectName(u"LayoutEventList")
+        self.LayoutEventList.setContentsMargins(0, 0, 0, 0)
+        self.LabelEventList = QLabel(self.verticalLayoutWidget)
+        self.LabelEventList.setObjectName(u"LabelEventList")
+        self.LabelEventList.setFrameShape(QFrame.Box)
+        self.LabelEventList.setAlignment(Qt.AlignCenter)
+
+        self.LayoutEventList.addWidget(self.LabelEventList)
+
+        self.ExtraButtons = QStackedWidget(self.verticalLayoutWidget)
+        self.ExtraButtons.setObjectName(u"ExtraButtons")
+        sizePolicy.setHeightForWidth(self.ExtraButtons.sizePolicy().hasHeightForWidth())
+        self.ExtraButtons.setSizePolicy(sizePolicy)
+        self.ExtraButtons.setMinimumSize(QSize(250, 34))
+        self.AdminView_2 = QWidget()
+        self.AdminView_2.setObjectName(u"AdminView_2")
+        self.horizontalLayoutWidget = QWidget(self.AdminView_2)
+        self.horizontalLayoutWidget.setObjectName(u"horizontalLayoutWidget")
+        self.horizontalLayoutWidget.setGeometry(QRect(0, 0, 269, 41))
+        self.horizontalLayout = QHBoxLayout(self.horizontalLayoutWidget)
+        self.horizontalLayout.setObjectName(u"horizontalLayout")
+        self.horizontalLayout.setContentsMargins(0, 0, 0, 0)
+        self.ButtonCreateOrganizer = QPushButton(self.horizontalLayoutWidget)
+        self.ButtonCreateOrganizer.setObjectName(u"ButtonCreateOrganizer")
+
+        self.horizontalLayout.addWidget(self.ButtonCreateOrganizer)
+
+        self.ButtonCreateEvent = QPushButton(self.horizontalLayoutWidget)
+        self.ButtonCreateEvent.setObjectName(u"ButtonCreateEvent")
+
+        self.horizontalLayout.addWidget(self.ButtonCreateEvent)
+
+        self.ExtraButtons.addWidget(self.AdminView_2)
+        self.OrganizerView_2 = QWidget()
+        self.OrganizerView_2.setObjectName(u"OrganizerView_2")
+        self.ExtraButtons.addWidget(self.OrganizerView_2)
+
+        self.LayoutEventList.addWidget(self.ExtraButtons)
+
+        self.horizontalLayout_2 = QHBoxLayout()
+        self.horizontalLayout_2.setObjectName(u"horizontalLayout_2")
+        self.ButtonFilter = QPushButton(self.verticalLayoutWidget)
+        self.ButtonFilter.setObjectName(u"ButtonFilter")
+
+        self.horizontalLayout_2.addWidget(self.ButtonFilter)
+
+        self.horizontalSpacer = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
+
+        self.horizontalLayout_2.addItem(self.horizontalSpacer)
+
+        self.ButtonSort = QPushButton(self.verticalLayoutWidget)
+        self.ButtonSort.setObjectName(u"ButtonSort")
+
+        self.horizontalLayout_2.addWidget(self.ButtonSort)
+
+
+        self.LayoutEventList.addLayout(self.horizontalLayout_2)
+
+        self.ListEvents = QListWidget(self.verticalLayoutWidget)
+        self.ListEvents.setObjectName(u"ListEvents")
+
+        self.LayoutEventList.addWidget(self.ListEvents)
+
+        self.ButtonExit = QPushButton(self.verticalLayoutWidget)
+        self.ButtonExit.setObjectName(u"ButtonExit")
+
+        self.LayoutEventList.addWidget(self.ButtonExit)
+
+        self.EventEditFrame = QFrame(self.centralwidget)
+        self.EventEditFrame.setObjectName(u"EventEditFrame")
+        self.EventEditFrame.setGeometry(QRect(260, 20, 631, 481))
+        self.EventEditFrame.setAutoFillBackground(False)
+        self.EventEditFrame.setFrameShape(QFrame.StyledPanel)
+        self.EventEditFrame.setFrameShadow(QFrame.Raised)
+        self.verticalLayoutWidget_7 = QWidget(self.EventEditFrame)
         self.verticalLayoutWidget_7.setObjectName(u"verticalLayoutWidget_7")
-        self.verticalLayoutWidget_7.setGeometry(QRect(260, 20, 631, 481))
+        self.verticalLayoutWidget_7.setGeometry(QRect(0, 0, 631, 481))
         self.LayoutEventDetails = QVBoxLayout(self.verticalLayoutWidget_7)
         self.LayoutEventDetails.setSpacing(0)
         self.LayoutEventDetails.setObjectName(u"LayoutEventDetails")
@@ -58,6 +138,7 @@ class Ui_EventListWindow(object):
         self.OrganizerView.setObjectName(u"OrganizerView")
         sizePolicy1.setHeightForWidth(self.OrganizerView.sizePolicy().hasHeightForWidth())
         self.OrganizerView.setSizePolicy(sizePolicy1)
+        self.OrganizerView.setAutoFillBackground(False)
         self.gridLayoutWidget_2 = QWidget(self.OrganizerView)
         self.gridLayoutWidget_2.setObjectName(u"gridLayoutWidget_2")
         self.gridLayoutWidget_2.setGeometry(QRect(10, 0, 621, 453))
@@ -579,85 +660,16 @@ class Ui_EventListWindow(object):
 
         self.LayoutEventDetails.addWidget(self.stackedWidget_2)
 
-        self.verticalLayoutWidget = QWidget(self.centralwidget)
-        self.verticalLayoutWidget.setObjectName(u"verticalLayoutWidget")
-        self.verticalLayoutWidget.setGeometry(QRect(0, 20, 262, 521))
-        self.LayoutEventList = QVBoxLayout(self.verticalLayoutWidget)
-        self.LayoutEventList.setObjectName(u"LayoutEventList")
-        self.LayoutEventList.setContentsMargins(0, 0, 0, 0)
-        self.LabelEventList = QLabel(self.verticalLayoutWidget)
-        self.LabelEventList.setObjectName(u"LabelEventList")
-        self.LabelEventList.setFrameShape(QFrame.Box)
-        self.LabelEventList.setAlignment(Qt.AlignCenter)
-
-        self.LayoutEventList.addWidget(self.LabelEventList)
-
-        self.ExtraButtons = QStackedWidget(self.verticalLayoutWidget)
-        self.ExtraButtons.setObjectName(u"ExtraButtons")
-        sizePolicy.setHeightForWidth(self.ExtraButtons.sizePolicy().hasHeightForWidth())
-        self.ExtraButtons.setSizePolicy(sizePolicy)
-        self.ExtraButtons.setMinimumSize(QSize(250, 34))
-        self.AdminView_2 = QWidget()
-        self.AdminView_2.setObjectName(u"AdminView_2")
-        self.horizontalLayoutWidget = QWidget(self.AdminView_2)
-        self.horizontalLayoutWidget.setObjectName(u"horizontalLayoutWidget")
-        self.horizontalLayoutWidget.setGeometry(QRect(0, 0, 269, 41))
-        self.horizontalLayout = QHBoxLayout(self.horizontalLayoutWidget)
-        self.horizontalLayout.setObjectName(u"horizontalLayout")
-        self.horizontalLayout.setContentsMargins(0, 0, 0, 0)
-        self.ButtonCreateOrganizer = QPushButton(self.horizontalLayoutWidget)
-        self.ButtonCreateOrganizer.setObjectName(u"ButtonCreateOrganizer")
-
-        self.horizontalLayout.addWidget(self.ButtonCreateOrganizer)
-
-        self.ButtonCreateEvent = QPushButton(self.horizontalLayoutWidget)
-        self.ButtonCreateEvent.setObjectName(u"ButtonCreateEvent")
-
-        self.horizontalLayout.addWidget(self.ButtonCreateEvent)
-
-        self.ExtraButtons.addWidget(self.AdminView_2)
-        self.OrganizerView_2 = QWidget()
-        self.OrganizerView_2.setObjectName(u"OrganizerView_2")
-        self.ExtraButtons.addWidget(self.OrganizerView_2)
-
-        self.LayoutEventList.addWidget(self.ExtraButtons)
-
-        self.horizontalLayout_2 = QHBoxLayout()
-        self.horizontalLayout_2.setObjectName(u"horizontalLayout_2")
-        self.ButtonFilter = QPushButton(self.verticalLayoutWidget)
-        self.ButtonFilter.setObjectName(u"ButtonFilter")
-
-        self.horizontalLayout_2.addWidget(self.ButtonFilter)
-
-        self.horizontalSpacer = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
-
-        self.horizontalLayout_2.addItem(self.horizontalSpacer)
-
-        self.ButtonSort = QPushButton(self.verticalLayoutWidget)
-        self.ButtonSort.setObjectName(u"ButtonSort")
-
-        self.horizontalLayout_2.addWidget(self.ButtonSort)
-
-
-        self.LayoutEventList.addLayout(self.horizontalLayout_2)
-
-        self.ListEvents = QListWidget(self.verticalLayoutWidget)
-        self.ListEvents.setObjectName(u"ListEvents")
-
-        self.LayoutEventList.addWidget(self.ListEvents)
-
-        self.ButtonExit = QPushButton(self.verticalLayoutWidget)
-        self.ButtonExit.setObjectName(u"ButtonExit")
-
-        self.LayoutEventList.addWidget(self.ButtonExit)
-
+        self.LabelHint = QLabel(self.centralwidget)
+        self.LabelHint.setObjectName(u"LabelHint")
+        self.LabelHint.setGeometry(QRect(440, 260, 281, 20))
         EventListWindow.setCentralWidget(self.centralwidget)
 
         self.retranslateUi(EventListWindow)
 
-        self.stackedWidget_2.setCurrentIndex(1)
-        self.pushButton_11.setDefault(False)
         self.ExtraButtons.setCurrentIndex(1)
+        self.stackedWidget_2.setCurrentIndex(0)
+        self.pushButton_11.setDefault(False)
 
 
         QMetaObject.connectSlotsByName(EventListWindow)
@@ -665,6 +677,12 @@ class Ui_EventListWindow(object):
 
     def retranslateUi(self, EventListWindow):
         EventListWindow.setWindowTitle(QCoreApplication.translate("EventListWindow", u"MainWindow", None))
+        self.LabelEventList.setText(QCoreApplication.translate("EventListWindow", u"Event List", None))
+        self.ButtonCreateOrganizer.setText(QCoreApplication.translate("EventListWindow", u"Create Organizer", None))
+        self.ButtonCreateEvent.setText(QCoreApplication.translate("EventListWindow", u"Create Event", None))
+        self.ButtonFilter.setText(QCoreApplication.translate("EventListWindow", u"Filter", None))
+        self.ButtonSort.setText(QCoreApplication.translate("EventListWindow", u"Sort", None))
+        self.ButtonExit.setText(QCoreApplication.translate("EventListWindow", u"Exit", None))
         self.LabelDetails.setText(QCoreApplication.translate("EventListWindow", u"Event Details", None))
         self.LabelTimeConstraints.setText(QCoreApplication.translate("EventListWindow", u"Time Constraints", None))
         self.LabelTagConstraints.setText(QCoreApplication.translate("EventListWindow", u"Tag Constraints", None))
@@ -693,12 +711,7 @@ class Ui_EventListWindow(object):
         self.LabelTimeConstraints_2.setText(QCoreApplication.translate("EventListWindow", u"Time Constraints", None))
         self.LabelSpaceTitle_2.setText(QCoreApplication.translate("EventListWindow", u"Space Constraint", None))
         self.LabelSpaceConstraint.setText(QCoreApplication.translate("EventListWindow", u"<SpaceConstraint>", None))
-        self.LabelEventList.setText(QCoreApplication.translate("EventListWindow", u"Event List", None))
-        self.ButtonCreateOrganizer.setText(QCoreApplication.translate("EventListWindow", u"Create Organizer", None))
-        self.ButtonCreateEvent.setText(QCoreApplication.translate("EventListWindow", u"Create Event", None))
-        self.ButtonFilter.setText(QCoreApplication.translate("EventListWindow", u"Filter", None))
-        self.ButtonSort.setText(QCoreApplication.translate("EventListWindow", u"Sort", None))
-        self.ButtonExit.setText(QCoreApplication.translate("EventListWindow", u"Exit", None))
+        self.LabelHint.setText(QCoreApplication.translate("EventListWindow", u"Please select an event from the list on the left", None))
     # retranslateUi
 
 class EventListWindow(QMainWindow):
@@ -709,4 +722,17 @@ class EventListWindow(QMainWindow):
         self.connectSignals()
 
     def connectSignals(self):
+        self.ui.ButtonCreateEvent.clicked.connect(createEvent)
+
+    def createEvent(self):
+        self.eventCreateWindow = EventCreateWindow()
+        self.eventCreateWindow.show()
+
+    def fillEvents(self):
+      #  for i in schedule.event_list:
+      #  self.ui.ListEvents.addItem(i)
         pass
+
+    def showWindow(self):
+        self.show()
+        self.ui.EventEditFrame.hide()
