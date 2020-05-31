@@ -4,8 +4,8 @@ from PySide2.QtGui import (QBrush, QColor, QConicalGradient, QCursor, QFont,
     QFontDatabase, QIcon, QKeySequence, QLinearGradient, QPalette, QPainter,
     QPixmap, QRadialGradient)
 from PySide2.QtWidgets import *
-
-
+from global_vars import *
+from data_classes.constraint import *
 class Ui_ConstraintWindow(object):
     def setupUi(self, ConstraintWindow):
         if not ConstraintWindow.objectName():
@@ -128,24 +128,38 @@ class Ui_ConstraintWindow(object):
     # retranslateUi
 
 class ConstraintWindow(QDialog):
-    def __init__(self):
+    def __init__(self,selected_event):
         super().__init__()
         self.ui = Ui_ConstraintWindow()
         self.ui.setupUi(self)
+        self.selected_event = selected_event["object"]
         self.connectSignals()
 
-    def connectsignals(self):
+    def connectSignals(self):
         self.ui.Add_btn.clicked.connect(self.saveConstraint)
 
     def showWindow(self):
+        for tag in reversed(range(self.ui.comboBox_2.count())):
+            self.ui.comboBox_2.removeItem(tag)
+        for tag in self.selected_event.tag_list:
+            self.ui.comboBox_2.addItem(tag.name)
         self.exec()
+
+    def saveTimeConstraint(self):
+        start_date = self.ui.dateTimeEdit.dateTime()
+        end_date = self.ui.dateTimeEdit_2.dateTime()
+        repetition = self.ui.comboBox.currentText()
+
+
+    def saveTagConstraint(self):
+        tag_name = self.ui.comboBox_2.currentText()
+        self.selected_event.addConstraint(TagConstraint(tag_list.getTag(tag_name)))
+
     def saveConstraint(self):
         page=self.ui.stackedWidget.currentIndex()
         if page==0:
-             start_date=self.ui.dateTimeEdit.dateTime()
-             end_date=self.ui.dateTimeEdit_2.dateTime()
-             repetition=self.ui.comboBox.currentText()
+            self.saveTimeConstraint()
         else:
-             return None
+             self.saveTagConstraint()
 
 

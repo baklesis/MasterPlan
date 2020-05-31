@@ -736,8 +736,9 @@ class EventListWindow(QMainWindow):
         self.ui.ButtonCreateEvent.clicked.connect(self.createEvent)
         self.ui.ListEvents.itemDoubleClicked.connect(self.selectEvent)
         self.ui.ButtonAddTimeConstraint.clicked.connect(self.addTimeConstraint)
+        self.ui.ButtonAddTagConstraint.clicked.connect(self.addTagConstraint)
         self.ui.ButtonAddTag.clicked.connect(self.addTag)
-
+        self.ui.ButtonUpdateSpaceConstraint.clicked.connect(self.setSpaceConstraint)
     def selectEvent(self):
         self.ui.LabelHint.hide()
         selected_event = schedule.getEvent(self.ui.ListEvents.currentItem().text())
@@ -757,13 +758,31 @@ class EventListWindow(QMainWindow):
         else:
             self.ui.LabelRoomGroup.setText(selected_event["object"].room_group.name)
             self.ui.LabelRoomGroup_2.setText(selected_event["object"].room_group.name)
+        for tag in reversed(range(self.ui.listWidget_3.count())):
+            self.ui.listWidget_3.takeItem(tag)
+        for tag in selected_event["object"].tag_list:
+            self.ui.listWidget_3.addItem(tag.name)
+        for constraint in selected_event["object"].constraint_list:
+            if constraint.__name__ == "TagConstraint":
+                self.ui.ListTagConstraints.addItem(constraint.tag.name)
+                self.ui.ListTagConstraints_2.addItem(constraint.tag.name)
+            if constraint.__name__ == "TimeConstraint":
+                self.ui.ListTimeConstraints.addItem(constraint.start_datetime.strftime("%d/%m/%Y, %H:%M:%S"))
+            if constraint.__name__ == "SpaceConstraint":
+                self.ui.LabelSpaceConstraint.setText(constraint.space)
         self.ui.EventEditFrame.show()
 
     def addTimeConstraint(self):
-        selectedEvent = schedule.getEvent(self.ui.ListEvents.currentItem().text())
-        self.timeconstraintWindow=ConstraintWindow()
+        selectedEvent = schedule.getEvent(self.ui.LabelDetails.text())
+        self.timeconstraintWindow=ConstraintWindow(selectedEvent)
+        self.timeconstraintWindow.ui.stackedWidget.setCurrentIndex(0)
         self.timeconstraintWindow.showWindow()
 
+    def addTagConstraint(self):
+        selectedEvent = schedule.getEvent(self.ui.LabelDetails.text())
+        self.tagConstraintWindow=ConstraintWindow(selectedEvent)
+        self.tagConstraintWindow.ui.stackedWidget.setCurrentIndex(1)
+        self.tagConstraintWindow.showWindow()
 
     def createEvent(self):
         self.eventCreateWindow = EventCreateWindow()
@@ -784,5 +803,12 @@ class EventListWindow(QMainWindow):
         self.fillEvents()
 
     def addTag(self):
-        # self.ui.
-        pass
+        current_event = schedule.getEvent(self.ui.LabelDetails.text())
+        current_event["object"].addTag("New Tag",tag_list)
+        for tag in reversed(range(self.ui.listWidget_3.count())):
+            self.ui.listWidget_3.takeItem(tag)
+        for tag in current_event["object"].tag_list:
+            self.ui.listWidget_3.addItem(tag.name)
+    def setSpaceConstraint(self):
+        current_event = schedule.getEvent(self.ui.LabelDetails.text())
+        current_event["object"].addConstraint(SpaceConstraint(session.current_user),self.ui.FieldSpaceConstraint.text())

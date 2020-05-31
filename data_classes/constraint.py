@@ -11,17 +11,25 @@ class Constraint:
     def organizer(self,organizer):
         self.__organizer=organizer
 
-class TimeConstraint:
-    def __init__(self,eventdatetime,repetition,weight):
-         self._datetime=eventdatetime
-         self._repetition=repetition
-         self._weight=weight
+class TimeConstraint(Constraint):
+    def __init__(self,organizer,startdatetime,enddatetime,repetition,weight):
+        super().__init__(self,organizer)
+        self._start_datetime=startdatetime
+        self._end_datetime=enddatetime
+        self._repetition=repetition
+        self._weight=weight
     @property
-    def datetime(self):
-         return self._datetime
-    @datetime.setter
-    def datetime(self,eventdatetime):
-        self._datetime=eventdatetime
+    def start_datetime(self):
+         return self._start_datetime
+    @start_datetime.setter
+    def start_datetime(self,start_datetime):
+        self._start_datetime=start_datetime
+    @property
+    def end_datetime(self):
+         return self._end_datetime
+    @end_datetime.setter
+    def end_datetime(self,end_datetime):
+        self._end_datetime=end_datetime
     @property
     def repetition(self):
          return self._repetition
@@ -39,8 +47,9 @@ class TimeConstraint:
     def getChanged(self):
         return self
 
-class SpaceConstraint:
-    def __init__(self, space):
+class SpaceConstraint(Constraint):
+    def __init__(self, organizer,space):
+        super().__init__(self, organizer)
         self._space = space
     @property
     def space(self):
@@ -51,8 +60,9 @@ class SpaceConstraint:
     def getConstraintInfo(self):
         return self
 
-class TagConstraint:
-    def __init__(self,tag,weight):
+class TagConstraint(Constraint):
+    def __init__(self,organizer,tag,weight):
+        super().__init__(self, organizer)
         self._tag=tag
         self._weight=weight
     @property

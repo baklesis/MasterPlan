@@ -34,3 +34,9 @@ class TagList:
             newTag = Tag(name)
             self._tag_list.append(newTag)
             return newTag
+
+    def getTag(self,name):
+        for tag in self.tag_list:
+            if tag.name == name:
+                return tag
+        return None

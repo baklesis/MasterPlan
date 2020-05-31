@@ -1,5 +1,5 @@
 from datetime import datetime
-
+from data_classes.tag import TagList
 class Event:
     def __init__(self,name,duration):
         self._name=name
@@ -65,8 +65,14 @@ class Event:
     def getEventInfo(self):
         return self
 
-    def addTag(self):
+    def addTag(self,name,tag_list):
+        for i in self.tag_list:
+            if i.name == name:
+                return self
+        tag = tag_list.addTag(name)
+        self._tag_list.append(tag)
         return self
 
-    def addConstraint(self):
+    def addConstraint(self,constraint):
+        self.constraint_list.append(constraint)
         return self
