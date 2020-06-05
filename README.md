@@ -1,11 +1,11 @@
 # MasterPlan
 An automatic event scheduling desktop application.
 
-**Run Instruction:**
+**Run Instructions:**
 Run main.py. Requires Pyside2 and Python 3.7 to run. 
 
 **Log In Instructions:**
-1. Enter organization using example organization "upatras"
+1. Enter organization using example organization "upatras".
 2. a) Enter as admin using username "upatras" and password "1".
    b) Enter as organizer using username "makris" and password "1" OR username "alexiou" and password "1".
 3. Switch between Grid and Calendar View using the respective buttons.
@@ -14,8 +14,8 @@ Run main.py. Requires Pyside2 and Python 3.7 to run.
 **Grid View Instructions:**
 1. In Grid View select the building to enter from the grid.
 2. After the rooms load in the grid, select a blue room to see its current event information. If the room is grey, there is currently no event being held.
-3. Change floor using arrows in the floor spin box at the bottom of the grid
-4. Change building selection by selecting the "Go Back to Buildings" button at the bottom or the "Selected Building" drop down menu at the top.
+3. Change floor using arrows in the floor spin box at the bottom of the grid.
+4. Change building by selecting the "Go Back to Buildings" button at the bottom or the "Selected Building" drop down menu at the top.
 5. Select a filter using the filter drop down menu.
 
 **Calendar View Instructions:**
