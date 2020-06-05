@@ -2,7 +2,7 @@
 
 import sys
 from PySide2.QtWidgets import QApplication
-
+from global_vars import session
 from ui_classes.MainWindow import MainWindow
 from ui_classes.MainWindow import MainWindow
 if __name__ == "__main__":

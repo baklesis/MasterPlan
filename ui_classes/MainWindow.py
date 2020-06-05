@@ -642,7 +642,7 @@ class MainWindow(QMainWindow):
         global session
         org = self.ui.LineOrg.text()
         if account_list.valOrganization(org):
-            session = Session(None, org)
+            session = Session(None, org) ## better just setter
             self.showUserPage()
             self.showGuestPage()
         else:
@@ -654,7 +654,7 @@ class MainWindow(QMainWindow):
         password = self.ui.LinePass.text()
         account = account_list.accountExists(username, password)
         if account:
-            session = Session(account, session.current_org)
+            session = Session(account, session.current_org) ## better just setter
             self.showLoggedUserPage()
             self.ui.LabelLoggedUser.setText(account.username)
         else:
@@ -667,7 +667,7 @@ class MainWindow(QMainWindow):
 
     def logOut(self):
         global session
-        session = Session(None,session.current_org)
+        session = Session(None,session.current_org) ## better just setter
         self.ui.LineUser.setText(None)
         self.ui.LinePass.setText(None)
         self.showGuestPage()

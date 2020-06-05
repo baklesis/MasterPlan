@@ -4,8 +4,9 @@ from PySide2.QtGui import (QBrush, QColor, QConicalGradient, QCursor, QFont,
     QFontDatabase, QIcon, QKeySequence, QLinearGradient, QPalette, QPainter,
     QPixmap, QRadialGradient)
 from PySide2.QtWidgets import *
-
+from ui_classes.OrganizerListWindow import OrganizerListWindow
 from ui_classes.EventCreateWindow import EventCreateWindow
+from ui_classes.OrganizerCreateWindow import OrganizerCreateWindow
 from data_classes.event import *
 from data_classes.schedule import *
 from global_vars import *
@@ -734,11 +735,14 @@ class EventListWindow(QMainWindow):
 
     def connectSignals(self):
         self.ui.ButtonCreateEvent.clicked.connect(self.createEvent)
+        self.ui.ButtonCreateOrganizer.clicked.connect(self.createOrganizer)
         self.ui.ListEvents.itemDoubleClicked.connect(self.selectEvent)
         self.ui.ButtonAddTimeConstraint.clicked.connect(self.addTimeConstraint)
         self.ui.ButtonAddTagConstraint.clicked.connect(self.addTagConstraint)
+        self.ui.ButtonAssignOrganizer.clicked.connect(self.assignOrganizer)
         self.ui.ButtonAddTag.clicked.connect(self.addTag)
         self.ui.ButtonUpdateSpaceConstraint.clicked.connect(self.setSpaceConstraint)
+
     def selectEvent(self):
         self.ui.LabelHint.hide()
         selected_event = schedule.getEvent(self.ui.ListEvents.currentItem().text())
@@ -791,6 +795,12 @@ class EventListWindow(QMainWindow):
             self.eventCreateWindow.saveEvent()
         self.fillEvents()
 
+    def createOrganizer(self):
+        self.organizerCreateWindow = OrganizerCreateWindow()
+        response = self.organizerCreateWindow.showWindow()
+        if response == 1:
+            self.organizerCreateWindow. createOrganizer()
+
     def fillEvents(self):
         for event in reversed(range(self.ui.ListEvents.count())):
             self.ui.ListEvents.takeItem(event)
@@ -809,6 +819,14 @@ class EventListWindow(QMainWindow):
             self.ui.listWidget_3.takeItem(tag)
         for tag in current_event["object"].tag_list:
             self.ui.listWidget_3.addItem(tag.name)
+
     def setSpaceConstraint(self):
         current_event = schedule.getEvent(self.ui.LabelDetails.text())
-        current_event["object"].addConstraint(SpaceConstraint(session.current_user),self.ui.FieldSpaceConstraint.text())
+        current_event["object"].addConstraint(SpaceConstraint(session.current_user,self.ui.FieldSpaceConstraint.text()))
+
+    def assignOrganizer(self):
+        selected_event = self.ui.LabelDetails.text()
+        self.organizerListWindow = OrganizerListWindow(selected_event)
+        response = self.organizerListWindow.showWindow()
+        if response == 1:
+            self.organizerListWindow.assignOrganizer()

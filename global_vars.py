@@ -23,7 +23,7 @@ organizer_list.organizer_list = [
     account_list.account_list[2]
 ]
 
-session = None
+session = Session(None,None)
 
 building_list = BuildingList([
     Building("Building B","upatras",[]),

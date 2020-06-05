@@ -4,54 +4,72 @@ from PySide2.QtGui import (QBrush, QColor, QConicalGradient, QCursor, QFont,
     QFontDatabase, QIcon, QKeySequence, QLinearGradient, QPalette, QPainter,
     QPixmap, QRadialGradient)
 from PySide2.QtWidgets import *
+from global_vars import *
 
-
-class Ui_Dialog(object):
-    def setupUi(self, Dialog):
-        if not Dialog.objectName():
-            Dialog.setObjectName(u"Dialog")
-        Dialog.resize(278, 284)
-        self.buttonBox = QDialogButtonBox(Dialog)
+class Ui_OrganizerCreateWindow(object):
+    def setupUi(self, OrganizerCreateWindow):
+        if not OrganizerCreateWindow.objectName():
+            OrganizerCreateWindow.setObjectName(u"OrganizerCreateWindow")
+        OrganizerCreateWindow.resize(278, 284)
+        self.buttonBox = QDialogButtonBox(OrganizerCreateWindow)
         self.buttonBox.setObjectName(u"buttonBox")
         self.buttonBox.setGeometry(QRect(-120, 240, 341, 32))
         self.buttonBox.setOrientation(Qt.Horizontal)
         self.buttonBox.setStandardButtons(QDialogButtonBox.Cancel|QDialogButtonBox.Ok)
-        self.lineEdit = QLineEdit(Dialog)
-        self.lineEdit.setObjectName(u"lineEdit")
-        self.lineEdit.setGeometry(QRect(20, 90, 211, 27))
-        self.lineEdit_2 = QLineEdit(Dialog)
-        self.lineEdit_2.setObjectName(u"lineEdit_2")
-        self.lineEdit_2.setGeometry(QRect(20, 140, 211, 27))
-        self.label = QLabel(Dialog)
-        self.label.setObjectName(u"label")
-        self.label.setGeometry(QRect(20, 70, 71, 19))
-        self.label_2 = QLabel(Dialog)
-        self.label_2.setObjectName(u"label_2")
-        self.label_2.setGeometry(QRect(20, 120, 41, 19))
-        self.label_3 = QLabel(Dialog)
-        self.label_3.setObjectName(u"label_3")
-        self.label_3.setGeometry(QRect(20, 20, 251, 31))
-        self.label_3.setWordWrap(True)
-        self.label_4 = QLabel(Dialog)
-        self.label_4.setObjectName(u"label_4")
-        self.label_4.setGeometry(QRect(20, 180, 241, 51))
+        self.FieldName = QLineEdit(OrganizerCreateWindow)
+        self.FieldName.setObjectName(u"FieldName")
+        self.FieldName.setGeometry(QRect(20, 90, 211, 27))
+        self.FieldEmail = QLineEdit(OrganizerCreateWindow)
+        self.FieldEmail.setObjectName(u"FieldEmail")
+        self.FieldEmail.setGeometry(QRect(20, 140, 211, 27))
+        self.LabelName = QLabel(OrganizerCreateWindow)
+        self.LabelName.setObjectName(u"LabelName")
+        self.LabelName.setGeometry(QRect(20, 70, 71, 19))
+        self.LabelEmail = QLabel(OrganizerCreateWindow)
+        self.LabelEmail.setObjectName(u"LabelEmail")
+        self.LabelEmail.setGeometry(QRect(20, 120, 41, 19))
+        self.LabelPrompt = QLabel(OrganizerCreateWindow)
+        self.LabelPrompt.setObjectName(u"LabelPrompt")
+        self.LabelPrompt.setGeometry(QRect(20, 20, 251, 31))
+        self.LabelPrompt.setWordWrap(True)
+        self.LabeInfo = QLabel(OrganizerCreateWindow)
+        self.LabeInfo.setObjectName(u"LabeInfo")
+        self.LabeInfo.setGeometry(QRect(20, 180, 241, 51))
         font = QFont()
         font.setItalic(True)
-        self.label_4.setFont(font)
-        self.label_4.setWordWrap(True)
+        self.LabeInfo.setFont(font)
+        self.LabeInfo.setWordWrap(True)
 
-        self.retranslateUi(Dialog)
-        self.buttonBox.accepted.connect(Dialog.accept)
-        self.buttonBox.rejected.connect(Dialog.reject)
+        self.retranslateUi(OrganizerCreateWindow)
+        self.buttonBox.accepted.connect(OrganizerCreateWindow.accept)
+        self.buttonBox.rejected.connect(OrganizerCreateWindow.reject)
 
-        QMetaObject.connectSlotsByName(Dialog)
+        QMetaObject.connectSlotsByName(OrganizerCreateWindow)
     # setupUi
 
-    def retranslateUi(self, Dialog):
-        Dialog.setWindowTitle(QCoreApplication.translate("Dialog", u"Dialog", None))
-        self.label.setText(QCoreApplication.translate("Dialog", u"Full Name", None))
-        self.label_2.setText(QCoreApplication.translate("Dialog", u"Email", None))
-        self.label_3.setText(QCoreApplication.translate("Dialog", u"Please enter the organizer's information", None))
-        self.label_4.setText(QCoreApplication.translate("Dialog", u"Clicking \"OK\" will send an automated invitation to the email specified above.", None))
+    def retranslateUi(self, OrganizerCreateWindow):
+        OrganizerCreateWindow.setWindowTitle(QCoreApplication.translate("OrganizerCreateWindow", u"Create a new organizer", None))
+        self.LabelName.setText(QCoreApplication.translate("OrganizerCreateWindow", u"Full Name", None))
+        self.LabelEmail.setText(QCoreApplication.translate("OrganizerCreateWindow", u"Email", None))
+        self.LabelPrompt.setText(QCoreApplication.translate("OrganizerCreateWindow", u"Please enter the organizer's information", None))
+        self.LabeInfo.setText(QCoreApplication.translate("OrganizerCreateWindow", u"Clicking \"OK\" will send an automated invitation to the email specified above.", None))
     # retranslateUi
 
+class OrganizerCreateWindow(QDialog):
+    def __init__(self):
+        super().__init__()
+        self.ui = Ui_OrganizerCreateWindow()
+        self.ui.setupUi(self)
+        self.connectSignals()
+
+    def connectSignals(self):
+        self.ui.buttonBox.accepted.connect(self.accept)
+        self.ui.buttonBox.rejected.connect(self.reject)
+
+    def showWindow(self):
+        return self.exec()
+
+    def createOrganizer(self):
+        name = self.ui.FieldName.text()
+        email = self.ui.FieldEmail.text()
+        organizer_list.addOrganizer(account_list, "upatras", name, email)
