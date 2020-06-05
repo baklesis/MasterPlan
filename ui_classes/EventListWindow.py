@@ -668,7 +668,7 @@ class Ui_EventListWindow(object):
     # setupUi
 
     def retranslateUi(self, EventListWindow):
-        EventListWindow.setWindowTitle(QCoreApplication.translate("EventListWindow", u"MainWindow", None))
+        EventListWindow.setWindowTitle(QCoreApplication.translate("EventListWindow", u"Edit mode", None))
         self.LabelEventList.setText(QCoreApplication.translate("EventListWindow", u"Event List", None))
         self.ButtonCreateOrganizer.setText(QCoreApplication.translate("EventListWindow", u"Create Organizer", None))
         self.ButtonCreateEvent.setText(QCoreApplication.translate("EventListWindow", u"Create Event", None))
@@ -753,8 +753,8 @@ class EventListWindow(QMainWindow):
         else:
             self.ui.LabelScheduledDatetime.setText(selected_event["datetime"].strftime("%d/%m/%Y, %H:%M:%S"))
             self.ui.LabelScheduledDatetime_2.setText(selected_event["datetime"].strftime("%d/%m/%Y, %H:%M:%S"))
-        self.ui.LabelScheduledRoom.setText(selected_event["object"].name)
-        self.ui.LabelScheduledRoom_2.setText(selected_event["object"].name)
+        self.ui.LabelScheduledRoom.setText(selected_event["room"].name)
+        self.ui.LabelScheduledRoom_2.setText(selected_event["room"].name)
         eventRoomGroup = selected_event["object"].room_group
         if eventRoomGroup == None:
             self.ui.LabelRoomGroup.setText("None")

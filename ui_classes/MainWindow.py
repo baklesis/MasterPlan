@@ -795,7 +795,7 @@ class MainWindow(QMainWindow):
             self.eventInfoWindow.ui.LabelEventName.setText(selected_event['object'].name)
             self.eventInfoWindow.ui.LabelRoomValue.setText(selected_event['room'].name)
             self.eventInfoWindow.ui.LabelTimeValue.setText(selected_event['datetime'].strftime("%x %X"))
-            self.eventInfoWindow.ui.LabelDurationValue.setText(str(int(selected_event['object'].duration/60)))
+            self.eventInfoWindow.ui.LabelDurationValue.setText(str(int(selected_event['object'].duration/60 + " hours and " + str(int(selected_event['object'].duration)))))
             self.eventInfoWindow.ui.LabelOrganizerValue.setText(selected_event['object'].organizer.fullname)
             self.eventInfoWindow.showWindow()
 
@@ -807,7 +807,7 @@ class MainWindow(QMainWindow):
     def changeFloor(self):
          selected_floor = self.ui.SpinBoxFloor.value()
          session.selected_floor = selected_floor
-         self.showRooms(session.selected_building,session.selected_floor)
+         self.showRooms(session.selected_building, session.selected_floor)
          self.fillEvents()
 
 

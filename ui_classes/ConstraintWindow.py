@@ -109,7 +109,7 @@ class Ui_ConstraintWindow(object):
     # setupUi
 
     def retranslateUi(self, ConstraintWindow):
-        ConstraintWindow.setWindowTitle(QCoreApplication.translate("ConstraintWindow", u"Dialog", None))
+        ConstraintWindow.setWindowTitle(QCoreApplication.translate("ConstraintWindow", u"Add Constraint", None))
         self.label_3.setText(QCoreApplication.translate("ConstraintWindow", u"Starts at:", None))
         self.label_4.setText(QCoreApplication.translate("ConstraintWindow", u"Ends at:", None))
         self.label_5.setText(QCoreApplication.translate("ConstraintWindow", u"Repetition:", None))

@@ -107,7 +107,13 @@ class OrganizerListWindow(QDialog):
         schedule.getEvent(self.selected_event).organizer = organizer_list.getOrganizer(selected_organizer)
 
     def showWindow(self):
+        fullnames = [x.fullname for x in organizer_list.organizer_list]
+        sameFullnames = [x for x in fullnames if fullnames.count(x) >= 2]
+        sameFullnames = [organizer_list.getOrganizer(x) for x in sameFullnames]
         for organizer in organizer_list.organizer_list:
-            self.ui.ListOrganizers.addItem(organizer.fullname)
+            if organizer in sameFullnames:
+                self.ui.ListOrganizers.addItem(organizer.fullname + " (" +  organizer.username + ")")
+            else:
+                self.ui.ListOrganizers.addItem(organizer.fullname)
         self.exec()
 
