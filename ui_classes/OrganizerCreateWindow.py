@@ -1,3 +1,13 @@
+# -*- coding: utf-8 -*-
+
+################################################################################
+## Form generated from reading UI file 'OrganizerCreateWindow.ui'
+##
+## Created by: Qt User Interface Compiler version 5.14.2
+##
+## WARNING! All changes made in this file will be lost when recompiling UI file!
+################################################################################
+
 from PySide2.QtCore import (QCoreApplication, QDate, QDateTime, QMetaObject,
     QObject, QPoint, QRect, QSize, QTime, QUrl, Qt)
 from PySide2.QtGui import (QBrush, QColor, QConicalGradient, QCursor, QFont,
@@ -54,7 +64,6 @@ class Ui_OrganizerCreateWindow(object):
         self.LabelPrompt.setText(QCoreApplication.translate("OrganizerCreateWindow", u"Please enter the organizer's information", None))
         self.LabeInfo.setText(QCoreApplication.translate("OrganizerCreateWindow", u"Clicking \"OK\" will send an automated invitation to the email specified above.", None))
     # retranslateUi
-
 class OrganizerCreateWindow(QDialog):
     def __init__(self):
         super().__init__()

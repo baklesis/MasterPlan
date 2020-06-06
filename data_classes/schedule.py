@@ -50,7 +50,7 @@ class Schedule:
         return newEvent
 
     # coming soon implement test functions for set datetime
-    def deleteSchedule(self):  # desctructor καλυτερα
+    def deleteSchedule(self):  # destructor καλυτερα
         return self
 
     def getSchedule(self,building,room,organizer,event):
@@ -68,7 +68,6 @@ class Schedule:
             if event.name == name:
                 return event
         return None
-
 
     def publishSchedule(self):
         return self
