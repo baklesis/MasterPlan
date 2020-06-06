@@ -13,7 +13,7 @@ class Constraint:
 
 class TimeConstraint(Constraint):
     def __init__(self,organizer,startdatetime,enddatetime,repetition,weight):
-        super().__init__(self,organizer)
+        super().__init__(organizer)
         self._start_datetime=startdatetime
         self._end_datetime=enddatetime
         self._repetition=repetition
@@ -48,8 +48,8 @@ class TimeConstraint(Constraint):
         return self
 
 class SpaceConstraint(Constraint):
-    def __init__(self, organizer,space):
-        super().__init__(self, organizer)
+    def __init__(self, organizer, space):
+        super().__init__(organizer)
         self._space = space
     @property
     def space(self):
@@ -62,7 +62,7 @@ class SpaceConstraint(Constraint):
 
 class TagConstraint(Constraint):
     def __init__(self,organizer,tag,weight):
-        super().__init__(self, organizer)
+        super().__init__(organizer)
         self._tag=tag
         self._weight=weight
     @property

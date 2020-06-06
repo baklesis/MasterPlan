@@ -767,12 +767,12 @@ class EventListWindow(QMainWindow):
         for tag in selected_event["object"].tag_list:
             self.ui.listWidget_3.addItem(tag.name)
         for constraint in selected_event["object"].constraint_list:
-            if constraint.__name__ == "TagConstraint":
+            if type(constraint).__name__ == "TagConstraint":
                 self.ui.ListTagConstraints.addItem(constraint.tag.name)
                 self.ui.ListTagConstraints_2.addItem(constraint.tag.name)
-            if constraint.__name__ == "TimeConstraint":
+            if type(constraint).__name__ == "TimeConstraint":
                 self.ui.ListTimeConstraints.addItem(constraint.start_datetime.strftime("%d/%m/%Y, %H:%M:%S"))
-            if constraint.__name__ == "SpaceConstraint":
+            if type(constraint).__name__ == "SpaceConstraint":
                 self.ui.LabelSpaceConstraint.setText(constraint.space)
         self.ui.EventEditFrame.show()
 
@@ -822,7 +822,8 @@ class EventListWindow(QMainWindow):
 
     def setSpaceConstraint(self):
         current_event = schedule.getEvent(self.ui.LabelDetails.text())
-        current_event["object"].addConstraint(SpaceConstraint(session.current_user,self.ui.FieldSpaceConstraint.text()))
+        constraint = SpaceConstraint(session.current_user, self.ui.FieldSpaceConstraint.text())
+        current_event["object"].addConstraint(constraint)
 
     def assignOrganizer(self):
         selected_event = self.ui.LabelDetails.text()

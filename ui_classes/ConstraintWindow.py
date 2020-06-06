@@ -128,7 +128,7 @@ class Ui_ConstraintWindow(object):
     # retranslateUi
 
 class ConstraintWindow(QDialog):
-    def __init__(self,selected_event):
+    def __init__(self, selected_event):
         super().__init__()
         self.ui = Ui_ConstraintWindow()
         self.ui.setupUi(self)

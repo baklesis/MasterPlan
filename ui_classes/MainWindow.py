@@ -643,7 +643,7 @@ class MainWindow(QMainWindow):
         global session
         org = self.ui.LineOrg.text()
         if account_list.valOrganization(org):
-            session = Session(None, org) ## better just setter
+            session.current_org = org
             self.showUserPage()
             self.showGuestPage()
         else:
@@ -655,7 +655,7 @@ class MainWindow(QMainWindow):
         password = self.ui.LinePass.text()
         account = account_list.accountExists(username, password)
         if account:
-            session = Session(account, session.current_org) ## better just setter
+            session.current_user = account
             self.showLoggedUserPage()
             self.ui.LabelLoggedUser.setText(account.username)
         else:
@@ -668,7 +668,7 @@ class MainWindow(QMainWindow):
 
     def logOut(self):
         global session
-        session = Session(None,session.current_org) ## better just setter
+        session.current_user = None
         self.ui.LineUser.setText(None)
         self.ui.LinePass.setText(None)
         self.showGuestPage()
@@ -795,8 +795,8 @@ class MainWindow(QMainWindow):
             self.eventInfoWindow = EventInfoWindow()
             self.eventInfoWindow.ui.LabelEventName.setText(selected_event['object'].name)
             self.eventInfoWindow.ui.LabelRoomValue.setText(selected_event['room'].name)
-            self.eventInfoWindow.ui.LabelTimeValue.setText(selected_event['datetime'].strftime("%x %X"))
-            self.eventInfoWindow.ui.LabelDurationValue.setText(str(int(selected_event['object'].duration/60 + " hours and " + str(int(selected_event['object'].duration)))))
+            self.eventInfoWindow.ui.LabelTimeValue.setText(selected_event['datetime'].strftime("%d/%m/%Y, %H:%M:%S"))
+            self.eventInfoWindow.ui.LabelDurationValue.setText(str(int(selected_event['object'].duration/60)) + " hours and " + str(selected_event['object'].duration%60) + " minutes")
             self.eventInfoWindow.ui.LabelOrganizerValue.setText(selected_event['object'].organizer.fullname)
             self.eventInfoWindow.showWindow()
 
