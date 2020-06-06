@@ -10,6 +10,7 @@ from data_classes.tag import *
 
 #global variables that imitate the existence of a database
 
+#Accounts
 account_list = AccountList()
 account_list.account_list = [
     Admin('upatras','1','rectorate@upatras.gr'),
@@ -17,19 +18,23 @@ account_list.account_list = [
     Organizer('alexiou','1','alexiou@ceid.upatras.gr', 'George Alexiou', 'upatras')
 ]
 
+#Organizers
 organizer_list = OrganizerList()
 organizer_list.organizer_list = [
     account_list.account_list[1],
     account_list.account_list[2]
 ]
 
+#Session
 session = Session(None,None)
 
+#Buildings
 building_list = BuildingList([
     Building("Building B","upatras",[]),
     Building("Building A","upatras",[])
 ],"upatras")
 
+#Rooms
 room_list = RoomList([
     Room("BA",building_list.building_list[0],0,200),
     Room("B4",building_list.building_list[0],0,100),
@@ -38,6 +43,7 @@ room_list = RoomList([
     Room("AA",building_list.building_list[1],0,200)
 ],"upatras")
 
+#Room Groups
 room_group_list = RoomGroupList("upatras")
 room_group_list.addRoomGroup("amphitheater",[room_list.room_list[0],room_list.room_list[1],room_list.room_list[4]])
 room_group_list.addRoomGroup("classroom",room_list.room_list[2])
@@ -47,6 +53,9 @@ for room in room_list.room_list:
     for i,building in enumerate(building_list.building_list):
         if room.building.name == building.name:
             building_list.building_list[i].room_list.append(room)
+
+
+#Schedule
 
 schedule = Schedule([],"upatras")
 
@@ -114,6 +123,8 @@ schedule.event_list[11]["datetime"]=datetime.now() # test event που συμβ�
 schedule.event_list[11]["room"]=room_list.room_list[4]
 schedule.event_list[11]["object"].organizer=organizer_list.organizer_list[1]
 
+
+# Tags
 tag_list = TagList("upatras")
 tag_list.addTag("AI")
 tag_list.addTag("Seminar")
@@ -133,3 +144,14 @@ schedule.event_list[8]["object"].tag_list.append(tag_list.tag_list[2])
 schedule.event_list[9]["object"].tag_list.append(tag_list.tag_list[1])
 schedule.event_list[10]["object"].tag_list.append(tag_list.tag_list[2])
 schedule.event_list[11]["object"].tag_list.append(tag_list.tag_list[3])
+
+#Constraints
+
+
+
+
+
+
+
+
+
