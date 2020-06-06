@@ -626,12 +626,7 @@ class MainWindow(QMainWindow):
                     if ((datetime.now()-event['datetime']).total_seconds()/60<event['object'].duration) & (event['room'].name == selected_room):
                         if self.filter([event]): # if the event belongs to the selected filter
                             self.eventInfoWindow = EventInfoWindow()
-                            self.eventInfoWindow.ui.LabelEventName.setText(event['object'].name)
-                            self.eventInfoWindow.ui.LabelRoomValue.setText(event['room'].name)
-                            self.eventInfoWindow.ui.LabelTimeValue.setText(event['datetime'].strftime("%x %X"))
-                            self.eventInfoWindow.ui.LabelDurationValue.setText(str(int(event['object'].duration/60)))
-                            self.eventInfoWindow.ui.LabelOrganizerValue.setText(event['object'].organizer.fullname)
-                            self.eventInfoWindow.showWindow()
+                            self.eventInfoWindow.showWindow(event)
                             break
                 break
 
@@ -793,12 +788,7 @@ class MainWindow(QMainWindow):
         selected_event = self.getEventInfo(selected_event_name)
         if selected_event:
             self.eventInfoWindow = EventInfoWindow()
-            self.eventInfoWindow.ui.LabelEventName.setText(selected_event['object'].name)
-            self.eventInfoWindow.ui.LabelRoomValue.setText(selected_event['room'].name)
-            self.eventInfoWindow.ui.LabelTimeValue.setText(selected_event['datetime'].strftime("%d/%m/%Y, %H:%M:%S"))
-            self.eventInfoWindow.ui.LabelDurationValue.setText(str(int(selected_event['object'].duration/60)) + " hours and " + str(selected_event['object'].duration%60) + " minutes")
-            self.eventInfoWindow.ui.LabelOrganizerValue.setText(selected_event['object'].organizer.fullname)
-            self.eventInfoWindow.showWindow()
+            self.eventInfoWindow.showWindow(selected_event)
 
     def getEventInfo(self,event_name):
         for event in schedule.event_list:

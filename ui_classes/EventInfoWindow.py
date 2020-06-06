@@ -151,7 +151,13 @@ class EventInfoWindow(QMainWindow):
         self.ui.setupUi(self)
         # self.connectSignals()
 
-    def showWindow(self):
+    def showWindow(self,event):
+        self.ui.LabelEventName.setText(event['object'].name)
+        self.ui.LabelRoomValue.setText(event['room'].name)
+        self.ui.LabelTimeValue.setText(event['datetime'].strftime("%x %X"))
+        self.ui.LabelDurationValue.setText(str(int(
+            event['object'].duration / 60)) + " hours and " + str(event['object'].duration % 60) + " minutes")
+        self.ui.LabelOrganizerValue.setText(event['object'].organizer.fullname)
         self.show()
 
 
