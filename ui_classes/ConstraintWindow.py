@@ -141,7 +141,7 @@ class ConstraintWindow(QDialog):
         start_date = self.ui.dateTimeEdit.dateTime()
         end_date = self.ui.dateTimeEdit_2.dateTime()
         repetition = self.ui.comboBox.currentText()
-
+        newconstraint=TimeConstraint()
 
     def saveTagConstraint(self):
         tag_name = self.ui.comboBox_2.currentText()
