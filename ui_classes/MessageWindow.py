@@ -108,7 +108,9 @@ class MessageWindow(QDialog):
         self.ui.LabelMessage.setText("Some fields are invalid or incomplete.")
         self.ui.ButtonFalse.hide()
         self.ui.ButtonTrue.setText("OK")
-
-
+    def successfulScheduling(self):
+        self.ui.LabelMessage.setText("Scheduling has been successful.Please continue by either publishing, or reseting new Schedule")
+        self.ui.ButtonTrue.setText("Publish")
+        self.ui.ButtonFalse.setText("Reset")
 
 
