@@ -56,6 +56,12 @@
      <height>21</height>
     </rect>
    </property>
+   <property name="sizePolicy">
+    <sizepolicy hsizetype="Minimum" vsizetype="Expanding">
+     <horstretch>0</horstretch>
+     <verstretch>0</verstretch>
+    </sizepolicy>
+   </property>
    <property name="text">
     <string/>
    </property>
@@ -75,7 +81,7 @@
    </property>
    <layout class="QHBoxLayout" name="horizontalLayout"/>
   </widget>
-  <widget class="QListView" name="searchResults">
+  <widget class="QListWidget" name="searchResults">
    <property name="geometry">
     <rect>
      <x>30</x>
