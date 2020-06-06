@@ -60,17 +60,9 @@ class Ui_ConstraintWindow(object):
         self.label_8.setObjectName(u"label_8")
         self.label_8.setGeometry(QRect(250, 70, 71, 21))
         self.label_8.setFont(font1)
-        self.horizontalSlider_2 = QSlider(self.AddTagConst)
-        self.horizontalSlider_2.setObjectName(u"horizontalSlider_2")
-        self.horizontalSlider_2.setGeometry(QRect(250, 100, 121, 21))
-        self.horizontalSlider_2.setOrientation(Qt.Horizontal)
         self.comboBox_2 = QComboBox(self.AddTagConst)
         self.comboBox_2.setObjectName(u"comboBox_2")
         self.comboBox_2.setGeometry(QRect(20, 70, 69, 22))
-        self.horizontalSlider_3 = QSlider(self.AddTagConst)
-        self.horizontalSlider_3.setObjectName(u"horizontalSlider_3")
-        self.horizontalSlider_3.setGeometry(QRect(30, 200, 131, 21))
-        self.horizontalSlider_3.setOrientation(Qt.Horizontal)
         self.stackedWidget.addWidget(self.AddTagConst)
         self.label = QLabel(ConstraintWindow)
         self.label.setObjectName(u"label")
@@ -86,12 +78,12 @@ class Ui_ConstraintWindow(object):
         self.Add_btn = QPushButton(ConstraintWindow)
         self.Add_btn.setObjectName(u"Add_btn")
         self.Add_btn.setGeometry(QRect(30, 330, 61, 21))
-        self.horizontalSlider = QSlider(ConstraintWindow)
-        self.horizontalSlider.setObjectName(u"horizontalSlider")
-        self.horizontalSlider.setGeometry(QRect(30, 270, 131, 21))
-        self.horizontalSlider.setMaximum(2)
-        self.horizontalSlider.setOrientation(Qt.Horizontal)
-        self.horizontalSlider.setTickPosition(QSlider.TicksBothSides)
+        self.weightSlider = QSlider(ConstraintWindow)
+        self.weightSlider.setObjectName(u"weightSlider")
+        self.weightSlider.setGeometry(QRect(30, 270, 131, 21))
+        self.weightSlider.setMaximum(2)
+        self.weightSlider.setOrientation(Qt.Horizontal)
+        self.weightSlider.setTickPosition(QSlider.TicksBothSides)
         self.label_6 = QLabel(ConstraintWindow)
         self.label_6.setObjectName(u"label_6")
         self.label_6.setGeometry(QRect(30, 250, 71, 16))
@@ -102,14 +94,14 @@ class Ui_ConstraintWindow(object):
 
         self.retranslateUi(ConstraintWindow)
 
-        self.stackedWidget.setCurrentIndex(1)
+        self.stackedWidget.setCurrentIndex(0)
 
 
         QMetaObject.connectSlotsByName(ConstraintWindow)
     # setupUi
 
     def retranslateUi(self, ConstraintWindow):
-        ConstraintWindow.setWindowTitle(QCoreApplication.translate("ConstraintWindow", u"Add Constraint", None))
+        ConstraintWindow.setWindowTitle(QCoreApplication.translate("ConstraintWindow", u"Dialog", None))
         self.label_3.setText(QCoreApplication.translate("ConstraintWindow", u"Starts at:", None))
         self.label_4.setText(QCoreApplication.translate("ConstraintWindow", u"Ends at:", None))
         self.label_5.setText(QCoreApplication.translate("ConstraintWindow", u"Repetition:", None))
@@ -136,24 +128,33 @@ class ConstraintWindow(QDialog):
         self.connectSignals()
 
     def connectSignals(self):
-        self.ui.Add_btn.clicked.connect(self.saveConstraint)
+        self.ui.Add_btn.clicked.connect(self.accept)
 
     def showWindow(self):
         for tag in reversed(range(self.ui.comboBox_2.count())):
             self.ui.comboBox_2.removeItem(tag)
         for tag in self.selected_event.tag_list:
             self.ui.comboBox_2.addItem(tag.name)
-        self.exec()
+        return self.exec()
 
     def saveTimeConstraint(self):
         start_date = self.ui.dateTimeEdit.dateTime()
         end_date = self.ui.dateTimeEdit_2.dateTime()
         repetition = self.ui.comboBox.currentText()
-
+        newconstraint=TimeConstraint(session.current_user,start_date,end_date,repetition)
 
     def saveTagConstraint(self):
         tag_name = self.ui.comboBox_2.currentText()
-        self.selected_event.addConstraint(TagConstraint(tag_list.getTag(tag_name)))
+        weight = self.ui.weightSlider.sliderPosition()
+        if weight == 0:
+            weight = "low"
+        elif weight == 1:
+            weight = "medium"
+        elif weight == 2:
+            weight = "high"
+
+
+        self.selected_event.addConstraint(TagConstraint(session.current_user,tag_list.getTag(tag_name),weight))
 
     def saveConstraint(self):
         page=self.ui.stackedWidget.currentIndex()

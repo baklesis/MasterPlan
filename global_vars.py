@@ -147,11 +147,22 @@ schedule.event_list[11]["object"].tag_list.append(tag_list.tag_list[3])
 
 #Constraints
 
-
-
-
-
-
-
-
-
+schedule.event_list[0]["object"].addConstraint(TimeConstraint(organizer_list.organizer_list[0], datetime(2020,6,20,15),
+                                                              datetime(2020,6,20,18),"none","high"))
+schedule.event_list[0]["object"].addConstraint(TagConstraint(organizer_list.organizer_list[0],tag_list.getTag("Seminar"), "medium"))
+schedule.event_list[1]["object"].addConstraint(TimeConstraint(organizer_list.organizer_list[1], datetime(2020,6,10,16),
+                                                              datetime(2020,6,20,17),"none","high"))
+schedule.event_list[2]["object"].addConstraint(TimeConstraint(organizer_list.organizer_list[0]))
+schedule.event_list[3]["object"].addConstraint(TimeConstraint(organizer_list.organizer_list[1], datetime(2020,6,12,8),
+                                                              datetime(2020,6,12,9),"none","high"))
+schedule.event_list[4]["object"].addConstraint(TimeConstraint(organizer_list.organizer_list[1], datetime(2020,6,5,15),
+                                                              datetime(2020,6,5,18),"none","high"))
+schedule.event_list[5]["object"].addConstraint(TimeConstraint(organizer_list.organizer_list[0]))
+schedule.event_list[6]["object"].addConstraint(TimeConstraint(organizer_list.organizer_list[0]))
+schedule.event_list[7]["object"].addConstraint(TimeConstraint(organizer_list.organizer_list[0]))
+schedule.event_list[8]["object"].addConstraint(TimeConstraint(organizer_list.organizer_list[0]))
+schedule.event_list[8]["object"].addConstraint(TagConstraint(organizer_list.organizer_list[0]))
+schedule.event_list[9]["object"].addConstraint(TimeConstraint(organizer_list.organizer_list[1], datetime(2020,6,20,15),
+                                                              datetime(2020,6,20,18),"none","high"))
+schedule.event_list[10]["object"].addConstraint(TimeConstraint(organizer_list.organizer_list[1]))
+schedule.event_list[11]["object"].addConstraint(TimeConstraint(organizer_list.organizer_list[1]))
