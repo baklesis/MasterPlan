@@ -141,7 +141,17 @@ class ConstraintWindow(QDialog):
         start_date = self.ui.dateTimeEdit.dateTime()
         end_date = self.ui.dateTimeEdit_2.dateTime()
         repetition = self.ui.comboBox.currentText()
-        newconstraint=TimeConstraint(session.current_user,start_date,end_date,repetition)
+        weight=self.ui.weightSlider.sliderPosition()
+        if weight == 0:
+            weight = "low"
+        elif weight == 1:
+            weight = "medium"
+        elif weight == 2:
+            weight = "high"
+        newconstraint = TimeConstraint(session.current_user, start_date, end_date, repetition,weight)
+        self.selected_event.addConstraint(newconstraint)
+
+
 
     def saveTagConstraint(self):
         tag_name = self.ui.comboBox_2.currentText()

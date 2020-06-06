@@ -70,6 +70,17 @@ class SearchWindow(QMainWindow):
         self.ui.searchButton.clicked.connect(self.update_display)
         self.ui.searchResults.itemDoubleClicked.connect(self.display_event)
 
+
+    def updateDisplay(self):
+        text = self.ui.searchBar.text()
+        for event in reversed(range(self.ui.searchResults.count())):
+            self.ui.searchResults.takeItem(event)
+        for event in self.event_name_list:
+            if text.lower() in event.lower():
+                self.ui.searchResults.addItem(event)
+        self.ui.searchButton.clicked.connect(self.update_display)
+        self.ui.searchResults.itemDoubleClicked.connect(self.display_event)
+
     def showWindow(self):
         self.show()
 
