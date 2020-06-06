@@ -1,5 +1,5 @@
 from data_classes.event import *
-from datetime import datetime
+from datetime import datetime, timedelta
 
 class Schedule:
     def __init__(self, event_list, organization):
@@ -88,9 +88,9 @@ class Schedule:
         return None
 
     #Scheduling Algorithm
-    def runScheduling(self):
+    def executeScheduling(self):
 
-        new_schedule = Schedule([event['object'] for event in self], self.organization)  # create a copy of the old schedule with empty scheduled dates and rooms
+        new_schedule = Schedule([event['object'] for event in self.event_list], self.organization)  # create a copy of the old schedule with empty scheduled dates and rooms
         weight = {'low': 1 / 3, 'medium': 2 / 3, 'high': 1}  # weight dictionary
 
         for i,event in enumerate(self.event_list):
@@ -99,10 +99,10 @@ class Schedule:
             available_datetimes= []
 
             # create scheduling period (generates available datetimes in 30 minute intervals for the next week starting monday)
-            temp_datetime = datetime.today() + datetime.timedelta(days= 7 - datetime.today().weekday())
-            while temp_datetime < datetime.today() + datetime.timedelta(days = 7 - datetime.today().weekday() + 7):
+            temp_datetime = datetime.today() + timedelta(days= 7 - datetime.today().weekday())
+            while temp_datetime < datetime.today() + timedelta(days = 7 - datetime.today().weekday() + 7):
                 available_datetimes.append(temp_datetime)
-                temp_datetime += datetime.timedelta(minutes=30)
+                temp_datetime += timedelta(minutes=30)
 
             # save constraints
             space_constraint = None
@@ -127,17 +127,16 @@ class Schedule:
                             # create event period
                             event_period = set()  # contains all 30 minute interval datetimes in the event period
                             temp_datetime = possible_datetime
-                            while temp_datetime < possible_datetime + datetime.timedelta(
-                                    minutes=event['object'].duration):
+                            while temp_datetime < possible_datetime + timedelta(minutes=event['object'].duration):
                                 event_period.add(temp_datetime)
-                                temp_datetime += datetime.timedelta(minutes=30)
+                                temp_datetime += timedelta(minutes=30)
 
                             # create other event period
                             other_event_period = set() # contains all 30 minute interval datetimes in the other event period
                             temp_datetime = possible_datetime
-                            while temp_datetime < possible_datetime + datetime.timedelta(minutes=other_event['object'].duration):
+                            while temp_datetime < possible_datetime + timedelta(minutes=other_event['object'].duration):
                                 other_event_period.add(temp_datetime)
-                                temp_datetime += datetime.timedelta(minutes=30)
+                                temp_datetime += timedelta(minutes=30)
 
                             if len(event_period.intersection(other_event_period)) > 0:  # if the other event is scheduled at the same time
                                 break  # check another possible datetime
@@ -159,7 +158,7 @@ class Schedule:
                         temp_datetime = time_constraint.start_datetime
                         while temp_datetime < time_constraint.end_datetime:
                             unwanted_period.add(temp_datetime)
-                            temp_datetime += datetime.timedelta(minutes=30)
+                            temp_datetime += timedelta(minutes=30)
 
                         if len(event_period.intersection(unwanted_period)) > 0:  # if the event is scheduled during the unwanted period
                             score = score - 0.1 * weight[time_constraint.weight]  # apply small penalty for each time constraint broken
@@ -170,10 +169,10 @@ class Schedule:
 
                             #create same tag event period
                             same_tag_event_period = set()  # contains all 30 minute interval datetimes in the time cosntraint period
-                            temp_datetime = same_tag_event_period['datetime']
-                            while temp_datetime < same_tag_event_period['datetime'] + datetime.timedelta(minutes=same_tag_event_period['object'].duration):
+                            temp_datetime = same_tag_event['datetime']
+                            while temp_datetime < same_tag_event['datetime'] + timedelta(minutes=same_tag_event['object'].duration):
                                 same_tag_event_period.add(temp_datetime)
-                                temp_datetime += datetime.timedelta(minutes=30)
+                                temp_datetime += timedelta(minutes=30)
 
                             if len(event_period.intersection(other_event_period)) > 0:  # if the same tag event is scheduled at the same time
                                 score = score - 0.1 * weight[tag_constraint.weight]  # apply small penalty for each tag constraint broken
@@ -181,10 +180,9 @@ class Schedule:
 
                     solution_list.append([room,datetime,score])
 
-            best_solution = solution_list.sort(key = lambda x: x[3], reverse = True )[0]
+            best_solution = solution_list.sort(key = lambda x: x[2], reverse = True )[0]
             new_schedule.event_list[i]["room"] = best_solution[0]
             new_schedule.event_list[i]["datetime"] = best_solution[1]
-
 
         return new_schedule
 

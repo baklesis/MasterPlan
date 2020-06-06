@@ -771,7 +771,9 @@ class EventListWindow(QMainWindow):
                 self.ui.ListTagConstraints.addItem(constraint.tag.name)
                 self.ui.ListTagConstraints_2.addItem(constraint.tag.name)
             if type(constraint).__name__ == "TimeConstraint":
-                self.ui.ListTimeConstraints.addItem(constraint.start_datetime.strftime("%d/%m/%Y, %H:%M:%S"))
+                start_time = constraint.start_datetime.strftime("%d/%m/%Y, %H:%M:%S")
+                end_time = constraint.end_datetime.strftime("%d/%m/%Y, %H:%M:%S")
+                self.ui.ListTimeConstraints.addItem(start_time + " - " + end_time)
             if type(constraint).__name__ == "SpaceConstraint":
                 self.ui.LabelSpaceConstraint.setText(constraint.space)
         self.ui.EventEditFrame.show()
@@ -780,13 +782,17 @@ class EventListWindow(QMainWindow):
         selectedEvent = schedule.getEvent(self.ui.LabelDetails.text())
         self.timeconstraintWindow=ConstraintWindow(selectedEvent)
         self.timeconstraintWindow.ui.stackedWidget.setCurrentIndex(0)
-        self.timeconstraintWindow.showWindow()
+        response = self.timeconstraintWindow.showWindow()
+        if response == 1:
+            self.timeconstraintWindow.saveConstraint()
 
     def addTagConstraint(self):
         selectedEvent = schedule.getEvent(self.ui.LabelDetails.text())
         self.tagConstraintWindow=ConstraintWindow(selectedEvent)
         self.tagConstraintWindow.ui.stackedWidget.setCurrentIndex(1)
-        self.tagConstraintWindow.showWindow()
+        response = self.timeconstraintWindow.showWindow()
+        if response == 1:
+            self.timeconstraintWindow.saveConstraint()
 
     def createEvent(self):
         self.eventCreateWindow = EventCreateWindow()
