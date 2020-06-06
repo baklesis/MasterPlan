@@ -53,14 +53,14 @@ class Schedule:
     def deleteSchedule(self):  # desctructor καλυτερα
         return self
 
-    def getSchedule(self,building, room,organizer,event):
-       if building != None:
-        building_event_list = []
-        for event in self._event_list:
-            if event["room"].building.name == building.name:  # αν το event διεξαγεται στο επιλεγμένο κτιριο
-                building_event_list.append(event)
-        return building_event_list
-        if event != None:
+    def getSchedule(self,building,room,organizer,event):
+        if building is not None:
+            building_event_list = []
+            for event in self._event_list:
+                if event["room"].building.name == building.name:  # αν το event διεξαγεται στο επιλεγμένο κτιριο
+                    building_event_list.append(event)
+            return building_event_list
+        if event is not None:
             return 0
 
     def getEvent(self, name):
@@ -162,9 +162,8 @@ class Schedule:
                             unwanted_period.add(temp_datetime)
                             temp_datetime += datetime.timedelta(minutes=30)
 
-                        if possible_datetime in unwanted_period:
-                            score = score - 0.1 * weight[
-                                time_constraint.weight]  # apply small penalty for each time constraint broken
+                        if len(event_period.intersection(unwanted_period)) > 0:  # if the event is scheduled during the unwanted period
+                            score = score - 0.1 * weight[time_constraint.weight]  # apply small penalty for each time constraint broken
 
                     # apply tag constraints
                     for tag_constraint in tag_constraints:

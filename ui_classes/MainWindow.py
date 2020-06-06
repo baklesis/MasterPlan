@@ -624,14 +624,15 @@ class MainWindow(QMainWindow):
             if room.name == selected_room:
                 for event in schedule.event_list:
                     if ((datetime.now()-event['datetime']).total_seconds()/60<event['object'].duration) & (event['room'].name == selected_room):
-                        self.eventInfoWindow = EventInfoWindow()
-                        self.eventInfoWindow.ui.LabelEventName.setText(event['object'].name)
-                        self.eventInfoWindow.ui.LabelRoomValue.setText(event['room'].name)
-                        self.eventInfoWindow.ui.LabelTimeValue.setText(event['datetime'].strftime("%x %X"))
-                        self.eventInfoWindow.ui.LabelDurationValue.setText(str(int(event['object'].duration/60)))
-                        self.eventInfoWindow.ui.LabelOrganizerValue.setText(event['object'].organizer.fullname)
-                        self.eventInfoWindow.showWindow()
-                        break
+                        if self.filter([event]): # if the event belongs to the selected filter
+                            self.eventInfoWindow = EventInfoWindow()
+                            self.eventInfoWindow.ui.LabelEventName.setText(event['object'].name)
+                            self.eventInfoWindow.ui.LabelRoomValue.setText(event['room'].name)
+                            self.eventInfoWindow.ui.LabelTimeValue.setText(event['datetime'].strftime("%x %X"))
+                            self.eventInfoWindow.ui.LabelDurationValue.setText(str(int(event['object'].duration/60)))
+                            self.eventInfoWindow.ui.LabelOrganizerValue.setText(event['object'].organizer.fullname)
+                            self.eventInfoWindow.showWindow()
+                            break
                 break
 
     def showCalendar(self):
