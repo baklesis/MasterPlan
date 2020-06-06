@@ -11,9 +11,9 @@
    </rect>
   </property>
   <property name="sizePolicy">
-   <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-    <horstretch>0</horstretch>
-    <verstretch>0</verstretch>
+   <sizepolicy hsizetype="Fixed" vsizetype="MinimumExpanding">
+    <horstretch>60</horstretch>
+    <verstretch>60</verstretch>
    </sizepolicy>
   </property>
   <property name="minimumSize">
@@ -51,13 +51,13 @@
    <property name="geometry">
     <rect>
      <x>230</x>
-     <y>30</y>
+     <y>29</y>
      <width>32</width>
-     <height>27</height>
+     <height>22</height>
     </rect>
    </property>
    <property name="sizePolicy">
-    <sizepolicy hsizetype="Minimum" vsizetype="Expanding">
+    <sizepolicy hsizetype="Minimum" vsizetype="MinimumExpanding">
      <horstretch>0</horstretch>
      <verstretch>0</verstretch>
     </sizepolicy>
