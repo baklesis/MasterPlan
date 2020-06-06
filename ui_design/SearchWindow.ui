@@ -34,9 +34,9 @@
   <widget class="QLineEdit" name="searchBar">
    <property name="geometry">
     <rect>
-     <x>30</x>
+     <x>80</x>
      <y>30</y>
-     <width>171</width>
+     <width>151</width>
      <height>21</height>
     </rect>
    </property>
@@ -50,10 +50,10 @@
   <widget class="QPushButton" name="searchButton">
    <property name="geometry">
     <rect>
-     <x>200</x>
+     <x>230</x>
      <y>30</y>
-     <width>31</width>
-     <height>21</height>
+     <width>32</width>
+     <height>27</height>
     </rect>
    </property>
    <property name="sizePolicy">
@@ -69,38 +69,22 @@
     <iconset>
      <normaloff>../icons/search.png</normaloff>../icons/search.png</iconset>
    </property>
-  </widget>
-  <widget class="QWidget" name="horizontalLayoutWidget">
-   <property name="geometry">
-    <rect>
-     <x>30</x>
-     <y>30</y>
-     <width>201</width>
-     <height>21</height>
-    </rect>
+   <property name="checkable">
+    <bool>false</bool>
    </property>
-   <layout class="QHBoxLayout" name="horizontalLayout"/>
+   <property name="default">
+    <bool>true</bool>
+   </property>
   </widget>
   <widget class="QListWidget" name="searchResults">
    <property name="geometry">
     <rect>
-     <x>30</x>
+     <x>80</x>
      <y>50</y>
-     <width>201</width>
+     <width>181</width>
      <height>191</height>
     </rect>
    </property>
-  </widget>
-  <widget class="QWidget" name="verticalLayoutWidget">
-   <property name="geometry">
-    <rect>
-     <x>30</x>
-     <y>30</y>
-     <width>201</width>
-     <height>211</height>
-    </rect>
-   </property>
-   <layout class="QVBoxLayout" name="verticalLayout"/>
   </widget>
  </widget>
  <resources/>
