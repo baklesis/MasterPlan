@@ -12,12 +12,12 @@ class Constraint:
         self.__organizer=organizer
 
 class TimeConstraint(Constraint):
-    def __init__(self,organizer,startdatetime,enddatetime,repetition,weight):
+    def __init__(self, organizer, startdatetime, enddatetime, repetition, weight):
         super().__init__(organizer)
-        self._start_datetime=startdatetime
-        self._end_datetime=enddatetime
-        self._repetition=repetition
-        self._weight=weight
+        self._start_datetime = startdatetime
+        self._end_datetime = enddatetime
+        self._repetition = repetition
+        self._weight = weight
     @property
     def start_datetime(self):
          return self._start_datetime

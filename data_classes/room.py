@@ -30,12 +30,6 @@ class Room:
     @capacity.setter
     def capacity(self, capacity):
         self._capacity = capacity
-    @property
-    def group(self):
-        return self._group
-    @group.setter
-    def group(self, group):
-        self._group = group
     def getRoomInfo(self):
         return self
 

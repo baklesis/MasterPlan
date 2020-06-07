@@ -35,6 +35,15 @@ class TagList:
             self._tag_list.append(newTag)
             return newTag
 
+    def removeTag(self, name, schedule):
+        tag_to_remove = self.getTag(name)
+        if tag_to_remove is not None:
+            for event in schedule.event_list:
+                if tag_to_remove in event["object"].tag_list:
+                    print("Tag exists in other event")
+                    return None
+            self.tag_list.remove(tag_to_remove)
+
     def getTag(self, name):
         for tag in self.tag_list:
             if tag.name == name:

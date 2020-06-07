@@ -157,7 +157,7 @@ class EventCreateWindow(QDialog):
     def saveEvent(self):
         # checks if all complete and valid
         print("Clicked")
-        if self.ui.FieldName.text() and (int(self.ui.FieldMinutes.text()) != 0):
+        if self.ui.FieldName.text() and ((int(self.ui.FieldMinutes.text()) != 0) or int(self.ui.FieldHours.text()) != 0):
             # gets Name and Duration and creates base Event in Schedule's event list
             newEvent = schedule.addEvent(self.ui.FieldName.text(),
                                          (int(self.ui.FieldHours.text()) * 60) + int(self.ui.FieldMinutes.text()), "No")

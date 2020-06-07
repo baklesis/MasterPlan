@@ -757,8 +757,9 @@ class MainWindow(QMainWindow):
             #κανε highlight τις αιθουσες με εκδηλωσεις που διεξαγονται τωρα
             for i in range(len(self.grid_button_list)): #για καθε κουμπί αιθουσας στο grid
                 for event in event_list:
-                    if ((datetime.now() - event['datetime']).total_seconds() / 60 < event['object'].duration) & (event['room'].name == self.grid_button_list[i].text()):
-                        self.grid_button_list[i].setStyleSheet("background-color: rgb(80, 141, 255)")
+                    if event["datetime"] is not None:
+                        if ((datetime.now() - event['datetime']).total_seconds() / 60 < event['object'].duration) & (event['room'].name == self.grid_button_list[i].text()):
+                            self.grid_button_list[i].setStyleSheet("background-color: rgb(80, 141, 255)")
 
         # update calendar view
         self.ui.Calendar.updateCells() #ξανακαλει την paintCells του Calendar
@@ -776,8 +777,9 @@ class MainWindow(QMainWindow):
         else:
             filtered_event_list = self.filter(schedule.event_list)
         for event in filtered_event_list:
-            if selected_date == event["datetime"].date():
-                self.ui.ListWidgetEvents.addItem(event["object"].name)
+            if event["datetime"] is not None:
+                if selected_date == event["datetime"].date():
+                    self.ui.ListWidgetEvents.addItem(event["object"].name)
 
     def download(self):
         self.rangeWindow = RangeWindow()

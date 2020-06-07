@@ -104,7 +104,8 @@ class OrganizerListWindow(QDialog):
 
     def assignOrganizer(self):
         selected_organizer = self.ui.ListOrganizers.currentItem().text()
-        schedule.getEvent(self.selected_event).organizer = organizer_list.getOrganizer(selected_organizer)
+        event = schedule.getEvent(self.selected_event)
+        event["object"].organizer = organizer_list.getOrganizer(selected_organizer)
 
     def showWindow(self):
         fullnames = [x.fullname for x in organizer_list.organizer_list]
@@ -115,5 +116,5 @@ class OrganizerListWindow(QDialog):
                 self.ui.ListOrganizers.addItem(organizer.fullname + " (" +  organizer.username + ")")
             else:
                 self.ui.ListOrganizers.addItem(organizer.fullname)
-        self.exec()
+        return self.exec()
 

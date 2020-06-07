@@ -15,19 +15,19 @@ class Ui_EventListWindow(object):
     def setupUi(self, EventListWindow):
         if not EventListWindow.objectName():
             EventListWindow.setObjectName(u"EventListWindow")
-        EventListWindow.resize(900, 600)
+        EventListWindow.resize(900, 520)
         sizePolicy = QSizePolicy(QSizePolicy.Fixed, QSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(EventListWindow.sizePolicy().hasHeightForWidth())
         EventListWindow.setSizePolicy(sizePolicy)
-        EventListWindow.setMinimumSize(QSize(900, 600))
-        EventListWindow.setMaximumSize(QSize(900, 600))
+        EventListWindow.setMinimumSize(QSize(900, 520))
+        EventListWindow.setMaximumSize(QSize(900, 520))
         self.centralwidget = QWidget(EventListWindow)
         self.centralwidget.setObjectName(u"centralwidget")
         self.verticalLayoutWidget = QWidget(self.centralwidget)
         self.verticalLayoutWidget.setObjectName(u"verticalLayoutWidget")
-        self.verticalLayoutWidget.setGeometry(QRect(0, 20, 262, 521))
+        self.verticalLayoutWidget.setGeometry(QRect(0, 20, 262, 481))
         self.LayoutEventList = QVBoxLayout(self.verticalLayoutWidget)
         self.LayoutEventList.setObjectName(u"LayoutEventList")
         self.LayoutEventList.setContentsMargins(0, 0, 0, 0)
@@ -42,12 +42,12 @@ class Ui_EventListWindow(object):
         self.ExtraButtons.setObjectName(u"ExtraButtons")
         sizePolicy.setHeightForWidth(self.ExtraButtons.sizePolicy().hasHeightForWidth())
         self.ExtraButtons.setSizePolicy(sizePolicy)
-        self.ExtraButtons.setMinimumSize(QSize(250, 34))
+        self.ExtraButtons.setMinimumSize(QSize(260, 34))
         self.AdminView_2 = QWidget()
         self.AdminView_2.setObjectName(u"AdminView_2")
         self.horizontalLayoutWidget = QWidget(self.AdminView_2)
         self.horizontalLayoutWidget.setObjectName(u"horizontalLayoutWidget")
-        self.horizontalLayoutWidget.setGeometry(QRect(0, 0, 269, 41))
+        self.horizontalLayoutWidget.setGeometry(QRect(0, 0, 261, 41))
         self.horizontalLayout = QHBoxLayout(self.horizontalLayoutWidget)
         self.horizontalLayout.setObjectName(u"horizontalLayout")
         self.horizontalLayout.setContentsMargins(0, 0, 0, 0)
@@ -91,11 +91,6 @@ class Ui_EventListWindow(object):
         self.ListEvents.setObjectName(u"ListEvents")
 
         self.LayoutEventList.addWidget(self.ListEvents)
-
-        self.ButtonExit = QPushButton(self.verticalLayoutWidget)
-        self.ButtonExit.setObjectName(u"ButtonExit")
-
-        self.LayoutEventList.addWidget(self.ButtonExit)
 
         self.EventEditFrame = QFrame(self.centralwidget)
         self.EventEditFrame.setObjectName(u"EventEditFrame")
@@ -373,6 +368,169 @@ class Ui_EventListWindow(object):
         self.gridLayout.setObjectName(u"gridLayout")
         self.gridLayout.setSizeConstraint(QLayout.SetDefaultConstraint)
         self.gridLayout.setContentsMargins(0, 0, 0, 0)
+        self.LayoutTags = QVBoxLayout()
+        self.LayoutTags.setSpacing(0)
+        self.LayoutTags.setObjectName(u"LayoutTags")
+        self.verticalSpacer_2 = QSpacerItem(20, 30, QSizePolicy.Minimum, QSizePolicy.Minimum)
+
+        self.LayoutTags.addItem(self.verticalSpacer_2)
+
+        self.horizontalLayout_6 = QHBoxLayout()
+        self.horizontalLayout_6.setObjectName(u"horizontalLayout_6")
+        self.LabelTags = QLabel(self.gridLayoutWidget)
+        self.LabelTags.setObjectName(u"LabelTags")
+        sizePolicy3 = QSizePolicy(QSizePolicy.Minimum, QSizePolicy.Minimum)
+        sizePolicy3.setHorizontalStretch(0)
+        sizePolicy3.setVerticalStretch(0)
+        sizePolicy3.setHeightForWidth(self.LabelTags.sizePolicy().hasHeightForWidth())
+        self.LabelTags.setSizePolicy(sizePolicy3)
+        self.LabelTags.setMinimumSize(QSize(0, 30))
+        self.LabelTags.setFont(font2)
+        self.LabelTags.setFrameShape(QFrame.Panel)
+        self.LabelTags.setFrameShadow(QFrame.Raised)
+        self.LabelTags.setLineWidth(1)
+        self.LabelTags.setMidLineWidth(0)
+        self.LabelTags.setAlignment(Qt.AlignCenter)
+        self.LabelTags.setMargin(6)
+
+        self.horizontalLayout_6.addWidget(self.LabelTags)
+
+        self.horizontalSpacer_11 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
+
+        self.horizontalLayout_6.addItem(self.horizontalSpacer_11)
+
+        self.ButtonAddTag = QPushButton(self.gridLayoutWidget)
+        self.ButtonAddTag.setObjectName(u"ButtonAddTag")
+
+        self.horizontalLayout_6.addWidget(self.ButtonAddTag)
+
+
+        self.LayoutTags.addLayout(self.horizontalLayout_6)
+
+        self.listWidget_3 = QListWidget(self.gridLayoutWidget)
+        QListWidgetItem(self.listWidget_3)
+        QListWidgetItem(self.listWidget_3)
+        QListWidgetItem(self.listWidget_3)
+        QListWidgetItem(self.listWidget_3)
+        QListWidgetItem(self.listWidget_3)
+        QListWidgetItem(self.listWidget_3)
+        QListWidgetItem(self.listWidget_3)
+        QListWidgetItem(self.listWidget_3)
+        self.listWidget_3.setObjectName(u"listWidget_3")
+        self.listWidget_3.setEnabled(True)
+        self.listWidget_3.setFlow(QListView.LeftToRight)
+
+        self.LayoutTags.addWidget(self.listWidget_3)
+
+
+        self.gridLayout.addLayout(self.LayoutTags, 5, 0, 1, 1)
+
+        self.LabelDateTitle_2 = QLabel(self.gridLayoutWidget)
+        self.LabelDateTitle_2.setObjectName(u"LabelDateTitle_2")
+
+        self.gridLayout.addWidget(self.LabelDateTitle_2, 3, 0, 1, 1)
+
+        self.DividingLine_2 = QFrame(self.gridLayoutWidget)
+        self.DividingLine_2.setObjectName(u"DividingLine_2")
+        self.DividingLine_2.setFrameShape(QFrame.HLine)
+        self.DividingLine_2.setFrameShadow(QFrame.Sunken)
+
+        self.gridLayout.addWidget(self.DividingLine_2, 2, 0, 1, 3)
+
+        self.LayoutSpaceConstraint_2 = QVBoxLayout()
+        self.LayoutSpaceConstraint_2.setSpacing(0)
+        self.LayoutSpaceConstraint_2.setObjectName(u"LayoutSpaceConstraint_2")
+        self.LayoutSpaceConstraint_2.setSizeConstraint(QLayout.SetDefaultConstraint)
+        self.horizontalLayout_4 = QHBoxLayout()
+        self.horizontalLayout_4.setObjectName(u"horizontalLayout_4")
+        self.horizontalSpacer_9 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
+
+        self.horizontalLayout_4.addItem(self.horizontalSpacer_9)
+
+        self.LabelSpaceTitle_2 = QLabel(self.gridLayoutWidget)
+        self.LabelSpaceTitle_2.setObjectName(u"LabelSpaceTitle_2")
+        sizePolicy2.setHeightForWidth(self.LabelSpaceTitle_2.sizePolicy().hasHeightForWidth())
+        self.LabelSpaceTitle_2.setSizePolicy(sizePolicy2)
+        self.LabelSpaceTitle_2.setMinimumSize(QSize(0, 30))
+        self.LabelSpaceTitle_2.setFont(font2)
+        self.LabelSpaceTitle_2.setFrameShape(QFrame.Panel)
+        self.LabelSpaceTitle_2.setFrameShadow(QFrame.Raised)
+        self.LabelSpaceTitle_2.setLineWidth(1)
+        self.LabelSpaceTitle_2.setMidLineWidth(1)
+        self.LabelSpaceTitle_2.setAlignment(Qt.AlignCenter)
+        self.LabelSpaceTitle_2.setMargin(6)
+
+        self.horizontalLayout_4.addWidget(self.LabelSpaceTitle_2)
+
+        self.horizontalSpacer_10 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
+
+        self.horizontalLayout_4.addItem(self.horizontalSpacer_10)
+
+
+        self.LayoutSpaceConstraint_2.addLayout(self.horizontalLayout_4)
+
+        self.horizontalLayout_5 = QHBoxLayout()
+        self.horizontalLayout_5.setObjectName(u"horizontalLayout_5")
+        self.horizontalSpacer_7 = QSpacerItem(60, 20, QSizePolicy.Minimum, QSizePolicy.Minimum)
+
+        self.horizontalLayout_5.addItem(self.horizontalSpacer_7)
+
+        self.LabelSpaceConstraint = QLabel(self.gridLayoutWidget)
+        self.LabelSpaceConstraint.setObjectName(u"LabelSpaceConstraint")
+        self.LabelSpaceConstraint.setAlignment(Qt.AlignCenter)
+
+        self.horizontalLayout_5.addWidget(self.LabelSpaceConstraint)
+
+        self.horizontalSpacer_8 = QSpacerItem(60, 20, QSizePolicy.Minimum, QSizePolicy.Minimum)
+
+        self.horizontalLayout_5.addItem(self.horizontalSpacer_8)
+
+
+        self.LayoutSpaceConstraint_2.addLayout(self.horizontalLayout_5)
+
+
+        self.gridLayout.addLayout(self.LayoutSpaceConstraint_2, 1, 0, 1, 1)
+
+        self.LayoutTimeConstraints_2 = QVBoxLayout()
+        self.LayoutTimeConstraints_2.setSpacing(0)
+        self.LayoutTimeConstraints_2.setObjectName(u"LayoutTimeConstraints_2")
+        self.LayoutTimeConstraints_2.setSizeConstraint(QLayout.SetDefaultConstraint)
+        self.horizontalLayout_7 = QHBoxLayout()
+        self.horizontalLayout_7.setObjectName(u"horizontalLayout_7")
+        self.horizontalSpacer_2 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
+
+        self.horizontalLayout_7.addItem(self.horizontalSpacer_2)
+
+        self.LabelTimeConstraints_2 = QLabel(self.gridLayoutWidget)
+        self.LabelTimeConstraints_2.setObjectName(u"LabelTimeConstraints_2")
+        sizePolicy2.setHeightForWidth(self.LabelTimeConstraints_2.sizePolicy().hasHeightForWidth())
+        self.LabelTimeConstraints_2.setSizePolicy(sizePolicy2)
+        self.LabelTimeConstraints_2.setMinimumSize(QSize(0, 30))
+        self.LabelTimeConstraints_2.setFont(font2)
+        self.LabelTimeConstraints_2.setFrameShape(QFrame.Panel)
+        self.LabelTimeConstraints_2.setFrameShadow(QFrame.Raised)
+        self.LabelTimeConstraints_2.setLineWidth(1)
+        self.LabelTimeConstraints_2.setMidLineWidth(1)
+        self.LabelTimeConstraints_2.setAlignment(Qt.AlignCenter)
+        self.LabelTimeConstraints_2.setMargin(6)
+
+        self.horizontalLayout_7.addWidget(self.LabelTimeConstraints_2)
+
+        self.horizontalSpacer_3 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
+
+        self.horizontalLayout_7.addItem(self.horizontalSpacer_3)
+
+
+        self.LayoutTimeConstraints_2.addLayout(self.horizontalLayout_7)
+
+        self.listWidget = QListWidget(self.gridLayoutWidget)
+        self.listWidget.setObjectName(u"listWidget")
+
+        self.LayoutTimeConstraints_2.addWidget(self.listWidget)
+
+
+        self.gridLayout.addLayout(self.LayoutTimeConstraints_2, 0, 0, 1, 1)
+
         self.LayoutTagConstraints_2 = QVBoxLayout()
         self.LayoutTagConstraints_2.setSpacing(0)
         self.LayoutTagConstraints_2.setObjectName(u"LayoutTagConstraints_2")
@@ -452,17 +610,25 @@ class Ui_EventListWindow(object):
 
         self.LayoutExecuteScheduling.addItem(self.verticalSpacer)
 
-        self.pushButton_11 = QPushButton(self.gridLayoutWidget)
-        self.pushButton_11.setObjectName(u"pushButton_11")
-        self.pushButton_11.setMinimumSize(QSize(0, 40))
+        self.horizontalLayout_14 = QHBoxLayout()
+        self.horizontalLayout_14.setObjectName(u"horizontalLayout_14")
+        self.ButtonExecute = QPushButton(self.gridLayoutWidget)
+        self.ButtonExecute.setObjectName(u"ButtonExecute")
+        sizePolicy.setHeightForWidth(self.ButtonExecute.sizePolicy().hasHeightForWidth())
+        self.ButtonExecute.setSizePolicy(sizePolicy)
+        self.ButtonExecute.setMinimumSize(QSize(170, 32))
         font3 = QFont()
         font3.setBold(True)
         font3.setItalic(False)
         font3.setWeight(75)
-        self.pushButton_11.setFont(font3)
-        self.pushButton_11.setFlat(False)
+        self.ButtonExecute.setFont(font3)
+        self.ButtonExecute.setLayoutDirection(Qt.LeftToRight)
+        self.ButtonExecute.setFlat(False)
 
-        self.LayoutExecuteScheduling.addWidget(self.pushButton_11)
+        self.horizontalLayout_14.addWidget(self.ButtonExecute)
+
+
+        self.LayoutExecuteScheduling.addLayout(self.horizontalLayout_14)
 
 
         self.gridLayout.addLayout(self.LayoutExecuteScheduling, 5, 2, 1, 1)
@@ -471,182 +637,28 @@ class Ui_EventListWindow(object):
         self.LayoutAssignOrganizer.setSpacing(0)
         self.LayoutAssignOrganizer.setObjectName(u"LayoutAssignOrganizer")
         self.LayoutAssignOrganizer.setContentsMargins(8, 8, 8, 8)
+        self.horizontalLayout_8 = QHBoxLayout()
+        self.horizontalLayout_8.setObjectName(u"horizontalLayout_8")
         self.LabelAssignedOrganizer = QLabel(self.gridLayoutWidget)
         self.LabelAssignedOrganizer.setObjectName(u"LabelAssignedOrganizer")
         self.LabelAssignedOrganizer.setAlignment(Qt.AlignCenter)
 
-        self.LayoutAssignOrganizer.addWidget(self.LabelAssignedOrganizer)
+        self.horizontalLayout_8.addWidget(self.LabelAssignedOrganizer)
+
+        self.horizontalSpacer_14 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
+
+        self.horizontalLayout_8.addItem(self.horizontalSpacer_14)
 
         self.ButtonAssignOrganizer = QPushButton(self.gridLayoutWidget)
         self.ButtonAssignOrganizer.setObjectName(u"ButtonAssignOrganizer")
 
-        self.LayoutAssignOrganizer.addWidget(self.ButtonAssignOrganizer)
+        self.horizontalLayout_8.addWidget(self.ButtonAssignOrganizer)
+
+
+        self.LayoutAssignOrganizer.addLayout(self.horizontalLayout_8)
 
 
         self.gridLayout.addLayout(self.LayoutAssignOrganizer, 1, 2, 1, 1)
-
-        self.LayoutTags = QVBoxLayout()
-        self.LayoutTags.setSpacing(0)
-        self.LayoutTags.setObjectName(u"LayoutTags")
-        self.verticalSpacer_2 = QSpacerItem(20, 30, QSizePolicy.Minimum, QSizePolicy.Minimum)
-
-        self.LayoutTags.addItem(self.verticalSpacer_2)
-
-        self.horizontalLayout_6 = QHBoxLayout()
-        self.horizontalLayout_6.setObjectName(u"horizontalLayout_6")
-        self.LabelTags = QLabel(self.gridLayoutWidget)
-        self.LabelTags.setObjectName(u"LabelTags")
-        sizePolicy3 = QSizePolicy(QSizePolicy.Minimum, QSizePolicy.Minimum)
-        sizePolicy3.setHorizontalStretch(0)
-        sizePolicy3.setVerticalStretch(0)
-        sizePolicy3.setHeightForWidth(self.LabelTags.sizePolicy().hasHeightForWidth())
-        self.LabelTags.setSizePolicy(sizePolicy3)
-        self.LabelTags.setMinimumSize(QSize(0, 30))
-        self.LabelTags.setFont(font2)
-        self.LabelTags.setFrameShape(QFrame.Panel)
-        self.LabelTags.setFrameShadow(QFrame.Raised)
-        self.LabelTags.setLineWidth(1)
-        self.LabelTags.setMidLineWidth(0)
-        self.LabelTags.setAlignment(Qt.AlignCenter)
-        self.LabelTags.setMargin(6)
-
-        self.horizontalLayout_6.addWidget(self.LabelTags)
-
-        self.horizontalSpacer_11 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
-
-        self.horizontalLayout_6.addItem(self.horizontalSpacer_11)
-
-        self.ButtonAddTag = QPushButton(self.gridLayoutWidget)
-        self.ButtonAddTag.setObjectName(u"ButtonAddTag")
-
-        self.horizontalLayout_6.addWidget(self.ButtonAddTag)
-
-
-        self.LayoutTags.addLayout(self.horizontalLayout_6)
-
-        self.listWidget_3 = QListWidget(self.gridLayoutWidget)
-        QListWidgetItem(self.listWidget_3)
-        QListWidgetItem(self.listWidget_3)
-        QListWidgetItem(self.listWidget_3)
-        QListWidgetItem(self.listWidget_3)
-        QListWidgetItem(self.listWidget_3)
-        QListWidgetItem(self.listWidget_3)
-        QListWidgetItem(self.listWidget_3)
-        QListWidgetItem(self.listWidget_3)
-        self.listWidget_3.setObjectName(u"listWidget_3")
-        self.listWidget_3.setEnabled(True)
-        self.listWidget_3.setFlow(QListView.LeftToRight)
-
-        self.LayoutTags.addWidget(self.listWidget_3)
-
-
-        self.gridLayout.addLayout(self.LayoutTags, 5, 0, 1, 1)
-
-        self.LabelDateTitle_2 = QLabel(self.gridLayoutWidget)
-        self.LabelDateTitle_2.setObjectName(u"LabelDateTitle_2")
-
-        self.gridLayout.addWidget(self.LabelDateTitle_2, 3, 0, 1, 1)
-
-        self.LayoutTimeConstraints_2 = QVBoxLayout()
-        self.LayoutTimeConstraints_2.setSpacing(0)
-        self.LayoutTimeConstraints_2.setObjectName(u"LayoutTimeConstraints_2")
-        self.LayoutTimeConstraints_2.setSizeConstraint(QLayout.SetDefaultConstraint)
-        self.horizontalLayout_7 = QHBoxLayout()
-        self.horizontalLayout_7.setObjectName(u"horizontalLayout_7")
-        self.horizontalSpacer_2 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
-
-        self.horizontalLayout_7.addItem(self.horizontalSpacer_2)
-
-        self.LabelTimeConstraints_2 = QLabel(self.gridLayoutWidget)
-        self.LabelTimeConstraints_2.setObjectName(u"LabelTimeConstraints_2")
-        sizePolicy2.setHeightForWidth(self.LabelTimeConstraints_2.sizePolicy().hasHeightForWidth())
-        self.LabelTimeConstraints_2.setSizePolicy(sizePolicy2)
-        self.LabelTimeConstraints_2.setMinimumSize(QSize(0, 30))
-        self.LabelTimeConstraints_2.setFont(font2)
-        self.LabelTimeConstraints_2.setFrameShape(QFrame.Panel)
-        self.LabelTimeConstraints_2.setFrameShadow(QFrame.Raised)
-        self.LabelTimeConstraints_2.setLineWidth(1)
-        self.LabelTimeConstraints_2.setMidLineWidth(1)
-        self.LabelTimeConstraints_2.setAlignment(Qt.AlignCenter)
-        self.LabelTimeConstraints_2.setMargin(6)
-
-        self.horizontalLayout_7.addWidget(self.LabelTimeConstraints_2)
-
-        self.horizontalSpacer_3 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
-
-        self.horizontalLayout_7.addItem(self.horizontalSpacer_3)
-
-
-        self.LayoutTimeConstraints_2.addLayout(self.horizontalLayout_7)
-
-        self.listWidget = QListWidget(self.gridLayoutWidget)
-        self.listWidget.setObjectName(u"listWidget")
-
-        self.LayoutTimeConstraints_2.addWidget(self.listWidget)
-
-
-        self.gridLayout.addLayout(self.LayoutTimeConstraints_2, 0, 0, 1, 1)
-
-        self.LayoutSpaceConstraint_2 = QVBoxLayout()
-        self.LayoutSpaceConstraint_2.setSpacing(0)
-        self.LayoutSpaceConstraint_2.setObjectName(u"LayoutSpaceConstraint_2")
-        self.LayoutSpaceConstraint_2.setSizeConstraint(QLayout.SetDefaultConstraint)
-        self.horizontalLayout_4 = QHBoxLayout()
-        self.horizontalLayout_4.setObjectName(u"horizontalLayout_4")
-        self.horizontalSpacer_9 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
-
-        self.horizontalLayout_4.addItem(self.horizontalSpacer_9)
-
-        self.LabelSpaceTitle_2 = QLabel(self.gridLayoutWidget)
-        self.LabelSpaceTitle_2.setObjectName(u"LabelSpaceTitle_2")
-        sizePolicy2.setHeightForWidth(self.LabelSpaceTitle_2.sizePolicy().hasHeightForWidth())
-        self.LabelSpaceTitle_2.setSizePolicy(sizePolicy2)
-        self.LabelSpaceTitle_2.setMinimumSize(QSize(0, 30))
-        self.LabelSpaceTitle_2.setFont(font2)
-        self.LabelSpaceTitle_2.setFrameShape(QFrame.Panel)
-        self.LabelSpaceTitle_2.setFrameShadow(QFrame.Raised)
-        self.LabelSpaceTitle_2.setLineWidth(1)
-        self.LabelSpaceTitle_2.setMidLineWidth(1)
-        self.LabelSpaceTitle_2.setAlignment(Qt.AlignCenter)
-        self.LabelSpaceTitle_2.setMargin(6)
-
-        self.horizontalLayout_4.addWidget(self.LabelSpaceTitle_2)
-
-        self.horizontalSpacer_10 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
-
-        self.horizontalLayout_4.addItem(self.horizontalSpacer_10)
-
-
-        self.LayoutSpaceConstraint_2.addLayout(self.horizontalLayout_4)
-
-        self.horizontalLayout_5 = QHBoxLayout()
-        self.horizontalLayout_5.setObjectName(u"horizontalLayout_5")
-        self.horizontalSpacer_7 = QSpacerItem(60, 20, QSizePolicy.Minimum, QSizePolicy.Minimum)
-
-        self.horizontalLayout_5.addItem(self.horizontalSpacer_7)
-
-        self.LabelSpaceConstraint = QLabel(self.gridLayoutWidget)
-        self.LabelSpaceConstraint.setObjectName(u"LabelSpaceConstraint")
-        self.LabelSpaceConstraint.setAlignment(Qt.AlignCenter)
-
-        self.horizontalLayout_5.addWidget(self.LabelSpaceConstraint)
-
-        self.horizontalSpacer_8 = QSpacerItem(60, 20, QSizePolicy.Minimum, QSizePolicy.Minimum)
-
-        self.horizontalLayout_5.addItem(self.horizontalSpacer_8)
-
-
-        self.LayoutSpaceConstraint_2.addLayout(self.horizontalLayout_5)
-
-
-        self.gridLayout.addLayout(self.LayoutSpaceConstraint_2, 1, 0, 1, 1)
-
-        self.DividingLine_2 = QFrame(self.gridLayoutWidget)
-        self.DividingLine_2.setObjectName(u"DividingLine_2")
-        self.DividingLine_2.setFrameShape(QFrame.HLine)
-        self.DividingLine_2.setFrameShadow(QFrame.Sunken)
-
-        self.gridLayout.addWidget(self.DividingLine_2, 2, 0, 1, 3)
 
         self.stackedWidget_2.addWidget(self.AdminView)
 
@@ -659,22 +671,21 @@ class Ui_EventListWindow(object):
 
         self.retranslateUi(EventListWindow)
 
-        self.ExtraButtons.setCurrentIndex(1)
-        self.stackedWidget_2.setCurrentIndex(0)
-        self.pushButton_11.setDefault(False)
+        self.ExtraButtons.setCurrentIndex(0)
+        self.stackedWidget_2.setCurrentIndex(1)
+        self.ButtonExecute.setDefault(False)
 
 
         QMetaObject.connectSlotsByName(EventListWindow)
     # setupUi
 
     def retranslateUi(self, EventListWindow):
-        EventListWindow.setWindowTitle(QCoreApplication.translate("EventListWindow", u"Edit mode", None))
+        EventListWindow.setWindowTitle(QCoreApplication.translate("EventListWindow", u"MainWindow", None))
         self.LabelEventList.setText(QCoreApplication.translate("EventListWindow", u"Event List", None))
         self.ButtonCreateOrganizer.setText(QCoreApplication.translate("EventListWindow", u"Create Organizer", None))
         self.ButtonCreateEvent.setText(QCoreApplication.translate("EventListWindow", u"Create Event", None))
         self.ButtonFilter.setText(QCoreApplication.translate("EventListWindow", u"Filter", None))
         self.ButtonSort.setText(QCoreApplication.translate("EventListWindow", u"Sort", None))
-        self.ButtonExit.setText(QCoreApplication.translate("EventListWindow", u"Exit", None))
         self.LabelDetails.setText(QCoreApplication.translate("EventListWindow", u"Event Details", None))
         self.LabelTimeConstraints.setText(QCoreApplication.translate("EventListWindow", u"Time Constraints", None))
         self.LabelTagConstraints.setText(QCoreApplication.translate("EventListWindow", u"Tag Constraints", None))
@@ -688,22 +699,8 @@ class Ui_EventListWindow(object):
         self.LabelRoomTitle.setText(QCoreApplication.translate("EventListWindow", u"Current Scheduled Room:", None))
         self.ButtonAddTagConstraint.setText(QCoreApplication.translate("EventListWindow", u"Add", None))
         self.LabelRoomGroupTitle.setText(QCoreApplication.translate("EventListWindow", u"Event Room Group:", None))
-        self.LabelTagConstraints_2.setText(QCoreApplication.translate("EventListWindow", u"Tag Constraints", None))
-        self.LabelScheduledRoom_2.setText(QCoreApplication.translate("EventListWindow", u"<Room>", None))
-        self.LabelScheduledDatetime_2.setText(QCoreApplication.translate("EventListWindow", u"<Datetime>", None))
-        self.LabelRoomTitle_2.setText(QCoreApplication.translate("EventListWindow", u"Current Scheduled Room:", None))
-        self.LabelRoomGroupTitle_2.setText(QCoreApplication.translate("EventListWindow", u"Event Room Group:", None))
-        self.LabelRoomGroup_2.setText(QCoreApplication.translate("EventListWindow", u"<RoomGroup>", None))
-        self.pushButton_11.setText(QCoreApplication.translate("EventListWindow", u"Execute scheduling", None))
-        self.LabelAssignedOrganizer.setText(QCoreApplication.translate("EventListWindow", u"Assigned Organizer:", None))
-        self.ButtonAssignOrganizer.setText(QCoreApplication.translate("EventListWindow", u"Assign Organizer", None))
         self.LabelTags.setText(QCoreApplication.translate("EventListWindow", u"Tags", None))
         self.ButtonAddTag.setText(QCoreApplication.translate("EventListWindow", u"Add", None))
-        self.LabelDateTitle_2.setText(QCoreApplication.translate("EventListWindow", u"Current Scheduled Date and Time:", None))
-        self.LabelTimeConstraints_2.setText(QCoreApplication.translate("EventListWindow", u"Time Constraints", None))
-        self.LabelSpaceTitle_2.setText(QCoreApplication.translate("EventListWindow", u"Space Constraint", None))
-        self.LabelSpaceConstraint.setText(QCoreApplication.translate("EventListWindow", u"<SpaceConstraint>", None))
-        self.LabelHint.setText(QCoreApplication.translate("EventListWindow", u"Please select an event from the list on the left", None))
 
         __sortingEnabled = self.listWidget_3.isSortingEnabled()
         self.listWidget_3.setSortingEnabled(False)
@@ -724,6 +721,21 @@ class Ui_EventListWindow(object):
         ___qlistwidgetitem7 = self.listWidget_3.item(7)
         ___qlistwidgetitem7.setText(QCoreApplication.translate("EventListWindow", u"New Item", None));
         self.listWidget_3.setSortingEnabled(__sortingEnabled)
+
+        self.LabelDateTitle_2.setText(QCoreApplication.translate("EventListWindow", u"Current Scheduled Date and Time:", None))
+        self.LabelSpaceTitle_2.setText(QCoreApplication.translate("EventListWindow", u"Space Constraint", None))
+        self.LabelSpaceConstraint.setText(QCoreApplication.translate("EventListWindow", u"<SpaceConstraint>", None))
+        self.LabelTimeConstraints_2.setText(QCoreApplication.translate("EventListWindow", u"Time Constraints", None))
+        self.LabelTagConstraints_2.setText(QCoreApplication.translate("EventListWindow", u"Tag Constraints", None))
+        self.LabelScheduledRoom_2.setText(QCoreApplication.translate("EventListWindow", u"<Room>", None))
+        self.LabelScheduledDatetime_2.setText(QCoreApplication.translate("EventListWindow", u"<Datetime>", None))
+        self.LabelRoomTitle_2.setText(QCoreApplication.translate("EventListWindow", u"Current Scheduled Room:", None))
+        self.LabelRoomGroupTitle_2.setText(QCoreApplication.translate("EventListWindow", u"Event Room Group:", None))
+        self.LabelRoomGroup_2.setText(QCoreApplication.translate("EventListWindow", u"<RoomGroup>", None))
+        self.ButtonExecute.setText(QCoreApplication.translate("EventListWindow", u"Execute scheduling", None))
+        self.LabelAssignedOrganizer.setText(QCoreApplication.translate("EventListWindow", u"Assigned Organizer:", None))
+        self.ButtonAssignOrganizer.setText(QCoreApplication.translate("EventListWindow", u"Assign", None))
+        self.LabelHint.setText(QCoreApplication.translate("EventListWindow", u"Please select an event from the list on the left", None))
     # retranslateUi
 
 class EventListWindow(QMainWindow):
@@ -741,11 +753,16 @@ class EventListWindow(QMainWindow):
         self.ui.ButtonAddTagConstraint.clicked.connect(self.addTagConstraint)
         self.ui.ButtonAssignOrganizer.clicked.connect(self.assignOrganizer)
         self.ui.ButtonAddTag.clicked.connect(self.addTag)
+        self.ui.ButtonExecute.clicked.connect(self.executeScheduling)
+        self.ui.listWidget_3.itemChanged.connect(self.renameTag)
         self.ui.ButtonUpdateSpaceConstraint.clicked.connect(self.setSpaceConstraint)
 
     def selectEvent(self):
+        self.ui.LabelAssignedOrganizer.setText("Assigned Organizer:")
+        self.ui.ButtonAssignOrganizer.show()
         self.ui.LabelHint.hide()
         selected_event = schedule.getEvent(self.ui.ListEvents.currentItem().text())
+        # set event's labels
         self.ui.LabelDetails.setText(selected_event["object"].name)
         if selected_event["datetime"] == None:
             self.ui.LabelScheduledDatetime.setText("<font color=red>Not Scheduled Yet!</font>")
@@ -753,8 +770,8 @@ class EventListWindow(QMainWindow):
         else:
             self.ui.LabelScheduledDatetime.setText(selected_event["datetime"].strftime("%d/%m/%Y, %H:%M:%S"))
             self.ui.LabelScheduledDatetime_2.setText(selected_event["datetime"].strftime("%d/%m/%Y, %H:%M:%S"))
-        self.ui.LabelScheduledRoom.setText(selected_event["room"].name)
-        self.ui.LabelScheduledRoom_2.setText(selected_event["room"].name)
+            self.ui.LabelScheduledRoom.setText(selected_event["room"].name)
+            self.ui.LabelScheduledRoom_2.setText(selected_event["room"].name)
         eventRoomGroup = selected_event["object"].room_group
         if eventRoomGroup == None:
             self.ui.LabelRoomGroup.setText("None")
@@ -762,20 +779,36 @@ class EventListWindow(QMainWindow):
         else:
             self.ui.LabelRoomGroup.setText(selected_event["object"].room_group.name)
             self.ui.LabelRoomGroup_2.setText(selected_event["object"].room_group.name)
+            # update lists
         for tag in reversed(range(self.ui.listWidget_3.count())):
             self.ui.listWidget_3.takeItem(tag)
         for tag in selected_event["object"].tag_list:
             self.ui.listWidget_3.addItem(tag.name)
+        for constraint in reversed(range(self.ui.ListTagConstraints.count())):
+            self.ui.ListTagConstraints.takeItem(constraint)
+        for constraint in reversed(range(self.ui.ListTagConstraints_2.count())):
+            self.ui.ListTagConstraints_2.takeItem(constraint)
+        for constraint in reversed(range(self.ui.ListTimeConstraints.count())):
+            self.ui.ListTimeConstraints.takeItem(constraint)
+        for constraint in reversed(range(self.ui.listWidget.count())):
+            self.ui.listWidget.takeItem(constraint)
+        self.ui.FieldSpaceConstraint.setText("Enter max size")
+        self.ui.LabelSpaceConstraint.setText("None")
         for constraint in selected_event["object"].constraint_list:
             if type(constraint).__name__ == "TagConstraint":
-                self.ui.ListTagConstraints.addItem(constraint.tag.name)
-                self.ui.ListTagConstraints_2.addItem(constraint.tag.name)
+                self.ui.ListTagConstraints.addItem(constraint.tag.name + " (" + constraint.weight + ")")
+                self.ui.ListTagConstraints_2.addItem(constraint.tag.name + " (" + constraint.weight + ")")
             if type(constraint).__name__ == "TimeConstraint":
-                start_time = constraint.start_datetime.strftime("%d/%m/%Y, %H:%M:%S")
-                end_time = constraint.end_datetime.strftime("%d/%m/%Y, %H:%M:%S")
-                self.ui.ListTimeConstraints.addItem(start_time + " - " + end_time)
+                start_time = constraint.start_datetime.strftime("%d/%m/%Y, %H:%M")
+                end_time = constraint.end_datetime.strftime("%d/%m/%Y, %H:%M")
+                self.ui.ListTimeConstraints.addItem(start_time + " - " + end_time  + " (" + constraint.weight + ")")
+                self.ui.listWidget.addItem(start_time + " - " + end_time  + " (" + constraint.weight + ")")
             if type(constraint).__name__ == "SpaceConstraint":
                 self.ui.LabelSpaceConstraint.setText(constraint.space)
+                self.ui.FieldSpaceConstraint.setText(constraint.space)
+        if selected_event["object"].organizer is not None:
+            self.ui.ButtonAssignOrganizer.hide()
+            self.ui.LabelAssignedOrganizer.setText("Assigned Organizer: " + selected_event["object"].organizer.fullname)
         self.ui.EventEditFrame.show()
 
     def addTimeConstraint(self):
@@ -785,14 +818,16 @@ class EventListWindow(QMainWindow):
         response = self.timeconstraintWindow.showWindow()
         if response == 1:
             self.timeconstraintWindow.saveConstraint()
+            self.selectEvent()
 
     def addTagConstraint(self):
         selectedEvent = schedule.getEvent(self.ui.LabelDetails.text())
         self.tagConstraintWindow=ConstraintWindow(selectedEvent)
         self.tagConstraintWindow.ui.stackedWidget.setCurrentIndex(1)
-        response = self.timeconstraintWindow.showWindow()
+        response = self.tagConstraintWindow.showWindow()
         if response == 1:
-            self.timeconstraintWindow.saveConstraint()
+            self.tagConstraintWindow.saveConstraint()
+            self.selectEvent()
 
     def createEvent(self):
         self.eventCreateWindow = EventCreateWindow()
@@ -808,10 +843,17 @@ class EventListWindow(QMainWindow):
             self.organizerCreateWindow. createOrganizer()
 
     def fillEvents(self):
-        for event in reversed(range(self.ui.ListEvents.count())):
-            self.ui.ListEvents.takeItem(event)
-        for event in schedule.event_list:
-            self.ui.ListEvents.addItem(event["object"].name)
+        if session.getUserType() == "Admin":
+            for event in reversed(range(self.ui.ListEvents.count())):
+                self.ui.ListEvents.takeItem(event)
+            for event in schedule.event_list:
+                self.ui.ListEvents.addItem(event["object"].name)
+        else:
+            for event in reversed(range(self.ui.ListEvents.count())):
+                self.ui.ListEvents.takeItem(event)
+            for event in schedule.event_list:
+                if event["object"].organizer == session.current_user:
+                    self.ui.ListEvents.addItem(event["object"].name)
 
     def showWindow(self):
         self.show()
@@ -820,7 +862,21 @@ class EventListWindow(QMainWindow):
 
     def addTag(self):
         current_event = schedule.getEvent(self.ui.LabelDetails.text())
-        current_event["object"].addTag("New Tag",tag_list)
+        current_event["object"].addTag("New Tag", tag_list)
+        for tag in reversed(range(self.ui.listWidget_3.count())):
+            self.ui.listWidget_3.takeItem(tag)
+        for tag in current_event["object"].tag_list:
+            self.ui.listWidget_3.addItem(tag.name)
+        last_item = self.ui.listWidget_3.item(self.ui.listWidget_3.count() - 1)
+        last_item.setFlags(last_item.flags() | Qt.ItemIsEditable)
+
+    def renameTag(self):
+        current_event = schedule.getEvent(self.ui.LabelDetails.text())
+        current_tag_name = self.ui.listWidget_3.item(self.ui.listWidget_3.count() - 1).text()
+        if current_tag_name == "New Tag":
+            return None
+        current_event["object"].removeTag(current_tag_name, tag_list, schedule)
+        current_event["object"].addTag(current_tag_name, tag_list)
         for tag in reversed(range(self.ui.listWidget_3.count())):
             self.ui.listWidget_3.takeItem(tag)
         for tag in current_event["object"].tag_list:
@@ -828,12 +884,23 @@ class EventListWindow(QMainWindow):
 
     def setSpaceConstraint(self):
         current_event = schedule.getEvent(self.ui.LabelDetails.text())
-        constraint = SpaceConstraint(session.current_user, self.ui.FieldSpaceConstraint.text())
-        current_event["object"].addConstraint(constraint)
-
+        size = self.ui.FieldSpaceConstraint.text()
+        try:
+            if int(size) < 2000 and int(size) > 0:
+                constraint = SpaceConstraint(session.current_user, size)
+                current_event["object"].addConstraint(constraint)
+                self.selectEvent()
+            else:
+                self.ui.FieldSpaceConstraint.setText("Invalid number")
+        except:
+            self.ui.FieldSpaceConstraint.setText("Not a number")
     def assignOrganizer(self):
         selected_event = self.ui.LabelDetails.text()
         self.organizerListWindow = OrganizerListWindow(selected_event)
         response = self.organizerListWindow.showWindow()
         if response == 1:
             self.organizerListWindow.assignOrganizer()
+        self.selectEvent()
+
+    def executeScheduling(self):
+        schedule.executeScheduling(room_list)

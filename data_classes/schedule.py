@@ -3,7 +3,9 @@ from datetime import datetime, timedelta
 
 class Schedule:
     def __init__(self, event_list, organization):
-        self._event_list = event_list
+        self.event_list = []
+        for event in event_list:
+            self.addEvent(event.name, event.duration, "None")
         self._organization = organization
         self._timestamp_created = datetime.now()
         self._published = False
@@ -88,7 +90,7 @@ class Schedule:
         return None
 
     #Scheduling Algorithm
-    def executeScheduling(self):
+    def executeScheduling(self,room_list):
 
         new_schedule = Schedule([event['object'] for event in self.event_list], self.organization)  # create a copy of the old schedule with empty scheduled dates and rooms
         weight = {'low': 1 / 3, 'medium': 2 / 3, 'high': 1}  # weight dictionary
@@ -108,7 +110,7 @@ class Schedule:
             space_constraint = None
             time_constraints = []
             tag_constraints = []
-            for constraint in event.constraint_list:
+            for constraint in event["object"].constraint_list:
                 if type(constraint).__name__ == 'SpaceConstraint':
                     space_constraint = constraint.space
                 if type(constraint).__name__ == 'TimeConstraint':
@@ -117,7 +119,10 @@ class Schedule:
                     tag_constraints.append(constraint)
 
             # begin algorithm
-            for room in event['object'].room_group.room_list:
+            available_rooms = room_list.room_list
+            if event['object'].room_group is not None:
+                available_rooms = event['object'].room_group.room_list
+            for room in available_rooms:
                 for possible_datetime in available_datetimes:
 
                     # check if other event is already scheduled in this room at the same time
@@ -180,7 +185,8 @@ class Schedule:
 
                     solution_list.append([room,datetime,score])
 
-            best_solution = solution_list.sort(key = lambda x: x[2], reverse = True )[0]
+            solution_list.sort(key = lambda x: x[2], reverse = True )
+            best_solution = solution_list[0]
             new_schedule.event_list[i]["room"] = best_solution[0]
             new_schedule.event_list[i]["datetime"] = best_solution[1]
 

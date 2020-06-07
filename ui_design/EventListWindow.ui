@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>900</width>
-    <height>600</height>
+    <height>520</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -19,13 +19,13 @@
   <property name="minimumSize">
    <size>
     <width>900</width>
-    <height>600</height>
+    <height>520</height>
    </size>
   </property>
   <property name="maximumSize">
    <size>
     <width>900</width>
-    <height>600</height>
+    <height>520</height>
    </size>
   </property>
   <property name="windowTitle">
@@ -38,7 +38,7 @@
       <x>0</x>
       <y>20</y>
       <width>262</width>
-      <height>521</height>
+      <height>481</height>
      </rect>
     </property>
     <layout class="QVBoxLayout" name="LayoutEventList">
@@ -65,12 +65,12 @@
        </property>
        <property name="minimumSize">
         <size>
-         <width>250</width>
+         <width>260</width>
          <height>34</height>
         </size>
        </property>
        <property name="currentIndex">
-        <number>1</number>
+        <number>0</number>
        </property>
        <widget class="QWidget" name="AdminView_2">
         <widget class="QWidget" name="horizontalLayoutWidget">
@@ -78,7 +78,7 @@
           <rect>
            <x>0</x>
            <y>0</y>
-           <width>269</width>
+           <width>261</width>
            <height>41</height>
           </rect>
          </property>
@@ -136,13 +136,6 @@
      </item>
      <item>
       <widget class="QListWidget" name="ListEvents"/>
-     </item>
-     <item>
-      <widget class="QPushButton" name="ButtonExit">
-       <property name="text">
-        <string>Exit</string>
-       </property>
-      </widget>
      </item>
     </layout>
    </widget>
@@ -1231,30 +1224,43 @@
               </spacer>
              </item>
              <item>
-              <widget class="QPushButton" name="pushButton_11">
-               <property name="minimumSize">
-                <size>
-                 <width>0</width>
-                 <height>40</height>
-                </size>
-               </property>
-               <property name="font">
-                <font>
-                 <weight>75</weight>
-                 <italic>false</italic>
-                 <bold>true</bold>
-                </font>
-               </property>
-               <property name="text">
-                <string>Execute scheduling</string>
-               </property>
-               <property name="default">
-                <bool>false</bool>
-               </property>
-               <property name="flat">
-                <bool>false</bool>
-               </property>
-              </widget>
+              <layout class="QHBoxLayout" name="horizontalLayout_14">
+               <item>
+                <widget class="QPushButton" name="ButtonExecute">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="minimumSize">
+                  <size>
+                   <width>170</width>
+                   <height>32</height>
+                  </size>
+                 </property>
+                 <property name="font">
+                  <font>
+                   <weight>75</weight>
+                   <italic>false</italic>
+                   <bold>true</bold>
+                  </font>
+                 </property>
+                 <property name="layoutDirection">
+                  <enum>Qt::LeftToRight</enum>
+                 </property>
+                 <property name="text">
+                  <string>Execute scheduling</string>
+                 </property>
+                 <property name="default">
+                  <bool>false</bool>
+                 </property>
+                 <property name="flat">
+                  <bool>false</bool>
+                 </property>
+                </widget>
+               </item>
+              </layout>
              </item>
             </layout>
            </item>
@@ -1276,21 +1282,38 @@
               <number>8</number>
              </property>
              <item>
-              <widget class="QLabel" name="LabelAssignedOrganizer">
-               <property name="text">
-                <string>Assigned Organizer:</string>
-               </property>
-               <property name="alignment">
-                <set>Qt::AlignCenter</set>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="QPushButton" name="ButtonAssignOrganizer">
-               <property name="text">
-                <string>Assign Organizer</string>
-               </property>
-              </widget>
+              <layout class="QHBoxLayout" name="horizontalLayout_8">
+               <item>
+                <widget class="QLabel" name="LabelAssignedOrganizer">
+                 <property name="text">
+                  <string>Assigned Organizer:</string>
+                 </property>
+                 <property name="alignment">
+                  <set>Qt::AlignCenter</set>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <spacer name="horizontalSpacer_14">
+                 <property name="orientation">
+                  <enum>Qt::Horizontal</enum>
+                 </property>
+                 <property name="sizeHint" stdset="0">
+                  <size>
+                   <width>40</width>
+                   <height>20</height>
+                  </size>
+                 </property>
+                </spacer>
+               </item>
+               <item>
+                <widget class="QPushButton" name="ButtonAssignOrganizer">
+                 <property name="text">
+                  <string>Assign</string>
+                 </property>
+                </widget>
+               </item>
+              </layout>
              </item>
             </layout>
            </item>

@@ -73,7 +73,18 @@ class Event:
         self._tag_list.append(tag)
         return self
 
+    def removeTag(self, name, tag_list, schedule):
+        for tag in self.tag_list:
+            if tag.name == name:
+                break
+        self.tag_list.remove(tag)
+        tag_list.removeTag(name, schedule)
+
     def addConstraint(self, constraint):
+        if type(constraint).__name__ == "SpaceConstraint":
+            for const in self.constraint_list:
+                if type(const).__name__ == "SpaceConstraint":
+                    self.constraint_list.remove(const)
         self.constraint_list.append(constraint)
         return self
 

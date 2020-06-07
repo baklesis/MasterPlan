@@ -46,8 +46,8 @@ room_list = RoomList([
 #Room Groups
 room_group_list = RoomGroupList("upatras")
 room_group_list.addRoomGroup("amphitheater",[room_list.room_list[0],room_list.room_list[1],room_list.room_list[4]])
-room_group_list.addRoomGroup("classroom",room_list.room_list[2])
-room_group_list.addRoomGroup("lab",room_list.room_list[3])
+room_group_list.addRoomGroup("classroom",[room_list.room_list[2]])
+room_group_list.addRoomGroup("lab",[room_list.room_list[3]])
 
 for room in room_list.room_list:
     for i,building in enumerate(building_list.building_list):
