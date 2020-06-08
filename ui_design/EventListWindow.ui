@@ -29,21 +29,26 @@
    </size>
   </property>
   <property name="windowTitle">
-   <string>MainWindow</string>
+   <string>Edit Mode</string>
   </property>
   <widget class="QWidget" name="centralwidget">
    <widget class="QWidget" name="verticalLayoutWidget">
     <property name="geometry">
      <rect>
-      <x>0</x>
+      <x>10</x>
       <y>20</y>
-      <width>262</width>
+      <width>252</width>
       <height>481</height>
      </rect>
     </property>
     <layout class="QVBoxLayout" name="LayoutEventList">
      <item>
       <widget class="QLabel" name="LabelEventList">
+       <property name="font">
+        <font>
+         <pointsize>18</pointsize>
+        </font>
+       </property>
        <property name="frameShape">
         <enum>QFrame::Box</enum>
        </property>
@@ -65,7 +70,7 @@
        </property>
        <property name="minimumSize">
         <size>
-         <width>260</width>
+         <width>250</width>
          <height>34</height>
         </size>
        </property>
@@ -78,7 +83,7 @@
           <rect>
            <x>0</x>
            <y>0</y>
-           <width>261</width>
+           <width>251</width>
            <height>41</height>
           </rect>
          </property>
@@ -197,7 +202,7 @@
          </sizepolicy>
         </property>
         <property name="currentIndex">
-         <number>1</number>
+         <number>0</number>
         </property>
         <widget class="QWidget" name="OrganizerView">
          <property name="sizePolicy">
@@ -553,11 +558,21 @@
               </layout>
              </item>
              <item>
-              <widget class="QPushButton" name="ButtonUpdateSpaceConstraint">
-               <property name="text">
-                <string>Update</string>
-               </property>
-              </widget>
+              <layout class="QHBoxLayout" name="horizontalLayout_16">
+               <item>
+                <widget class="QPushButton" name="ButtonUpdateSpaceConstraint">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="text">
+                  <string>Update</string>
+                 </property>
+                </widget>
+               </item>
+              </layout>
              </item>
             </layout>
            </item>
@@ -1201,12 +1216,24 @@
                <property name="text">
                 <string>Event Room Group:</string>
                </property>
+               <property name="margin">
+                <number>2</number>
+               </property>
+               <property name="indent">
+                <number>4</number>
+               </property>
               </widget>
              </item>
              <item>
               <widget class="QLabel" name="LabelRoomGroup_2">
                <property name="text">
                 <string>&lt;RoomGroup&gt;</string>
+               </property>
+               <property name="margin">
+                <number>2</number>
+               </property>
+               <property name="indent">
+                <number>4</number>
                </property>
               </widget>
              </item>

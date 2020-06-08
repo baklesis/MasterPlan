@@ -10,6 +10,10 @@ from data_classes.tag import *
 
 #global variables that imitate the existence of a database
 
+#class Database:
+ #   def __init__(self):
+  #      self.account_list = []
+   #     self.
 #Accounts
 account_list = AccountList()
 account_list.account_list = [
@@ -122,6 +126,12 @@ schedule.addEvent("Internship Presentation",120,"None")
 schedule.event_list[11]["datetime"]=datetime.now() # test event που συμβαίνει πάντα αυτήν την στιγμή
 schedule.event_list[11]["room"]=room_list.room_list[4]
 schedule.event_list[11]["object"].organizer=organizer_list.organizer_list[1]
+
+
+
+def updateGlobalSchedule(new_schedule):
+    global schedule
+    schedule = new_schedule
 
 
 # Tags

@@ -49,7 +49,7 @@ class Ui_SearchWindow(object):
     # setupUi
 
     def retranslateUi(self, SearchWindow):
-        SearchWindow.setWindowTitle(QCoreApplication.translate("SearchWindow", u"Form", None))
+        SearchWindow.setWindowTitle(QCoreApplication.translate("SearchWindow", u"Search", None))
         self.searchButton.setText("")
     # retranslateUi
 

@@ -27,12 +27,15 @@ class Ui_EventListWindow(object):
         self.centralwidget.setObjectName(u"centralwidget")
         self.verticalLayoutWidget = QWidget(self.centralwidget)
         self.verticalLayoutWidget.setObjectName(u"verticalLayoutWidget")
-        self.verticalLayoutWidget.setGeometry(QRect(0, 20, 262, 481))
+        self.verticalLayoutWidget.setGeometry(QRect(10, 20, 252, 481))
         self.LayoutEventList = QVBoxLayout(self.verticalLayoutWidget)
         self.LayoutEventList.setObjectName(u"LayoutEventList")
         self.LayoutEventList.setContentsMargins(0, 0, 0, 0)
         self.LabelEventList = QLabel(self.verticalLayoutWidget)
         self.LabelEventList.setObjectName(u"LabelEventList")
+        font = QFont()
+        font.setPointSize(18)
+        self.LabelEventList.setFont(font)
         self.LabelEventList.setFrameShape(QFrame.Box)
         self.LabelEventList.setAlignment(Qt.AlignCenter)
 
@@ -42,12 +45,12 @@ class Ui_EventListWindow(object):
         self.ExtraButtons.setObjectName(u"ExtraButtons")
         sizePolicy.setHeightForWidth(self.ExtraButtons.sizePolicy().hasHeightForWidth())
         self.ExtraButtons.setSizePolicy(sizePolicy)
-        self.ExtraButtons.setMinimumSize(QSize(260, 34))
+        self.ExtraButtons.setMinimumSize(QSize(250, 34))
         self.AdminView_2 = QWidget()
         self.AdminView_2.setObjectName(u"AdminView_2")
         self.horizontalLayoutWidget = QWidget(self.AdminView_2)
         self.horizontalLayoutWidget.setObjectName(u"horizontalLayoutWidget")
-        self.horizontalLayoutWidget.setGeometry(QRect(0, 0, 261, 41))
+        self.horizontalLayoutWidget.setGeometry(QRect(0, 0, 251, 41))
         self.horizontalLayout = QHBoxLayout(self.horizontalLayoutWidget)
         self.horizontalLayout.setObjectName(u"horizontalLayout")
         self.horizontalLayout.setContentsMargins(0, 0, 0, 0)
@@ -108,8 +111,6 @@ class Ui_EventListWindow(object):
         self.LayoutEventDetails.setContentsMargins(0, 0, 0, 0)
         self.LabelDetails = QLabel(self.verticalLayoutWidget_7)
         self.LabelDetails.setObjectName(u"LabelDetails")
-        font = QFont()
-        font.setPointSize(18)
         self.LabelDetails.setFont(font)
         self.LabelDetails.setAlignment(Qt.AlignCenter)
 
@@ -288,10 +289,17 @@ class Ui_EventListWindow(object):
 
         self.LayoutSpaceConstraint.addLayout(self.horizontalLayout_12)
 
+        self.horizontalLayout_16 = QHBoxLayout()
+        self.horizontalLayout_16.setObjectName(u"horizontalLayout_16")
         self.ButtonUpdateSpaceConstraint = QPushButton(self.gridLayoutWidget_2)
         self.ButtonUpdateSpaceConstraint.setObjectName(u"ButtonUpdateSpaceConstraint")
+        sizePolicy.setHeightForWidth(self.ButtonUpdateSpaceConstraint.sizePolicy().hasHeightForWidth())
+        self.ButtonUpdateSpaceConstraint.setSizePolicy(sizePolicy)
 
-        self.LayoutSpaceConstraint.addWidget(self.ButtonUpdateSpaceConstraint)
+        self.horizontalLayout_16.addWidget(self.ButtonUpdateSpaceConstraint)
+
+
+        self.LayoutSpaceConstraint.addLayout(self.horizontalLayout_16)
 
 
         self.gridLayout_3.addLayout(self.LayoutSpaceConstraint, 2, 2, 1, 1)
@@ -598,11 +606,15 @@ class Ui_EventListWindow(object):
         self.LayoutExecuteScheduling.setObjectName(u"LayoutExecuteScheduling")
         self.LabelRoomGroupTitle_2 = QLabel(self.gridLayoutWidget)
         self.LabelRoomGroupTitle_2.setObjectName(u"LabelRoomGroupTitle_2")
+        self.LabelRoomGroupTitle_2.setMargin(2)
+        self.LabelRoomGroupTitle_2.setIndent(4)
 
         self.LayoutExecuteScheduling.addWidget(self.LabelRoomGroupTitle_2)
 
         self.LabelRoomGroup_2 = QLabel(self.gridLayoutWidget)
         self.LabelRoomGroup_2.setObjectName(u"LabelRoomGroup_2")
+        self.LabelRoomGroup_2.setMargin(2)
+        self.LabelRoomGroup_2.setIndent(4)
 
         self.LayoutExecuteScheduling.addWidget(self.LabelRoomGroup_2)
 
@@ -672,7 +684,7 @@ class Ui_EventListWindow(object):
         self.retranslateUi(EventListWindow)
 
         self.ExtraButtons.setCurrentIndex(0)
-        self.stackedWidget_2.setCurrentIndex(1)
+        self.stackedWidget_2.setCurrentIndex(0)
         self.ButtonExecute.setDefault(False)
 
 
@@ -680,7 +692,7 @@ class Ui_EventListWindow(object):
     # setupUi
 
     def retranslateUi(self, EventListWindow):
-        EventListWindow.setWindowTitle(QCoreApplication.translate("EventListWindow", u"MainWindow", None))
+        EventListWindow.setWindowTitle(QCoreApplication.translate("EventListWindow", u"Edit Mode", None))
         self.LabelEventList.setText(QCoreApplication.translate("EventListWindow", u"Event List", None))
         self.ButtonCreateOrganizer.setText(QCoreApplication.translate("EventListWindow", u"Create Organizer", None))
         self.ButtonCreateEvent.setText(QCoreApplication.translate("EventListWindow", u"Create Event", None))
@@ -768,8 +780,8 @@ class EventListWindow(QMainWindow):
             self.ui.LabelScheduledDatetime.setText("<font color=red>Not Scheduled Yet!</font>")
             self.ui.LabelScheduledDatetime_2.setText("<font color=red>Not Scheduled Yet!</font>")
         else:
-            self.ui.LabelScheduledDatetime.setText(selected_event["datetime"].strftime("%d/%m/%Y, %H:%M:%S"))
-            self.ui.LabelScheduledDatetime_2.setText(selected_event["datetime"].strftime("%d/%m/%Y, %H:%M:%S"))
+            self.ui.LabelScheduledDatetime.setText(selected_event["datetime"].strftime("%d/%m/%Y, %H:%M"))
+            self.ui.LabelScheduledDatetime_2.setText(selected_event["datetime"].strftime("%d/%m/%Y, %H:%M"))
             self.ui.LabelScheduledRoom.setText(selected_event["room"].name)
             self.ui.LabelScheduledRoom_2.setText(selected_event["room"].name)
         eventRoomGroup = selected_event["object"].room_group
@@ -792,7 +804,7 @@ class EventListWindow(QMainWindow):
             self.ui.ListTimeConstraints.takeItem(constraint)
         for constraint in reversed(range(self.ui.listWidget.count())):
             self.ui.listWidget.takeItem(constraint)
-        self.ui.FieldSpaceConstraint.setText("Enter max size")
+        self.ui.FieldSpaceConstraint.setText("Enter preffered capacity")
         self.ui.LabelSpaceConstraint.setText("None")
         for constraint in selected_event["object"].constraint_list:
             if type(constraint).__name__ == "TagConstraint":
@@ -903,4 +915,5 @@ class EventListWindow(QMainWindow):
         self.selectEvent()
 
     def executeScheduling(self):
-        schedule.executeScheduling(room_list)
+        global schedule
+        schedule = schedule.executeScheduling(room_list)

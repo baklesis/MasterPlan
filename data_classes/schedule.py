@@ -1,5 +1,5 @@
 from data_classes.event import *
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, date, time
 
 class Schedule:
     def __init__(self, event_list, organization):
@@ -95,17 +95,20 @@ class Schedule:
         new_schedule = Schedule([event['object'] for event in self.event_list], self.organization)  # create a copy of the old schedule with empty scheduled dates and rooms
         weight = {'low': 1 / 3, 'medium': 2 / 3, 'high': 1}  # weight dictionary
 
-        for i,event in enumerate(self.event_list):
+        for i,event in enumerate(new_schedule.event_list):
 
             solution_list = []  # all solutions will go here and they will be sorted to find the best
             available_datetimes= []
 
             # create scheduling period (generates available datetimes in 30 minute intervals for the next week starting monday)
-            temp_datetime = datetime.today() + timedelta(days= 7 - datetime.today().weekday())
-            while temp_datetime < datetime.today() + timedelta(days = 7 - datetime.today().weekday() + 7):
+            today_datetime = datetime.combine(date.today(), time())
+            start_datetime = today_datetime + timedelta(days= 7 - today_datetime.weekday())
+            end_datetime = start_datetime + timedelta(days=7)
+            temp_datetime = start_datetime
+            while temp_datetime < end_datetime:
                 available_datetimes.append(temp_datetime)
                 temp_datetime += timedelta(minutes=30)
-
+            print("out of while")
             # save constraints
             space_constraint = None
             time_constraints = []
@@ -126,8 +129,11 @@ class Schedule:
                 for possible_datetime in available_datetimes:
 
                     # check if other event is already scheduled in this room at the same time
-                    for other_event in self.event_list:
-                        if other_event['room'] == room:  # if the other event is in the same room
+                    for other_event in new_schedule.event_list:
+                        other_room_name = None
+                        if other_event['room'] is not None:
+                            other_room_name = other_event['room'].name
+                        if other_room_name == room:  # if the other event is in the same room
 
                             # create event period
                             event_period = set()  # contains all 30 minute interval datetimes in the event period
@@ -138,8 +144,8 @@ class Schedule:
 
                             # create other event period
                             other_event_period = set() # contains all 30 minute interval datetimes in the other event period
-                            temp_datetime = possible_datetime
-                            while temp_datetime < possible_datetime + timedelta(minutes=other_event['object'].duration):
+                            temp_datetime = other_event['datetime']
+                            while temp_datetime < other_event['datetime'] + timedelta(minutes=other_event['object'].duration):
                                 other_event_period.add(temp_datetime)
                                 temp_datetime += timedelta(minutes=30)
 
@@ -183,12 +189,11 @@ class Schedule:
                                 score = score - 0.1 * weight[tag_constraint.weight]  # apply small penalty for each tag constraint broken
                                 break
 
-                    solution_list.append([room,datetime,score])
-
+                    solution_list.append([room, possible_datetime, score])
             solution_list.sort(key = lambda x: x[2], reverse = True )
             best_solution = solution_list[0]
             new_schedule.event_list[i]["room"] = best_solution[0]
             new_schedule.event_list[i]["datetime"] = best_solution[1]
+            print(event["object"].name)
 
         return new_schedule
-
