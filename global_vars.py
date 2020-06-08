@@ -63,66 +63,62 @@ for room in room_list.room_list:
 
 schedule = Schedule([],"upatras")
 
-schedule.addEvent("AI Seminar",120,"None")
+schedule.addEvent("AI Seminar",120,room_group_list.room_group_list[0])
 schedule.event_list[0]["datetime"]=datetime.now() # test event που συμβαίνει πάντα αυτήν την στιγμή
 schedule.event_list[0]["room"]=room_list.room_list[0]
 schedule.event_list[0]["object"].organizer=organizer_list.organizer_list[0]
-schedule.event_list[0]["object"].room_group = room_group_list.room_group_list[0]
 
-schedule.addEvent("AT91 Workshop",180,"None")
-schedule.event_list[1]["datetime"]=datetime(2020,5,12,3,0)
+schedule.addEvent("AT91 Workshop",180,room_group_list.room_group_list[1])
+schedule.event_list[1]["datetime"]=datetime(2020,6,12,3,0)
 schedule.event_list[1]["room"]=room_list.room_list[0]
 schedule.event_list[1]["object"].organizer=organizer_list.organizer_list[1]
-schedule.event_list[1]["object"].room_group = room_group_list.room_group_list[1]
 
-schedule.addEvent("Erasmus Presentation",120,"None")
-schedule.event_list[2]["datetime"]=datetime(2020,5,15,5,0)
+schedule.addEvent("Erasmus Presentation",120,room_group_list.room_group_list[0])
+schedule.event_list[2]["datetime"]=datetime(2020,6,15,5,0)
 schedule.event_list[2]["room"]=room_list.room_list[0]
 schedule.event_list[2]["object"].organizer=organizer_list.organizer_list[1]
-schedule.event_list[2]["object"].room_group = room_group_list.room_group_list[0]
 
-schedule.addEvent("IEEE Presentation",120,"None")
-schedule.event_list[3]["datetime"]=datetime(2020,5,12,3,0)
+schedule.addEvent("IEEE Presentation",120,room_group_list.room_group_list[1])
+schedule.event_list[3]["datetime"]=datetime(2020,6,12,3,0)
 schedule.event_list[3]["room"]=room_list.room_list[0]
 schedule.event_list[3]["object"].organizer=organizer_list.organizer_list[0]
-schedule.event_list[3]["object"].room_group = room_group_list.room_group_list[1]
 
-schedule.addEvent("Robotics Seminar",120,"None")
+schedule.addEvent("Robotics Seminar",120,room_group_list.room_group_list[1])
 schedule.event_list[4]["datetime"]=datetime.now() # test event που συμβαίνει πάντα αυτήν την στιγμή
 schedule.event_list[4]["room"]=room_list.room_list[1]
 schedule.event_list[4]["object"].organizer=organizer_list.organizer_list[1]
 
-schedule.addEvent("Data Mining Seminar",120,"None")
-schedule.event_list[5]["datetime"]=datetime(2020,5,10,2,0)
+schedule.addEvent("Data Mining Seminar",120,room_group_list.room_group_list[1])
+schedule.event_list[5]["datetime"]=datetime(2020,6,10,2,0)
 schedule.event_list[5]["room"]=room_list.room_list[1]
 schedule.event_list[5]["object"].organizer=organizer_list.organizer_list[0]
 
-schedule.addEvent("Databases Seminar",120,"None")
-schedule.event_list[6]["datetime"]=datetime(2020,5,10,4,0)
+schedule.addEvent("Databases Seminar",120,room_group_list.room_group_list[0])
+schedule.event_list[6]["datetime"]=datetime(2020,6,10,4,0)
 schedule.event_list[6]["room"]=room_list.room_list[2]
 schedule.event_list[6]["object"].organizer=organizer_list.organizer_list[0]
 
-schedule.addEvent("Cyber Security Seminar",120,"None")
-schedule.event_list[7]["datetime"]=datetime(2020,5,10,8,0)
+schedule.addEvent("Cyber Security Seminar",120,room_group_list.room_group_list[0])
+schedule.event_list[7]["datetime"]=datetime(2020,6,10,8,0)
 schedule.event_list[7]["room"]=room_list.room_list[2]
 schedule.event_list[7]["object"].organizer=organizer_list.organizer_list[0]
 
-schedule.addEvent("AI Workshop",120,"None")
+schedule.addEvent("AI Workshop",120,room_group_list.room_group_list[2])
 schedule.event_list[8]["datetime"]=datetime.now() # test event που συμβαίνει πάντα αυτήν την στιγμή
 schedule.event_list[8]["room"]=room_list.room_list[3]
 schedule.event_list[8]["object"].organizer=organizer_list.organizer_list[0]
 
-schedule.addEvent("Networks Seminar",180,"None")
-schedule.event_list[9]["datetime"]=datetime(2020,5,20,12,0)
+schedule.addEvent("Networks Seminar",180,room_group_list.room_group_list[0])
+schedule.event_list[9]["datetime"]=datetime(2020,6,20,12,0)
 schedule.event_list[9]["room"]=room_list.room_list[4]
 schedule.event_list[9]["object"].organizer=organizer_list.organizer_list[1]
 
-schedule.addEvent("Architecture Workshop",120,"None")
-schedule.event_list[10]["datetime"]=datetime(2020,5,9,3,0)
+schedule.addEvent("Architecture Workshop",120,room_group_list.room_group_list[2])
+schedule.event_list[10]["datetime"]=datetime(2020,6,9,3,0)
 schedule.event_list[10]["room"]=room_list.room_list[4]
 schedule.event_list[10]["object"].organizer=organizer_list.organizer_list[1]
 
-schedule.addEvent("Internship Presentation",120,"None")
+schedule.addEvent("Internship Presentation",120,room_group_list.room_group_list[0])
 schedule.event_list[11]["datetime"]=datetime.now() # test event που συμβαίνει πάντα αυτήν την στιγμή
 schedule.event_list[11]["room"]=room_list.room_list[4]
 schedule.event_list[11]["object"].organizer=organizer_list.organizer_list[1]

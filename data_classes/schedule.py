@@ -5,7 +5,7 @@ class Schedule:
     def __init__(self, event_list, organization):
         self.event_list = []
         for event in event_list:
-            self.addEvent(event.name, event.duration, "None")
+            self.addEvent(event.name, event.duration, event.room_group)
         self._organization = organization
         self._timestamp_created = datetime.now()
         self._published = False
@@ -39,13 +39,13 @@ class Schedule:
     def published(self, published):
         self._published = published
 
-    def addEvent(self, name, duration, repetition):  # event list ειναι list of dictionaries
-        newEvent = Event(name, duration)
+    def addEvent(self, name, duration, room_group):  # event list ειναι list of dictionaries
+        newEvent = Event(name, duration, room_group)
         self._event_list.append(
             {
                 "object": newEvent,
                 "datetime": None,
-                "repetition": repetition,
+                "repetition": None,
                 "room": None
             }
         )
@@ -108,7 +108,7 @@ class Schedule:
             while temp_datetime < end_datetime:
                 available_datetimes.append(temp_datetime)
                 temp_datetime += timedelta(minutes=30)
-            print("out of while")
+
             # save constraints
             space_constraint = None
             time_constraints = []
@@ -125,15 +125,16 @@ class Schedule:
             available_rooms = room_list.room_list
             if event['object'].room_group is not None:
                 available_rooms = event['object'].room_group.room_list
-            for room in available_rooms:
-                for possible_datetime in available_datetimes:
+            for possible_datetime in available_datetimes:
+                for room in available_rooms:
 
                     # check if other event is already scheduled in this room at the same time
+                    check_next = 0  # flag to continue to next datetime
                     for other_event in new_schedule.event_list:
                         other_room_name = None
                         if other_event['room'] is not None:
                             other_room_name = other_event['room'].name
-                        if other_room_name == room:  # if the other event is in the same room
+                        if other_room_name == room.name:  # if the other event is in the same room
 
                             # create event period
                             event_period = set()  # contains all 30 minute interval datetimes in the event period
@@ -150,7 +151,12 @@ class Schedule:
                                 temp_datetime += timedelta(minutes=30)
 
                             if len(event_period.intersection(other_event_period)) > 0:  # if the other event is scheduled at the same time
-                                break  # check another possible datetime
+                                check_next = 1 # check next possible solution
+                                break  # stop checking if other rooms are scheduled in that datetime
+
+                    if check_next: # if another event is scheduled at the same time
+                        check_next = 0
+                        continue  # check another possible solution
 
                     # apply space constraint
                     if space_constraint:
@@ -194,6 +200,5 @@ class Schedule:
             best_solution = solution_list[0]
             new_schedule.event_list[i]["room"] = best_solution[0]
             new_schedule.event_list[i]["datetime"] = best_solution[1]
-            print(event["object"].name)
 
         return new_schedule

@@ -1,11 +1,11 @@
 from datetime import datetime
 from data_classes.tag import TagList
 class Event:
-    def __init__(self, name, duration):
+    def __init__(self, name, duration, room_group):
         self._name = name
         self._duration = duration
         self._organizer = None
-        self._room_group = None
+        self._room_group = room_group
         self._tag_list = []
         self._constraint_list = []
         self._timestamp_created = datetime.now()
