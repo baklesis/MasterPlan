@@ -61,11 +61,12 @@ class RoomList:
                 self.room_list.append()
         return self.room.list
 
-    def validateFile(self):
-        csv_file = open(self.listFile, 'rb')
+    def validateFile(file):
+        csv_file = open(file, 'rb')
         try:
             dialect = csv.Sniffer().sniff(csv_file.read(1024))
             csv_file.seek(0)
+            return True
         except csv.Error:
-            return self
+            return False
 

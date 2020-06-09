@@ -623,7 +623,7 @@ class MainWindow(QMainWindow):
         for room in room_list.room_list:
             if room.name == selected_room:
                 for event in schedule.event_list:
-                    if ((datetime.now()-event['datetime']).total_seconds()/60<event['object'].duration) & (event['room'].name == selected_room):
+                    if (abs(datetime.now()-event['datetime']).total_seconds()/60<event['object'].duration) & (event['room'].name == selected_room):
                         if self.filter([event]): # if the event belongs to the selected filter
                             self.eventInfoWindow = EventInfoWindow()
                             self.eventInfoWindow.showWindow(event)
@@ -758,7 +758,7 @@ class MainWindow(QMainWindow):
             for i in range(len(self.grid_button_list)): #για καθε κουμπί αιθουσας στο grid
                 for event in event_list:
                     if event["datetime"] is not None:
-                        if ((datetime.now() - event['datetime']).total_seconds() / 60 < event['object'].duration) & (event['room'].name == self.grid_button_list[i].text()):
+                        if (abs(datetime.now() - event['datetime']).total_seconds() / 60 < event['object'].duration) & (event['room'].name == self.grid_button_list[i].text()):
                             self.grid_button_list[i].setStyleSheet("background-color: rgb(80, 141, 255)")
 
         # update calendar view

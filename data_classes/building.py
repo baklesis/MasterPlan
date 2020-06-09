@@ -40,8 +40,14 @@ class BuildingList:
     @organization.setter
     def organization(self, organization):
         self._organization = organization
-    def createBuildingList(self,file):
-        return self
+
+    def createBuildingList(self, file):
+        with open(file, 'r') as csv_file:
+            reader = csv.reader(csv_file)
+            for row in reader:
+                self.building_list.append()
+        return self.building_list
+
     def convertToCSV(self):
         # convert data to csv
         f = open("building.csv", "w")
@@ -52,17 +58,11 @@ class BuildingList:
         f.close()
         return self
 
-    def createRoomList(self, file):
-        with open(file, 'r') as csv_file:
-            reader = csv.reader(csv_file)
-            for row in reader:
-                self.building_list.append()
-        return self.building_list
-
-    def validateFile(self):
-        csv_file = open(self.listFile, 'rb')
+    def validateFile(file):
+        csv_file = open(file, 'rb')
         try:
             dialect = csv.Sniffer().sniff(csv_file.read(1024))
             csv_file.seek(0)
+            return True
         except csv.Error:
-            return self
+            return False
