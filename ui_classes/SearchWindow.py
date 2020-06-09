@@ -85,7 +85,6 @@ class SearchWindow(QMainWindow):
         self.show()
 
     def update_display(self):
-        print("click!")
         text = self.ui.searchBar.text()
         for event in reversed(range(self.ui.searchResults.count())):
             self.ui.searchResults.takeItem(event)

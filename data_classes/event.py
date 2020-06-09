@@ -74,11 +74,14 @@ class Event:
         return self
 
     def removeTag(self, name, tag_list, schedule):
+        found=False
         for tag in self.tag_list:
             if tag.name == name:
+                found=True
                 break
-        self.tag_list.remove(tag)
-        tag_list.removeTag(name, schedule)
+        if found:
+            self.tag_list.remove(tag)
+            tag_list.removeTag(name, schedule)
 
     def addConstraint(self, constraint):
         if type(constraint).__name__ == "SpaceConstraint":

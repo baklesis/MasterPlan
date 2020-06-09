@@ -879,13 +879,17 @@ class EventListWindow(QMainWindow):
             self.ui.listWidget_3.takeItem(tag)
         for tag in current_event["object"].tag_list:
             self.ui.listWidget_3.addItem(tag.name)
+            if tag.name == "New Tag":
+                new_tag = self.ui.listWidget_3.item(self.ui.listWidget_3.count()-1)
+                new_tag.setForeground(Qt.gray)
         last_item = self.ui.listWidget_3.item(self.ui.listWidget_3.count() - 1)
         last_item.setFlags(last_item.flags() | Qt.ItemIsEditable)
 
     def renameTag(self):
         current_event = schedule.getEvent(self.ui.LabelDetails.text())
-        current_tag_name = self.ui.listWidget_3.item(self.ui.listWidget_3.count() - 1).text()
+        current_tag_name = self.ui.listWidget_3.item(self.ui.listWidget_3.count()-1).text()
         if current_tag_name == "New Tag":
+            current_event["object"].removeTag(current_tag_name, tag_list, schedule)
             return None
         current_event["object"].removeTag(current_tag_name, tag_list, schedule)
         current_event["object"].addTag(current_tag_name, tag_list)

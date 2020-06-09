@@ -26,8 +26,6 @@ class TagList:
         #checks if the Tag is already on the list
         oldTag = next((x for x in self.tag_list if x.name == name), None)
         if(oldTag != None):
-            #if already there it informs us
-            print("Whoops, this tag is already in the tag list!")
             return oldTag
         else:
             #if new it is added to the list
@@ -40,7 +38,6 @@ class TagList:
         if tag_to_remove is not None:
             for event in schedule.event_list:
                 if tag_to_remove in event["object"].tag_list:
-                    print("Tag exists in other event")
                     return None
             self.tag_list.remove(tag_to_remove)
 

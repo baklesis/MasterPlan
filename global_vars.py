@@ -10,10 +10,6 @@ from data_classes.tag import *
 
 #global variables that imitate the existence of a database
 
-#class Database:
- #   def __init__(self):
-  #      self.account_list = []
-   #     self.
 #Accounts
 account_list = AccountList()
 account_list.account_list = [
@@ -158,17 +154,23 @@ schedule.event_list[0]["object"].addConstraint(TimeConstraint(organizer_list.org
 schedule.event_list[0]["object"].addConstraint(TagConstraint(organizer_list.organizer_list[0],tag_list.getTag("Seminar"), "medium"))
 schedule.event_list[1]["object"].addConstraint(TimeConstraint(organizer_list.organizer_list[1], datetime(2020,6,10,16),
                                                               datetime(2020,6,20,17),"none","high"))
-#schedule.event_list[2]["object"].addConstraint(TimeConstraint(organizer_list.organizer_list[0]))
+schedule.event_list[2]["object"].addConstraint(TimeConstraint(organizer_list.organizer_list[0], datetime(2020,6,13,9),
+                                                              datetime(2020,6,13,10),"none","medium"))
 schedule.event_list[3]["object"].addConstraint(TimeConstraint(organizer_list.organizer_list[1], datetime(2020,6,12,8),
                                                               datetime(2020,6,12,9),"none","high"))
 schedule.event_list[4]["object"].addConstraint(TimeConstraint(organizer_list.organizer_list[1], datetime(2020,6,5,15),
                                                               datetime(2020,6,5,18),"none","high"))
-#schedule.event_list[5]["object"].addConstraint(TimeConstraint(organizer_list.organizer_list[0]))
-#schedule.event_list[6]["object"].addConstraint(TimeConstraint(organizer_list.organizer_list[0]))
-#schedule.event_list[7]["object"].addConstraint(TimeConstraint(organizer_list.organizer_list[0]))
-#schedule.event_list[8]["object"].addConstraint(TimeConstraint(organizer_list.organizer_list[0]))
-#schedule.event_list[8]["object"].addConstraint(TagConstraint(organizer_list.organizer_list[0]))
+schedule.event_list[5]["object"].addConstraint(TimeConstraint(organizer_list.organizer_list[0], datetime(2020,6,21,14),
+                                                              datetime (2020,6,21,16),"none","high"))
+schedule.event_list[6]["object"].addConstraint(TimeConstraint(organizer_list.organizer_list[0], datetime(2020,6,7,16),
+                                                              datetime(2020,6,7,20),"none","low"))
+schedule.event_list[7]["object"].addConstraint(TimeConstraint(organizer_list.organizer_list[0], datetime(2020,6,2,11),
+                                                              datetime(2020,6,2,13),"none","high"))
+schedule.event_list[8]["object"].addConstraint(TimeConstraint(organizer_list.organizer_list[0], datetime(2020,6,14,12),
+                                                              datetime(2020,6,14,14),"none","medium"))
+schedule.event_list[8]["object"].addConstraint(TagConstraint(organizer_list.organizer_list[0], tag_list.getTag("Workshop"), "high"))
 schedule.event_list[9]["object"].addConstraint(TimeConstraint(organizer_list.organizer_list[1], datetime(2020,6,20,15),
                                                               datetime(2020,6,20,18),"none","high"))
-#schedule.event_list[10]["object"].addConstraint(TimeConstraint(organizer_list.organizer_list[1]))
-#schedule.event_list[11]["object"].addConstraint(TimeConstraint(organizer_list.organizer_list[1]))
+schedule.event_list[10]["object"].addConstraint(TimeConstraint(organizer_list.organizer_list[1], datetime(2020,6,12,12),
+                                                               datetime(2020,6,12,13),"none","low"))
+schedule.event_list[11]["object"].addConstraint(TimeConstraint(organizer_list.organizer_list[1], datetime(2020,6,24,20), datetime(2020,6,24,22), "none", "medium"))

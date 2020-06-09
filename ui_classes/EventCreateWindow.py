@@ -156,7 +156,6 @@ class EventCreateWindow(QDialog):
 
     def saveEvent(self):
         # checks if all complete and valid
-        print("Clicked")
         if self.ui.FieldName.text() and ((int(self.ui.FieldMinutes.text()) != 0) or int(self.ui.FieldHours.text()) != 0):
             # gets Name and Duration and creates base Event in Schedule's event list
             newEvent = schedule.addEvent(self.ui.FieldName.text(),
@@ -165,17 +164,19 @@ class EventCreateWindow(QDialog):
             selected_room_group = self.ui.MenuRoomGroup.currentText()
             if selected_room_group != "None":
                 newEvent.room_group = room_group_list.getRoomGroup(selected_room_group)
+            else:
+                newEvent.room_group = None
             # adds Tag list
-            tag_list = []
+            event_tag_list = []
             for i in range(self.ui.ListTags.count()):
                 # it imports every tag to the organization's global TagList
-                tag_list[i] = tag_list.addTag(self.ui.ListTags.item(i).text())
+                if self.ui.ListTags.item(i).checkState() == Qt.Checked:
+                    event_tag_list.append(tag_list.addTag(self.ui.ListTags.item(i).text()))
             # adds tags to event's tag list
-            newEvent.tag_list = tag_list
+            newEvent.tag_list = event_tag_list
             self.close()
             # if not complete shows message
         else:
-            print("ok")
             self.messageWindow = MessageWindow()
             self.messageWindow.showCreateEventError()
             self.messageWindow.exec()
@@ -184,4 +185,9 @@ class EventCreateWindow(QDialog):
     def showWindow(self):
         for room_group in room_group_list.room_group_list:
             self.ui.MenuRoomGroup.addItem(room_group.name)
+        for tag in tag_list.tag_list:
+            self.ui.ListTags.addItem(tag.name)
+        for i in range(self.ui.ListTags.count()):
+            self.ui.ListTags.item(i).setFlags(self.ui.ListTags.item(i).flags() | Qt.ItemIsUserCheckable)
+            self.ui.ListTags.item(i).setCheckState(Qt.Unchecked)
         return self.exec()
