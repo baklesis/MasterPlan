@@ -41,7 +41,7 @@ An automatic event scheduling desktop application.
 6. Click on your previously created event and select Assign in order to assign an organizer to the event.
 7. Choose one from the list appearing on the pop-up window and assign them to the event. You can choose the organizer you created on the previous steps.
 8. You can also choose to add a Tag to the selected event. This can be a tag that is completely new and was not offered before during the event's creation.
-9. At this point you can click Execute Scheduling to run the scheduling algorithm and create a new schedule for all events. *This step exposes a known bug and should be skipped for the following instructions to run smoothly!*
+9. At this point you can click Execute Scheduling to run the scheduling algorithm and create a new schedule for all events. *This step exposes a known bug that removes the organizers' association with all events and should be skipped for the following instructions to run smoothly!*
 
 ## Edit Mode Instructions (Organizer):
 
