@@ -8,6 +8,8 @@ An automatic event scheduling desktop application.
 3. On the command line (Windows) or terminal (Mac, Linux) navigate to the project's folder.
 4. Execute the command `python -u main.py`
 
+*In case there is a problem with installing the required libraries we included a demonstrative video of all the implemented functions in the main repos folder.*
+
 ## Log In Instructions:
 1. Enter organization using example organization "upatras".
 2. a) Enter as __admin__ using username "upatras" and password "1".
