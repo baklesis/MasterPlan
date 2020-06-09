@@ -62,9 +62,6 @@ class Event:
     def room_group(self, room_group):
         self._room_group = room_group
 
-    def getEventInfo(self):
-        return self
-
     def addTag(self, name, tag_list):
         for i in self.tag_list:
             if i.name == name:

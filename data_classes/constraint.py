@@ -42,8 +42,6 @@ class TimeConstraint(Constraint):
     @weight.setter
     def weight(self,weight):
         self._weight=weight
-    def getConstraintInfo(self):
-        return self
     def getChanged(self):
         return self
 
@@ -57,8 +55,6 @@ class SpaceConstraint(Constraint):
     @space.setter
     def space(self,space):
         self._space=space
-    def getConstraintInfo(self):
-        return self
 
 class TagConstraint(Constraint):
     def __init__(self,organizer,tag,weight):
@@ -77,7 +73,5 @@ class TagConstraint(Constraint):
     @weight.setter
     def weight(self,weight):
         self._weight=weight
-    def getConstraintInfo(self):
-        return self
     def getChanged(self):
         return self

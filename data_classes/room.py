@@ -30,8 +30,6 @@ class Room:
     @capacity.setter
     def capacity(self, capacity):
         self._capacity = capacity
-    def getRoomInfo(self):
-        return self
 
 class RoomList:
     def __init__(self, room_list):
