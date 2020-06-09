@@ -1,5 +1,4 @@
 from datetime import datetime
-from data_classes.tag import TagList
 class Event:
     def __init__(self, name, duration, room_group):
         self._name = name

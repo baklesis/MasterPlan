@@ -1,4 +1,3 @@
-from global_vars import *
 import csv
 class Room:
     def __init__(self, name, building, floor, capacity):
