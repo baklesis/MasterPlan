@@ -43,7 +43,7 @@ class Session:
         else:
             return self._current_user.getAccountType()
 
-    def convertToCSV(self):
+    def convertToCSV(self): # δεν έχει υλοποιηθεί
         return self
 
 class Announcement:

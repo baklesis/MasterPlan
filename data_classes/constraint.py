@@ -42,7 +42,7 @@ class TimeConstraint(Constraint):
     @weight.setter
     def weight(self,weight):
         self._weight=weight
-    def getChanged(self):
+    def getChanged(self): #δεν έχει υλοποιηθεί
         return self
 
 class SpaceConstraint(Constraint):
@@ -73,5 +73,5 @@ class TagConstraint(Constraint):
     @weight.setter
     def weight(self,weight):
         self._weight=weight
-    def getChanged(self):
+    def getChanged(self): #δεν έχει υλοποιηθεί
         return self

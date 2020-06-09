@@ -51,8 +51,7 @@ class Schedule:
         )
         return newEvent
 
-    # coming soon implement test functions for set datetime
-    def deleteSchedule(self):  # destructor καλυτερα
+    def deleteSchedule(self):  # δεν έχει υλοποιηθεί
         return self
 
     def getSchedule(self,building,room,organizer,event):
@@ -63,7 +62,11 @@ class Schedule:
                     building_event_list.append(event)
             return building_event_list
         if event is not None:
-            return 0
+            return 0 # δεν έχει υλοποιηθεί
+        if room is not None:
+            return 0  # δεν έχει υλοποιηθεί
+        if organizer is not None:
+            return 0  # δεν έχει υλοποιηθεί
 
     def getEvent(self, name):
         for event in self.event_list:
@@ -71,7 +74,10 @@ class Schedule:
                 return event
         return None
 
-    def publishSchedule(self):
+    def publishSchedule(self): #δεν έχει υλοποιηθεί
+        return self
+
+    def createSchedule(file): #δεν έχει υλοποιηθεί
         return self
 
     def convertToCSV(self):

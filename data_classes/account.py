@@ -89,8 +89,8 @@ class Organizer(Account):
     def organization(self, organization):
         self._organization = organization
 
-    def sendEmail(self):
-        pass
+    def sendEmail(self): #δεν έχει υλοποιηθεί
+        return self
 
 
 class OrganizerList:

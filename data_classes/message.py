@@ -24,4 +24,5 @@ class Message:
     @text.setter
     def text(self,text):
         self._text=text
-    #def notifyOrganizers(self): καλύτερα να καλείται ο constructor που θα φτιαχνει μηνύματα προς καθε organizer
+    def notifyOrganizers(self): #δεν έχει υλοποιηθεί
+        return self
